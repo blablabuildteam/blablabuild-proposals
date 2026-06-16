@@ -1,0 +1,21 @@
+import { Suspense } from "react";
+import { LandingScreen } from "@/components/LandingScreen";
+import { getPublicProposals } from "@/lib/proposals/registry";
+
+function LandingFallback() {
+  return (
+    <div className="flex min-h-dvh items-center justify-center bg-[var(--brand-bg)]">
+      <p className="text-sm text-[var(--brand-muted)]">Loading…</p>
+    </div>
+  );
+}
+
+export default function Home() {
+  const clients = getPublicProposals();
+
+  return (
+    <Suspense fallback={<LandingFallback />}>
+      <LandingScreen clients={clients} />
+    </Suspense>
+  );
+}

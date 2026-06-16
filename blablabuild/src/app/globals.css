@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+:root {
+  --brand-primary: #1125ff;
+  --brand-accent: #ceff00;
+  --brand-accent-hover: #b8e600;
+  --brand-bg: #f5f5f5;
+  --brand-surface: #ffffff;
+  --brand-fg: #0a0a0a;
+  --brand-fg-secondary: #333333;
+  --brand-muted: #666666;
+  --brand-muted-light: #999999;
+  --brand-border: #e0e0e0;
+  --brand-dark: #0a0a0a;
+  --brand-radius: 12px;
+  --brand-radius-lg: 16px;
+  --brand-radius-pill: 9999px;
+}
+
+@theme inline {
+  --color-background: var(--brand-bg);
+  --color-foreground: var(--brand-fg);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--brand-bg);
+  color: var(--brand-fg);
+}
+
+.deck-footer {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.slide-enter {
+  animation: slide-in 0.35s ease-out;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide-enter {
+    animation: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .deck-root {
+    min-height: 100dvh;
+    min-height: -webkit-fill-available;
+  }
+}

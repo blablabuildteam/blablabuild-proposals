@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+:root {
+  --brand-primary: #8885ff;
+  --brand-accent: #eeff00;
+  --brand-accent-hover: #d9e600;
+  --brand-highlight: #fbff82;
+  --brand-bg: #ffffff;
+  --brand-surface: #ffffff;
+  --brand-fg: #000000;
+  --brand-fg-secondary: #333333;
+  --brand-muted: #666666;
+  --brand-muted-light: #888888;
+  --brand-border: #e5e5e5;
+  --brand-dark: #000000;
+  --brand-dark-section: #121212;
+  --brand-radius: 0;
+  --brand-radius-lg: 0;
+  --brand-radius-pill: 50px;
+  --font-display: var(--font-gosha), "PP Gosha Sans", sans-serif;
+  --font-body: var(--font-hybi11), "Hybi11 Amigo", sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--brand-bg);
+  --color-foreground: var(--brand-fg);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-body);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--brand-bg);
+  color: var(--brand-fg);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.deck-footer {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.slide-enter {
+  animation: slide-in 0.35s ease-out;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide-enter {
+    animation: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .deck-root {
+    min-height: 100dvh;
+    min-height: -webkit-fill-available;
+  }
+}
