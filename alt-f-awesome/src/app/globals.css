@@ -79,3 +79,332 @@ h3 {
     min-height: -webkit-fill-available;
   }
 }
+
+@keyframes float1 {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  50% {
+    transform: translateY(-10px) translateX(-15px);
+  }
+  75% {
+    transform: translateY(-25px) translateX(5px);
+  }
+}
+
+@keyframes float2 {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  33% {
+    transform: translateY(-15px) translateX(-10px);
+  }
+  66% {
+    transform: translateY(-30px) translateX(20px);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse2 {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-100px);
+  }
+  50% {
+    transform: translateX(50px);
+  }
+  100% {
+    transform: translateX(-100px);
+  }
+}
+
+@keyframes spin-custom {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: translateY(0px) skewX(0deg);
+  }
+  25% {
+    transform: translateY(-10px) skewX(5deg);
+  }
+  50% {
+    transform: translateY(5px) skewX(-3deg);
+  }
+  75% {
+    transform: translateY(-15px) skewX(2deg);
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes morph {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.1) rotate(90deg);
+  }
+  50% {
+    transform: scale(0.9) rotate(180deg);
+  }
+  75% {
+    transform: scale(1.2) rotate(270deg);
+  }
+}
+
+@keyframes login-pixel-mosaic {
+  0% {
+    -webkit-mask-image: radial-gradient(
+      circle at 50% 50%,
+      transparent 0%,
+      transparent 0%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(
+      circle at 50% 50%,
+      transparent 0%,
+      transparent 0%,
+      transparent 100%
+    );
+    filter: contrast(4) saturate(0.2) brightness(2);
+  }
+  50% {
+    -webkit-mask-image: radial-gradient(
+      circle at 50% 50%,
+      black 1.5px,
+      transparent 2.5px
+    );
+    mask-image: radial-gradient(
+      circle at 50% 50%,
+      black 1.5px,
+      transparent 2.5px
+    );
+    -webkit-mask-size: 4px 4px;
+    mask-size: 4px 4px;
+    filter: contrast(2.5) saturate(0.7) brightness(1.4);
+  }
+  100% {
+    -webkit-mask-image: none;
+    mask-image: none;
+    filter: contrast(1) saturate(1) brightness(1);
+  }
+}
+
+.animate-float1 {
+  animation: float1 10s ease-in-out infinite;
+}
+.animate-float2 {
+  animation: float2 8s ease-in-out infinite reverse;
+}
+.animate-rotate {
+  animation: rotate 12s linear infinite;
+}
+.animate-pulse2 {
+  animation: pulse2 6s ease-in-out infinite;
+}
+.animate-slide {
+  animation: slide 15s linear infinite;
+}
+.animate-spin-custom {
+  animation: spin-custom 8s linear infinite;
+}
+.animate-wave {
+  animation: wave 7s ease-in-out infinite;
+}
+.animate-blink {
+  animation: blink 2s ease-in-out infinite;
+}
+.animate-blink-delay-1 {
+  animation: blink 3s ease-in-out infinite 1s;
+}
+.animate-morph {
+  animation: morph 9s ease-in-out infinite;
+}
+
+.login-pixel-mosaic {
+  animation: login-pixel-mosaic 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.dithered-conic {
+  background: repeating-conic-gradient(
+    from 0deg,
+    #8885ff 0deg 90deg,
+    #121813 90deg 180deg,
+    #eeff00 180deg 270deg,
+    #121813 270deg
+  );
+  background-size: 8px 8px;
+  image-rendering: pixelated;
+}
+
+.dithered-diagonal {
+  background: repeating-linear-gradient(
+    45deg,
+    #eeff00 0px,
+    #eeff00 4px,
+    #121813 4px,
+    #121813 8px,
+    #8885ff 8px,
+    #8885ff 12px
+  );
+  image-rendering: pixelated;
+}
+
+.dithered-vertical {
+  background: repeating-linear-gradient(
+    0deg,
+    #8885ff 0px,
+    #8885ff 2px,
+    transparent 2px,
+    transparent 6px
+  );
+  image-rendering: pixelated;
+}
+
+.dithered-dots {
+  background:
+    radial-gradient(circle at 4px 4px, #eeff00 2px, transparent 2px),
+    radial-gradient(circle at 12px 12px, #8885ff 2px, transparent 2px);
+  background-size: 16px 16px;
+  image-rendering: pixelated;
+}
+
+.dithered-horizontal {
+  background: repeating-linear-gradient(
+    90deg,
+    #8885ff 0px,
+    #8885ff 8px,
+    #121813 8px,
+    #121813 16px,
+    #eeff00 16px,
+    #eeff00 24px
+  );
+  image-rendering: pixelated;
+}
+
+.dithered-conic-simple {
+  background: conic-gradient(from 45deg, #eeff00, #8885ff, #121813, #eeff00);
+  background-size: 10px 10px;
+  image-rendering: pixelated;
+}
+
+.dithered-diagonal-complex {
+  background: repeating-linear-gradient(
+    135deg,
+    #8885ff 0px,
+    #8885ff 3px,
+    #eeff00 3px,
+    #eeff00 6px,
+    #121813 6px,
+    #121813 9px
+  );
+  image-rendering: pixelated;
+}
+
+.dithered-complex {
+  background:
+    repeating-linear-gradient(
+      0deg,
+      #8885ff 0px,
+      #8885ff 2px,
+      transparent 2px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      #eeff00 0px,
+      #eeff00 2px,
+      transparent 2px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      45deg,
+      #121813 0px,
+      #121813 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  image-rendering: pixelated;
+}
+
+.dithered-stripes {
+  background: repeating-linear-gradient(
+    90deg,
+    #8885ff 0px,
+    #8885ff 8px,
+    #eeff00 8px,
+    #eeff00 16px
+  );
+  image-rendering: pixelated;
+}
+
+.dithered-diagonal-yellow-purple {
+  background: repeating-linear-gradient(
+    45deg,
+    #eeff00 0px,
+    #eeff00 4px,
+    #8885ff 4px,
+    #8885ff 8px
+  );
+  image-rendering: pixelated;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login-pixel-mosaic,
+  .animate-float1,
+  .animate-float2,
+  .animate-rotate,
+  .animate-pulse2,
+  .animate-slide,
+  .animate-spin-custom,
+  .animate-wave,
+  .animate-blink,
+  .animate-blink-delay-1,
+  .animate-morph {
+    animation: none;
+  }
+}

@@ -7,6 +7,26 @@ export type ProposalMeta = {
   subtitle: string;
 };
 
+export type ProposalAccessLanding = {
+  kicker: string;
+  greetingTemplate?: string;
+  clientLabel: string;
+  passwordLabel: string;
+  passwordHint?: string;
+  submit: string;
+  submitting: string;
+  opening: string;
+  sessionExpired: string;
+  invalidAccessLink: string;
+  accessDenied: string;
+  genericError: string;
+  confidentialNote?: string;
+};
+
+export type ProposalAccess = {
+  landing: ProposalAccessLanding;
+};
+
 export type ProposalDebrief = {
   quote: string;
   quoteSource: string;
@@ -18,6 +38,7 @@ export type ProposalDebrief = {
 
 export type ProposalBundle = {
   meta: ProposalMeta;
+  access?: ProposalAccess;
   debrief: ProposalDebrief;
   workflows: Workflow[];
   riceSorted: Workflow[];
@@ -52,4 +73,7 @@ export type ProposalContextValue = ProposalBundle & {
 export type PublicProposal = {
   slug: string;
   clientName: string;
+  title: string;
+  subtitle: string;
+  access: ProposalAccess;
 };
