@@ -40,8 +40,8 @@ export function SlideApproach() {
     <div>
       <SlideTitle
         kicker="Roadmap"
-        title="Three phases — one programme"
-        subtitle="Each phase delivers usable value before the next starts. WF9 (website) runs in parallel during Phase 2 — separate track, same timeline."
+        title="Three phases, one programme"
+        subtitle="Each phase delivers usable value before the next starts. WF9 (website) runs in parallel during Phase 2, separate track, same timeline."
       />
 
       <PhaseTimeline phases={timeline} />
@@ -52,7 +52,7 @@ export function SlideApproach() {
             Parallel · {phases[2].period}
           </p>
           <p className="mt-1 text-sm text-[var(--brand-fg-secondary)]">
-            <strong>WF9 Website</strong> — {phases[2].invest}. Marketing
+            <strong>WF9 Website</strong>, {phases[2].invest}. Marketing
             updates without blocking ops automation.
           </p>
         </div>

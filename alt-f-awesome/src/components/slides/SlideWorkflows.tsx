@@ -5,13 +5,19 @@ import { useProposal } from "@/components/ProposalProvider";
 import { SlideTitle } from "./shared";
 import { WorkflowRow } from "./WorkflowDetailCard";
 
-const phaseOrder = ["NOW", "NEXT", "PARALLEL", "NEAR", "BACKLOG"] as const;
+const filterOrder = [
+  "ALL",
+  "NOW",
+  "NEXT",
+  "NEAR",
+  "PARALLEL",
+  "BACKLOG",
+] as const;
+type Filter = (typeof filterOrder)[number];
 
 export function SlideWorkflows() {
   const { workflows } = useProposal();
-  const [filter, setFilter] = useState<(typeof phaseOrder)[number] | "ALL">(
-    "ALL",
-  );
+  const [filter, setFilter] = useState<Filter>("ALL");
 
   const filtered =
     filter === "ALL"
@@ -23,15 +29,12 @@ export function SlideWorkflows() {
       <SlideTitle
         kicker="Reference"
         title="All 11 workflows"
-        subtitle="Full overview — filter by phase. Detail slides above cover what matters most."
+        subtitle="Full overview. Filter by phase. Detail slides above cover what matters most."
         compact
       />
 
       <div className="mb-4 flex flex-wrap gap-1.5">
-        <FilterBtn active={filter === "ALL"} onClick={() => setFilter("ALL")}>
-          All
-        </FilterBtn>
-        {phaseOrder.map((p) => (
+        {filterOrder.map((p) => (
           <FilterBtn key={p} active={filter === p} onClick={() => setFilter(p)}>
             {p}
           </FilterBtn>

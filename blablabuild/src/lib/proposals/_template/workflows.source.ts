@@ -6,7 +6,7 @@ import { BLABLABUILD_RATE_CARD } from "@foundation/config";
 const rateCard = BLABLABUILD_RATE_CARD;
 
 /**
- * Example workflow — duplicate and edit for each client initiative.
+ * Example workflow: duplicate and edit for each client initiative.
  * RICE scores are computed automatically; cost sums roll up to phases & packages.
  */
 export const workflowSources: WorkflowSource[] = [
@@ -37,7 +37,7 @@ export const workflowSources: WorkflowSource[] = [
       return estimateCostFromDays(daysMin, daysMax, rateCard);
     })(),
     summary: "One-line outcome the client cares about.",
-    why: "Why this matters — pain in their words from discovery.",
+    why: "Why this matters: pain in their words from discovery.",
     benefits: ["Benefit 1", "Benefit 2", "Benefit 3"],
     timeSaved: "~X hours/week",
     deliverables: ["Deliverable 1", "Deliverable 2"],

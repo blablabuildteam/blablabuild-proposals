@@ -1,56 +1,86 @@
 "use client";
 
-import Image from "next/image";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  DeckNavigationProvider,
+  useDeckNavigation,
+} from "@/components/DeckNavigation";
+import { BrandLogo } from "./BrandLogo";
 import { useProposal } from "@/components/ProposalProvider";
-import { brand } from "@/lib/brand";
-import { SlideDebrief } from "./slides/SlideDebrief";
-import { SlideUnderstanding } from "./slides/SlideUnderstanding";
-import { SlideWayOfWorking } from "./slides/SlideWayOfWorking";
-import { SlideApproach } from "./slides/SlideApproach";
-import { SlidePhaseNow } from "./slides/SlidePhaseNow";
-import { SlidePhaseNext } from "./slides/SlidePhaseNext";
-import { SlidePhaseNear } from "./slides/SlidePhaseNear";
-import { SlideWorkflows } from "./slides/SlideWorkflows";
-import { SlidePrioritization } from "./slides/SlidePrioritization";
-import { SlideInvestment } from "./slides/SlideInvestment";
-import { SlideNextSteps } from "./slides/SlideNextSteps";
-
-const slides = [
-  SlideDebrief,
-  SlideUnderstanding,
-  SlideWayOfWorking,
-  SlideApproach,
-  SlidePhaseNow,
-  SlidePhaseNext,
-  SlidePhaseNear,
-  SlideWorkflows,
-  SlidePrioritization,
-  SlideInvestment,
-  SlideNextSteps,
-] as const;
+import { useProposalUi } from "@/lib/proposals/use-proposal-ui";
+import { resolveSlideComponents } from "@/components/proposal-library";
+import { SlideWorkflowUseCase } from "./slides/SlideWorkflowUseCase";
+import { SlideThemeProvider } from "./slides/SlideTheme";
 
 const SWIPE_THRESHOLD = 50;
 
 export function SlideDeck() {
-  const { slideLabels, meta } = useProposal();
+  return (
+    <DeckNavigationProvider>
+      <SlideDeckInner />
+    </DeckNavigationProvider>
+  );
+}
+
+function SlideDeckInner() {
+  const { slideLabels, meta, getWorkflow, slideConfigs } = useProposal();
+  const ui = useProposalUi();
+  const { workflowDetailId, closeWorkflow } = useDeckNavigation();
   const router = useRouter();
   const [index, setIndex] = useState(0);
+  const [direction, setDirection] = useState<1 | -1>(1);
   const touchStart = useRef<{ x: number; y: number } | null>(null);
+  const mainRef = useRef<HTMLElement>(null);
+  const slides = resolveSlideComponents(
+    slideConfigs.map((config) => config.sectionId),
+  );
   const total = slides.length;
   const Slide = slides[index];
-  const progress = ((index + 1) / total) * 100;
+  const detailWorkflow = workflowDetailId
+    ? getWorkflow(workflowDetailId)
+    : undefined;
+  const variant = slideConfigs[index]?.variant ?? "light";
+  const isBlue = variant === "blue";
+  const slideAnimClass =
+    variant === "blue"
+      ? "slide-enter-blue"
+      : direction > 0
+        ? "slide-enter-forward"
+        : "slide-enter-back";
+
+  useEffect(() => {
+    mainRef.current?.scrollTo({ top: 0, behavior: "auto" });
+  }, [index, workflowDetailId]);
 
   const go = useCallback(
     (delta: number) => {
+      closeWorkflow();
+      setDirection(delta > 0 ? 1 : -1);
       setIndex((i) => Math.max(0, Math.min(total - 1, i + delta)));
     },
-    [total],
+    [total, closeWorkflow],
+  );
+
+  const goToSlide = useCallback(
+    (i: number) => {
+      closeWorkflow();
+      setDirection(i >= index ? 1 : -1);
+      setIndex(i);
+    },
+    [closeWorkflow, index],
   );
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape" && workflowDetailId) {
+        e.preventDefault();
+        closeWorkflow();
+        return;
+      }
+      if (workflowDetailId) return;
+
       if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
         e.preventDefault();
         go(1);
@@ -64,7 +94,7 @@ export function SlideDeck() {
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [go, total]);
+  }, [go, total, workflowDetailId, closeWorkflow]);
 
   const onTouchStart = (e: React.TouchEvent) => {
     touchStart.current = {
@@ -74,6 +104,7 @@ export function SlideDeck() {
   };
 
   const onTouchEnd = (e: React.TouchEvent) => {
+    if (workflowDetailId) return;
     if (!touchStart.current) return;
     const dx = e.changedTouches[0].clientX - touchStart.current.x;
     const dy = e.changedTouches[0].clientY - touchStart.current.y;
@@ -83,35 +114,68 @@ export function SlideDeck() {
   };
 
   return (
-    <div className="deck-root flex h-dvh min-h-dvh flex-col bg-[var(--brand-bg)] text-[var(--brand-fg)]">
-      <div
-        className="h-1 shrink-0 bg-[var(--brand-border)]"
-        role="progressbar"
-        aria-valuenow={index + 1}
-        aria-valuemin={1}
-        aria-valuemax={total}
+    <div
+      className={`deck-root deck-chrome flex h-dvh min-h-dvh flex-col ${
+        isBlue
+          ? "bg-[var(--brand-primary)] text-white"
+          : "bg-[var(--brand-bg)] text-[var(--brand-fg)]"
+      }`}
+    >
+      <header
+        className={`deck-chrome flex shrink-0 items-center justify-between gap-3 border-b px-4 py-3 sm:px-6 sm:py-4 ${
+          isBlue
+            ? "border-white/15 bg-[var(--brand-primary)]"
+            : "border-[var(--brand-border)] bg-white"
+        }`}
       >
-        <div
-          className="h-full bg-[var(--brand-accent)] transition-[width] duration-300 ease-out"
-          style={{ width: `${progress}%` }}
-        />
-      </div>
-
-      <header className="flex shrink-0 items-center justify-between gap-3 border-b border-[var(--brand-border)] bg-white px-4 py-2.5 sm:px-6 sm:py-3">
         <div className="flex min-w-0 items-center gap-2 sm:gap-4">
-          <Image
-            src={brand.logo}
-            alt={brand.name}
-            width={brand.logoWidth}
-            height={brand.logoHeight}
-            className="h-5 w-auto shrink-0 sm:h-6"
+          <BrandLogo
+            variant={isBlue ? "on-dark" : "default"}
+            className="h-5 w-auto shrink-0 transition-[color] duration-500 sm:h-6"
           />
-          <span className="hidden text-[var(--brand-border)] sm:inline">|</span>
-          <span className="hidden truncate text-sm text-[var(--brand-muted)] sm:inline">
+          <span
+            className={`hidden sm:inline ${
+              isBlue ? "text-white/25" : "text-[var(--brand-border)]"
+            }`}
+          >
+            |
+          </span>
+          <span
+            className={`hidden truncate text-sm sm:inline ${
+              isBlue ? "text-white/70" : "text-[var(--brand-muted)]"
+            }`}
+          >
             {meta.clientName}
           </span>
         </div>
         <div className="flex shrink-0 items-center gap-2 sm:gap-4">
+          <span
+            className={`max-w-[9rem] truncate text-xs sm:max-w-none sm:text-sm md:hidden ${
+              isBlue ? "text-white/75" : "text-[var(--brand-muted)]"
+            }`}
+          >
+            {workflowDetailId
+              ? detailWorkflow?.title ?? ui.useCaseFallback
+              : slideLabels[index]}
+          </span>
+          <span
+            className={`hidden text-sm md:inline ${
+              isBlue ? "text-white/75" : "text-[var(--brand-muted)]"
+            }`}
+          >
+            {workflowDetailId
+              ? `${detailWorkflow?.id ?? ""} · ${detailWorkflow?.title ?? ui.useCaseFallback}`
+              : slideLabels[index]}
+          </span>
+          <span
+            className={`rounded-full px-2.5 py-0.5 text-[10px] font-medium sm:px-3 sm:py-1 sm:text-xs ${
+              isBlue
+                ? "bg-white/15 text-white"
+                : "bg-[var(--brand-fg)] text-white"
+            }`}
+          >
+            {String(index + 1).padStart(2, "0")}/{String(total).padStart(2, "0")}
+          </span>
           <button
             type="button"
             onClick={async () => {
@@ -119,39 +183,86 @@ export function SlideDeck() {
               router.push("/");
               router.refresh();
             }}
-            className="hidden text-xs text-[var(--brand-muted)] underline-offset-2 hover:text-[var(--brand-fg)] hover:underline sm:inline"
+            aria-label={ui.exit}
+            className={`flex shrink-0 items-center justify-center rounded-md p-1 transition-colors ${
+              isBlue
+                ? "text-white/60 hover:bg-white/10 hover:text-white"
+                : "text-[var(--brand-muted)] hover:bg-[var(--brand-bg)] hover:text-[var(--brand-fg)]"
+            }`}
           >
-            Exit
+            <X className="size-6" strokeWidth={1.75} />
           </button>
-          <span className="max-w-[9rem] truncate text-xs text-[var(--brand-muted)] sm:max-w-none sm:text-sm md:hidden">
-            {slideLabels[index]}
-          </span>
-          <span className="hidden text-sm text-[var(--brand-muted)] md:inline">
-            {slideLabels[index]}
-          </span>
-          <span className="rounded-full bg-[var(--brand-fg)] px-2.5 py-0.5 font-mono text-[10px] text-white sm:px-3 sm:py-1 sm:text-xs">
-            {String(index + 1).padStart(2, "0")}/{String(total).padStart(2, "0")}
-          </span>
         </div>
       </header>
 
+      <div
+        className={`deck-chrome shrink-0 border-b px-4 py-2 text-center text-xs sm:hidden ${
+          isBlue
+            ? "border-white/15 bg-[var(--brand-primary)] text-white/80"
+            : "border-[var(--brand-border)] bg-[var(--brand-bg)] text-[var(--brand-muted)]"
+        }`}
+      >
+        <span className={isBlue ? "text-white/55" : "text-[var(--brand-muted)]"}>
+          {ui.proposalFor}
+        </span>{" "}
+        <span
+          className={`font-medium ${
+            isBlue ? "text-white" : "text-[var(--brand-fg)]"
+          }`}
+        >
+          {meta.clientName}
+        </span>
+      </div>
+
       <main
+        ref={mainRef}
         className="relative min-h-0 flex-1 overflow-hidden touch-pan-y"
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
         <div
-          key={index}
-          className="slide-enter absolute inset-0 overflow-y-auto overscroll-contain bg-[var(--brand-bg)] px-4 py-6 sm:px-6 sm:py-8 md:px-12 md:py-12"
-        >
-          <div className="mx-auto flex min-h-full max-w-5xl flex-col justify-start pb-4 md:justify-center md:pb-0">
-            <Slide />
+          className={`deck-bg-layer pointer-events-none absolute inset-0 ${
+            isBlue ? "bg-[var(--brand-primary)]" : "bg-[var(--brand-bg)]"
+          }`}
+          aria-hidden
+        />
+
+        {!workflowDetailId && (
+          <div
+            key={index}
+            className={`${slideAnimClass} absolute inset-0 overflow-y-auto overscroll-contain bg-transparent px-4 py-6 sm:px-6 sm:py-8 md:px-12 md:py-12`}
+          >
+            <SlideThemeProvider variant={variant}>
+              <div className="mx-auto flex min-h-full max-w-6xl flex-col justify-start pb-4 md:justify-center md:pb-0">
+                <Slide />
+              </div>
+            </SlideThemeProvider>
           </div>
-        </div>
+        )}
+
+        {detailWorkflow && (
+          <div
+            key={detailWorkflow.id}
+            className="slide-enter-forward absolute inset-0 z-20 overflow-y-auto overscroll-contain bg-[var(--brand-bg)] px-4 py-6 sm:px-6 sm:py-8 md:px-12 md:py-12"
+          >
+            <div className="mx-auto flex min-h-full max-w-6xl flex-col justify-start pb-4 md:justify-center md:pb-0">
+              <SlideWorkflowUseCase
+                wf={detailWorkflow}
+                onBack={closeWorkflow}
+              />
+            </div>
+          </div>
+        )}
       </main>
 
-      <footer className="deck-footer shrink-0 border-t border-[var(--brand-border)] bg-white">
-        <div className="flex flex-col gap-2 px-4 py-2.5 sm:hidden">
+      <footer
+        className={`deck-chrome deck-footer shrink-0 border-t ${
+          isBlue
+            ? "border-white/15 bg-[var(--brand-primary)]"
+            : "border-[var(--brand-border)] bg-white"
+        } ${workflowDetailId ? "hidden sm:block" : ""}`}
+      >
+        <div className="flex flex-col gap-2 px-4 py-3 sm:hidden">
           <div
             className="flex items-center justify-center gap-1.5"
             role="tablist"
@@ -161,13 +272,17 @@ export function SlideDeck() {
               <button
                 key={label}
                 type="button"
-                onClick={() => setIndex(i)}
+                onClick={() => goToSlide(i)}
                 aria-label={label}
                 aria-current={i === index ? "step" : undefined}
-                className={`h-2 rounded-full transition-all ${
+                className={`h-2 rounded-full transition-all duration-300 ${
                   i === index
-                    ? "w-6 bg-[var(--brand-primary)]"
-                    : "w-2 bg-[var(--brand-border)] hover:bg-[var(--brand-accent)]"
+                    ? isBlue
+                      ? "w-6 bg-[var(--brand-accent)]"
+                      : "w-6 bg-[var(--brand-primary)]"
+                    : isBlue
+                      ? "w-2 bg-white/25 hover:bg-white/40"
+                      : "w-2 bg-[var(--brand-border)] hover:bg-[var(--brand-accent)]"
                 }`}
               />
             ))}
@@ -176,33 +291,47 @@ export function SlideDeck() {
             <button
               type="button"
               onClick={() => go(-1)}
-              disabled={index === 0}
-              className="flex-1 rounded-full border border-[var(--brand-border)] py-2.5 text-sm font-medium disabled:opacity-30"
+              disabled={index === 0 || !!workflowDetailId}
+              className={`flex-1 rounded-full border py-2.5 text-sm font-medium disabled:opacity-30 ${
+                isBlue
+                  ? "border-white/25 text-white hover:bg-white/10"
+                  : "border-[var(--brand-border)]"
+              }`}
             >
-              Previous
+              <span className="inline-flex items-center justify-center gap-1.5">
+                <ChevronLeft className="h-4 w-4 shrink-0" aria-hidden />
+                {ui.previous}
+              </span>
             </button>
             <button
               type="button"
               onClick={() => go(1)}
-              disabled={index === total - 1}
+              disabled={index === total - 1 || !!workflowDetailId}
               className="flex-1 rounded-full bg-[var(--brand-accent)] py-2.5 text-sm font-bold text-[var(--brand-fg)] disabled:opacity-30"
             >
-              Next
+              <span className="inline-flex items-center justify-center gap-1.5">
+                {ui.next}
+                <ChevronRight className="h-4 w-4 shrink-0" aria-hidden />
+              </span>
             </button>
           </div>
         </div>
 
-        <div className="hidden items-center gap-2 px-4 py-3 sm:flex">
+        <div className="hidden items-center gap-2 px-4 py-4 sm:flex">
           <nav className="flex min-w-0 flex-1 gap-1 overflow-x-auto">
             {slideLabels.map((label, i) => (
               <button
                 key={label}
                 type="button"
-                onClick={() => setIndex(i)}
-                className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+                onClick={() => goToSlide(i)}
+                className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-medium transition-colors duration-300 ${
                   i === index
-                    ? "bg-[var(--brand-primary)] text-white"
-                    : "text-[var(--brand-muted)] hover:bg-[var(--brand-bg)] hover:text-[var(--brand-fg)]"
+                    ? isBlue
+                      ? "bg-[var(--brand-accent)] text-[var(--brand-fg)]"
+                      : "bg-[var(--brand-primary)] text-white"
+                    : isBlue
+                      ? "text-white/55 hover:bg-white/10 hover:text-white"
+                      : "text-[var(--brand-muted)] hover:bg-[var(--brand-bg)] hover:text-[var(--brand-fg)]"
                 }`}
               >
                 {label}
@@ -213,18 +342,24 @@ export function SlideDeck() {
             <button
               type="button"
               onClick={() => go(-1)}
-              disabled={index === 0}
-              className="rounded-full border border-[var(--brand-border)] bg-white px-4 py-2 text-sm font-medium transition hover:border-[var(--brand-fg)] disabled:opacity-30"
+              disabled={index === 0 || !!workflowDetailId}
+              aria-label={ui.previous}
+              className={`inline-flex items-center justify-center rounded-full border px-4 py-2 transition disabled:opacity-30 ${
+                isBlue
+                  ? "border-white/25 bg-white/10 text-white hover:bg-white/15"
+                  : "border-[var(--brand-border)] bg-white hover:border-[var(--brand-fg)]"
+              }`}
             >
-              ←
+              <ChevronLeft className="h-4 w-4" strokeWidth={2} />
             </button>
             <button
               type="button"
               onClick={() => go(1)}
-              disabled={index === total - 1}
-              className="rounded-full bg-[var(--brand-accent)] px-4 py-2 text-sm font-bold text-[var(--brand-fg)] transition hover:bg-[var(--brand-accent-hover)] disabled:opacity-30"
+              disabled={index === total - 1 || !!workflowDetailId}
+              aria-label={ui.next}
+              className="inline-flex items-center justify-center rounded-full bg-[var(--brand-accent)] px-4 py-2 text-[var(--brand-fg)] transition hover:bg-[var(--brand-accent-hover)] disabled:opacity-30"
             >
-              →
+              <ChevronRight className="h-4 w-4" strokeWidth={2} />
             </button>
           </div>
         </div>

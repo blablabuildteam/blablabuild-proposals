@@ -6,5 +6,5 @@ export const brand = {
   logoHeight: 32,
   footerCredit: "Prepared by Alt F Awesome · Confidential",
   tagline:
-    "Strategy, design and technology for brands that want to stand out — sharp, fast, and built to last.",
+    "Strategy, design and technology for brands that want to stand out: sharp, fast, and built to last.",
 } as const;

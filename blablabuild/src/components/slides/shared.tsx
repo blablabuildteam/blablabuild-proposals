@@ -1,4 +1,82 @@
+"use client";
+
 import type { ReactNode } from "react";
+import Image from "next/image";
+import { useSlideTheme } from "./SlideTheme";
+
+type TitleVariant = "light" | "on-dark" | "auto";
+
+function parseHighlightedTitle(text: string) {
+  const parts: { text: string; highlight: boolean }[] = [];
+  const regex = /\*\*(.+?)\*\*/g;
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push({ text: text.slice(lastIndex, match.index), highlight: false });
+    }
+    parts.push({ text: match[1], highlight: true });
+    lastIndex = match.index + match[0].length;
+  }
+
+  if (lastIndex < text.length) {
+    parts.push({ text: text.slice(lastIndex), highlight: false });
+  }
+
+  return parts.length > 0 ? parts : [{ text, highlight: false }];
+}
+
+export function HighlightedTitle({
+  text,
+  variant = "auto",
+}: {
+  text: string;
+  variant?: TitleVariant;
+}) {
+  const theme = useSlideTheme();
+  const resolved =
+    variant === "auto" ? (theme === "blue" ? "on-dark" : "light") : variant;
+  const highlightClass =
+    resolved === "on-dark"
+      ? "font-bold text-[var(--brand-accent)]"
+      : "font-bold text-[var(--brand-primary)]";
+
+  return (
+    <>
+      {parseHighlightedTitle(text).map((part, index) =>
+        part.highlight ? (
+          <span key={index} className={highlightClass}>
+            {part.text}
+          </span>
+        ) : (
+          <span key={index}>{part.text}</span>
+        ),
+      )}
+    </>
+  );
+}
+
+export function KickerPill({
+  children,
+  variant = "light",
+}: {
+  children: ReactNode;
+  variant?: "light" | "on-dark";
+}) {
+  const styles = {
+    light: "bg-[var(--brand-primary)]/10 text-[var(--brand-primary)]",
+    "on-dark": "bg-white text-[var(--brand-primary)] shadow-sm",
+  };
+
+  return (
+    <span
+      className={`inline-flex w-fit items-center rounded-[var(--brand-radius-pill)] px-3.5 py-1 text-xs font-semibold leading-none sm:px-4 sm:py-1.5 sm:text-[13px] ${styles[variant]}`}
+    >
+      {children}
+    </span>
+  );
+}
 
 export function SlideTitle({
   kicker,
@@ -11,6 +89,9 @@ export function SlideTitle({
   subtitle?: string;
   compact?: boolean;
 }) {
+  const theme = useSlideTheme();
+  const isBlue = theme === "blue";
+
   return (
     <div
       className={
@@ -20,16 +101,28 @@ export function SlideTitle({
       }
     >
       {kicker && (
-        <p className="text-[10px] font-semibold tracking-[0.15em] text-[var(--brand-primary)] uppercase sm:text-xs sm:tracking-[0.2em]">
-          {kicker}
-        </p>
+        <div className="mb-3 sm:mb-4">
+          {isBlue ? (
+            <KickerPill variant="on-dark">{kicker}</KickerPill>
+          ) : (
+            <KickerPill>{kicker}</KickerPill>
+          )}
+        </div>
       )}
-      <h1 className="max-w-3xl text-2xl leading-[1.15] font-bold tracking-tight text-[var(--brand-fg)] sm:text-3xl md:text-[2.75rem] md:leading-[1.1]">
-        {title}
+      <h1
+        className={`max-w-3xl text-2xl leading-[1.15] tracking-tight sm:text-3xl md:text-[2.75rem] md:leading-[1.1] ${
+          isBlue ? "text-white" : "text-[var(--brand-fg)]"
+        }`}
+      >
+        <HighlightedTitle text={title} />
       </h1>
       {subtitle && (
-        <p className="max-w-2xl text-sm leading-relaxed text-[var(--brand-muted)] sm:text-base md:text-lg">
-          {subtitle}
+        <p
+          className={`max-w-2xl text-sm leading-relaxed sm:text-base md:text-lg ${
+            isBlue ? "text-white/80" : "text-[var(--brand-muted)]"
+          }`}
+        >
+          <HighlightedTitle text={subtitle} />
         </p>
       )}
     </div>
@@ -49,13 +142,9 @@ export function HeroBand({
 }) {
   return (
     <div className="-mx-4 -mt-6 mb-6 rounded-none bg-[var(--brand-primary)] px-4 py-8 sm:-mx-6 sm:-mt-8 sm:mb-8 sm:px-8 sm:py-10 md:-mx-12 md:-mt-12 md:px-12 md:py-12">
-      {kicker && (
-        <p className="text-[10px] font-semibold tracking-[0.2em] text-[var(--brand-accent)] uppercase sm:text-xs">
-          {kicker}
-        </p>
-      )}
-      <h1 className="mt-2 max-w-3xl text-2xl leading-[1.1] font-bold text-white sm:text-4xl md:text-5xl">
-        {title}
+      {kicker && <KickerPill variant="on-dark">{kicker}</KickerPill>}
+      <h1 className="mt-4 max-w-3xl text-2xl leading-[1.1] text-white sm:mt-5 sm:text-4xl md:text-5xl">
+        <HighlightedTitle text={title} variant="on-dark" />
       </h1>
       {subtitle && (
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/80 sm:text-base">
@@ -92,11 +181,13 @@ export function StatCard({
   value,
   hint,
   variant = "default",
+  compact,
 }: {
   label: string;
   value: string;
   hint?: string;
   variant?: "default" | "lime" | "blue" | "dark";
+  compact?: boolean;
 }) {
   const bg =
     variant === "lime"
@@ -119,17 +210,37 @@ export function StatCard({
       : "text-[var(--brand-muted)]";
 
   return (
-    <div className={`rounded-xl border p-4 sm:p-5 ${bg}`}>
+    <div
+      className={`rounded-xl border ${
+        compact ? "p-3 lg:p-4 xl:p-5" : "p-4 sm:p-5"
+      } ${bg}`}
+    >
       <p
-        className={`text-[10px] font-medium tracking-wide uppercase sm:text-xs ${labelColor}`}
+        className={`font-medium tracking-wide uppercase ${
+          compact
+            ? "text-[9px] leading-tight lg:text-[10px] xl:text-xs"
+            : "text-[10px] sm:text-xs"
+        } ${labelColor}`}
       >
         {label}
       </p>
-      <p className={`mt-1.5 text-xl font-bold sm:mt-2 sm:text-2xl ${valueColor}`}>
+      <p
+        className={`font-bold ${
+          compact
+            ? "mt-1 text-lg lg:mt-1.5 lg:text-xl xl:mt-2 xl:text-2xl"
+            : "mt-1.5 text-xl sm:mt-2 sm:text-2xl"
+        } ${valueColor}`}
+      >
         {value}
       </p>
       {hint && (
-        <p className={`mt-1.5 text-xs sm:mt-2 sm:text-sm ${hintColor}`}>
+        <p
+          className={`${
+            compact
+              ? "mt-1 text-[10px] leading-snug lg:mt-1.5 lg:text-xs xl:mt-2 xl:text-sm"
+              : "mt-1.5 text-xs sm:mt-2 sm:text-sm"
+          } ${hintColor}`}
+        >
           {hint}
         </p>
       )}
@@ -168,13 +279,14 @@ export function Badge({
   variant = "neutral",
 }: {
   children: ReactNode;
-  variant?: "lime" | "blue" | "neutral" | "black";
+  variant?: "lime" | "blue" | "neutral" | "black" | "glass";
 }) {
   const styles = {
     lime: "bg-[var(--brand-accent)] text-[var(--brand-fg)]",
     blue: "bg-[var(--brand-primary)] text-white",
     neutral: "bg-[#E8E8E8] text-[var(--brand-muted)]",
     black: "bg-[var(--brand-fg)] text-white",
+    glass: "border border-white/30 bg-white/15 text-white",
   };
   return (
     <span
@@ -283,20 +395,49 @@ export function PhaseTimeline({
 
 export function StepFlow({
   steps,
+  icons,
 }: {
   steps: ReadonlyArray<{ title: string; body: string }>;
+  icons?: readonly string[];
 }) {
+  const theme = useSlideTheme();
+  const isBlue = theme === "blue";
+
   return (
     <div className="relative">
-      <div className="absolute top-5 right-0 left-5 hidden h-0.5 bg-[var(--brand-border)] sm:block" />
-      <div className="grid gap-4 sm:grid-cols-4">
+      <div
+        className={`absolute top-10 right-0 left-10 hidden h-0.5 sm:block ${
+          isBlue ? "bg-white/20" : "bg-[var(--brand-border)]"
+        }`}
+      />
+      <div className="grid gap-6 sm:grid-cols-4 sm:gap-4">
         {steps.map((step, i) => (
           <div key={step.title} className="relative">
-            <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--brand-primary)] font-mono text-sm font-bold text-white">
-              {String(i + 1).padStart(2, "0")}
-            </div>
-            <p className="text-sm font-bold text-[var(--brand-fg)]">{step.title}</p>
-            <p className="mt-1.5 text-xs leading-relaxed text-[var(--brand-muted)] sm:text-sm">
+            {icons?.[i] ? (
+              <Image
+                src={icons[i]}
+                alt=""
+                width={80}
+                height={80}
+                className="mb-3 h-20 w-auto object-contain drop-shadow-lg"
+              />
+            ) : (
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--brand-primary)] font-mono text-sm font-bold text-white">
+                {String(i + 1).padStart(2, "0")}
+              </div>
+            )}
+            <p
+              className={`text-sm font-bold ${
+                isBlue ? "text-[var(--brand-accent)]" : "text-[var(--brand-fg)]"
+              }`}
+            >
+              {step.title}
+            </p>
+            <p
+              className={`mt-1.5 text-xs leading-relaxed sm:text-sm ${
+                isBlue ? "text-white/75" : "text-[var(--brand-muted)]"
+              }`}
+            >
               {step.body}
             </p>
           </div>

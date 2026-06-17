@@ -58,3 +58,21 @@ node foundation/scripts/scaffold-proposal.mjs acme-corp "Acme Corp" --brand alt-
 Then edit `workflows.source.ts` (RICE + cost per workflow), `phases.source.ts` (phases & packages), and `index.ts` (debrief + meta).
 
 **Workflow source fields:** `rice` (reach, impact, confidence, effort), `effort` (days + weeks), `cost` (min/max EUR). Phase and package investments are computed automatically from workflow costs.
+
+### Component library
+
+All proposal deck sections live in `blablabuild/src/components/proposal-library/`. Preview them at `/library` (AB Capital sample data).
+
+| Section ID | Component |
+|------------|-----------|
+| `debrief` | Discovery debrief + impact matrix |
+| `understanding` | Challenge, goals, friction |
+| `way-of-working` | Delivery principles (blue variant) |
+| `approach` | Three-phase roadmap |
+| `phase-now` / `phase-next` / `phase-near` | Phase detail slides |
+| `workflows` | Filterable workflow table |
+| `prioritization` | RICE ranking |
+| `investment` | Cost breakdown per phase |
+| `next-steps` | Kick-off steps |
+
+New proposals pick sections via `sectionId` in `slideConfigs` — see `ab-capital/data.ts` for the full set.

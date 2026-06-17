@@ -64,7 +64,7 @@ export function SlidePrioritization() {
       <SlideTitle
         kicker="Prioritisation"
         title="Why this order?"
-        subtitle="Scored on reach, impact, confidence and effort — not gut feel."
+        subtitle="Scored on reach, impact, confidence and effort, not gut feel."
         compact
       />
 
@@ -94,7 +94,7 @@ export function SlidePrioritization() {
                         {wf.title}
                       </p>
                       <p className="text-xs text-[var(--brand-muted)]">
-                        RICE {wf.riceReported} — roadmap priority over raw rank
+                        RICE {wf.riceReported}, roadmap priority over raw rank
                       </p>
                     </div>
                     <span className="text-right font-mono text-sm font-bold text-[var(--brand-primary)]">
@@ -178,7 +178,7 @@ export function SlidePrioritization() {
       </div>
 
       <p className="mt-4 text-xs leading-relaxed text-[var(--brand-muted)] sm:text-sm">
-        WF0 ranks lower on raw RICE (30) but leads Phase 1 — it unlocks safe AI
+        WF0 ranks lower on raw RICE (30) but leads Phase 1, it unlocks safe AI
         for everything that follows. WF8 scores lower (14) due to effort but
         leads Phase 2 for investment team impact.
       </p>

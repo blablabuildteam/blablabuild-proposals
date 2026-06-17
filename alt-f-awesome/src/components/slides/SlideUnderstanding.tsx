@@ -1,7 +1,7 @@
 import { BulletList, SlideTitle, StatCard } from "./shared";
 
 const friction = [
-  "Manual document flows — download, rename, upload loops",
+  "Manual document flows: download, rename, upload loops",
   "Files trapped in personal inboxes and ad-hoc folders",
   "Twinfield, Bunch and internal tools don't talk to each other",
   "Repetitive legal and onboarding paperwork nobody wants to do",
@@ -30,7 +30,7 @@ export function SlideUnderstanding() {
         <SlideTitle
           kicker="The challenge"
           title="Growth created an admin ceiling"
-          subtitle="You've outgrown start-up mode. Manual processes are now the bottleneck — not the team."
+          subtitle="You've outgrown start-up mode. Manual processes are now the bottleneck, not the team."
           compact
         />
 

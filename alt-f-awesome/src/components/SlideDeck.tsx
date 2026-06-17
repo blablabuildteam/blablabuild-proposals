@@ -3,6 +3,10 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  DeckNavigationProvider,
+  useDeckNavigation,
+} from "@/components/DeckNavigation";
 import { useProposal } from "@/components/ProposalProvider";
 import { brand } from "@/lib/brand";
 import { SlideDebrief } from "./slides/SlideDebrief";
@@ -16,6 +20,7 @@ import { SlideWorkflows } from "./slides/SlideWorkflows";
 import { SlidePrioritization } from "./slides/SlidePrioritization";
 import { SlideInvestment } from "./slides/SlideInvestment";
 import { SlideNextSteps } from "./slides/SlideNextSteps";
+import { SlideWorkflowUseCase } from "./slides/SlideWorkflowUseCase";
 
 const slides = [
   SlideDebrief,
@@ -34,23 +39,56 @@ const slides = [
 const SWIPE_THRESHOLD = 50;
 
 export function SlideDeck() {
-  const { slideLabels, meta } = useProposal();
+  return (
+    <DeckNavigationProvider>
+      <SlideDeckInner />
+    </DeckNavigationProvider>
+  );
+}
+
+function SlideDeckInner() {
+  const { slideLabels, meta, getWorkflow } = useProposal();
+  const { workflowDetailId, closeWorkflow } = useDeckNavigation();
   const router = useRouter();
   const [index, setIndex] = useState(0);
   const touchStart = useRef<{ x: number; y: number } | null>(null);
+  const mainRef = useRef<HTMLElement>(null);
   const total = slides.length;
   const Slide = slides[index];
+  const detailWorkflow = workflowDetailId
+    ? getWorkflow(workflowDetailId)
+    : undefined;
   const progress = ((index + 1) / total) * 100;
+
+  useEffect(() => {
+    mainRef.current?.scrollTo({ top: 0, behavior: "auto" });
+  }, [index, workflowDetailId]);
 
   const go = useCallback(
     (delta: number) => {
+      closeWorkflow();
       setIndex((i) => Math.max(0, Math.min(total - 1, i + delta)));
     },
-    [total],
+    [total, closeWorkflow],
+  );
+
+  const goToSlide = useCallback(
+    (i: number) => {
+      closeWorkflow();
+      setIndex(i);
+    },
+    [closeWorkflow],
   );
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape" && workflowDetailId) {
+        e.preventDefault();
+        closeWorkflow();
+        return;
+      }
+      if (workflowDetailId) return;
+
       if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
         e.preventDefault();
         go(1);
@@ -64,7 +102,7 @@ export function SlideDeck() {
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [go, total]);
+  }, [go, total, workflowDetailId, closeWorkflow]);
 
   const onTouchStart = (e: React.TouchEvent) => {
     touchStart.current = {
@@ -74,6 +112,7 @@ export function SlideDeck() {
   };
 
   const onTouchEnd = (e: React.TouchEvent) => {
+    if (workflowDetailId) return;
     if (!touchStart.current) return;
     const dx = e.changedTouches[0].clientX - touchStart.current.x;
     const dy = e.changedTouches[0].clientY - touchStart.current.y;
@@ -97,17 +136,17 @@ export function SlideDeck() {
         />
       </div>
 
-      <header className="flex shrink-0 items-center justify-between gap-3 border-b border-[var(--brand-border)] bg-[var(--brand-dark)] px-4 py-2.5 text-white sm:px-6 sm:py-3">
+      <header className="flex shrink-0 items-center justify-between gap-3 border-b border-[var(--brand-border)] bg-white px-4 py-2.5 sm:px-6 sm:py-3">
         <div className="flex min-w-0 items-center gap-2 sm:gap-4">
           <Image
             src={brand.logo}
             alt={brand.name}
             width={brand.logoWidth}
             height={brand.logoHeight}
-            className="h-5 w-auto shrink-0 brightness-0 invert sm:h-6"
+            className="h-5 w-auto shrink-0 sm:h-6"
           />
-          <span className="hidden text-white/30 sm:inline">|</span>
-          <span className="hidden truncate text-sm text-white/70 sm:inline">
+          <span className="hidden text-[var(--brand-border)] sm:inline">|</span>
+          <span className="hidden truncate text-sm text-[var(--brand-muted)] sm:inline">
             {meta.clientName}
           </span>
         </div>
@@ -119,33 +158,45 @@ export function SlideDeck() {
               router.push("/");
               router.refresh();
             }}
-            className="hidden text-xs text-white/70 underline-offset-2 hover:text-white hover:underline sm:inline"
+            className="hidden text-xs text-[var(--brand-muted)] underline-offset-2 hover:text-[var(--brand-fg)] hover:underline sm:inline"
           >
             Exit
           </button>
-          <span className="max-w-[9rem] truncate text-xs text-white/70 sm:max-w-none sm:text-sm md:hidden">
-            {slideLabels[index]}
+          <span className="max-w-[9rem] truncate text-xs text-[var(--brand-muted)] sm:max-w-none sm:text-sm md:hidden">
+            {workflowDetailId
+              ? detailWorkflow?.title ?? "Use case"
+              : slideLabels[index]}
           </span>
-          <span className="hidden text-sm text-white/70 md:inline">
-            {slideLabels[index]}
+          <span className="hidden text-sm text-[var(--brand-muted)] md:inline">
+            {workflowDetailId
+              ? `${detailWorkflow?.id ?? ""} · ${detailWorkflow?.title ?? "Use case"}`
+              : slideLabels[index]}
           </span>
-          <span className="rounded-[var(--brand-radius-pill)] bg-[var(--brand-accent)] px-2.5 py-0.5 font-mono text-[10px] text-[var(--brand-fg)] sm:px-3 sm:py-1 sm:text-xs">
+          <span className="rounded-full bg-[var(--brand-fg)] px-2.5 py-0.5 font-mono text-[10px] text-white sm:px-3 sm:py-1 sm:text-xs">
             {String(index + 1).padStart(2, "0")}/{String(total).padStart(2, "0")}
           </span>
         </div>
       </header>
 
       <main
+        ref={mainRef}
         className="relative min-h-0 flex-1 overflow-hidden touch-pan-y"
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
         <div
-          key={index}
+          key={workflowDetailId ?? index}
           className="slide-enter absolute inset-0 overflow-y-auto overscroll-contain bg-[var(--brand-bg)] px-4 py-6 sm:px-6 sm:py-8 md:px-12 md:py-12"
         >
           <div className="mx-auto flex min-h-full max-w-5xl flex-col justify-start pb-4 md:justify-center md:pb-0">
-            <Slide />
+            {detailWorkflow ? (
+              <SlideWorkflowUseCase
+                wf={detailWorkflow}
+                onBack={closeWorkflow}
+              />
+            ) : (
+              <Slide />
+            )}
           </div>
         </div>
       </main>
@@ -161,7 +212,7 @@ export function SlideDeck() {
               <button
                 key={label}
                 type="button"
-                onClick={() => setIndex(i)}
+                onClick={() => goToSlide(i)}
                 aria-label={label}
                 aria-current={i === index ? "step" : undefined}
                 className={`h-2 rounded-full transition-all ${
@@ -176,7 +227,7 @@ export function SlideDeck() {
             <button
               type="button"
               onClick={() => go(-1)}
-              disabled={index === 0}
+              disabled={index === 0 || !!workflowDetailId}
               className="flex-1 rounded-full border border-[var(--brand-border)] py-2.5 text-sm font-medium disabled:opacity-30"
             >
               Previous
@@ -184,8 +235,8 @@ export function SlideDeck() {
             <button
               type="button"
               onClick={() => go(1)}
-              disabled={index === total - 1}
-              className="flex-1 rounded-[var(--brand-radius-pill)] bg-[var(--brand-dark)] py-2.5 text-sm font-medium text-white disabled:opacity-30"
+              disabled={index === total - 1 || !!workflowDetailId}
+              className="flex-1 rounded-full bg-[var(--brand-accent)] py-2.5 text-sm font-bold text-[var(--brand-fg)] disabled:opacity-30"
             >
               Next
             </button>
@@ -198,10 +249,10 @@ export function SlideDeck() {
               <button
                 key={label}
                 type="button"
-                onClick={() => setIndex(i)}
-                className={`shrink-0 rounded-[var(--brand-radius-pill)] px-3 py-1.5 text-xs font-medium transition-colors ${
+                onClick={() => goToSlide(i)}
+                className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
                   i === index
-                    ? "bg-[var(--brand-dark)] text-white"
+                    ? "bg-[var(--brand-primary)] text-white"
                     : "text-[var(--brand-muted)] hover:bg-[var(--brand-bg)] hover:text-[var(--brand-fg)]"
                 }`}
               >
@@ -213,7 +264,7 @@ export function SlideDeck() {
             <button
               type="button"
               onClick={() => go(-1)}
-              disabled={index === 0}
+              disabled={index === 0 || !!workflowDetailId}
               className="rounded-full border border-[var(--brand-border)] bg-white px-4 py-2 text-sm font-medium transition hover:border-[var(--brand-fg)] disabled:opacity-30"
             >
               ←
@@ -221,8 +272,8 @@ export function SlideDeck() {
             <button
               type="button"
               onClick={() => go(1)}
-              disabled={index === total - 1}
-              className="rounded-[var(--brand-radius-pill)] bg-[var(--brand-dark)] px-4 py-2 text-sm font-medium text-white transition hover:opacity-90 disabled:opacity-30"
+              disabled={index === total - 1 || !!workflowDetailId}
+              className="rounded-full bg-[var(--brand-accent)] px-4 py-2 text-sm font-bold text-[var(--brand-fg)] transition hover:bg-[var(--brand-accent-hover)] disabled:opacity-30"
             >
               →
             </button>

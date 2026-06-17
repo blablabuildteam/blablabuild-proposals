@@ -2,11 +2,19 @@
 AB Capital has successfully navigated the start-up phase, building a robust portfolio and establishing a strong market presence. However, operating at scale requires a shift from human-dependent, fragmented processes to institutionalized, automated workflows.
 As organizations scale, administrative overhead grows exponentially rather than linearly. The primary objective of this initiative is to eliminate operational bottlenecks, reduce the margin for human error, and free up high-value hours for execution and strategic growth. This document outlines the digital transformation roadmap to establish a smoother, highly scalable operational foundation.
 2. Quick Summary of Discovery Workshop
-During our intake sessions, we mapped out AB Capital's current ecosystem—comprising tools like Twinfield, Basecone, Harvest, Notion, Sharepoint, Claude, and Bunch. The overarching operational sentiment was clear:
+During our intake sessions, we mapped out AB Capital's current ecosystem, comprising tools like Twinfield, Basecone, Harvest, Notion, Sharepoint, Claude, and Bunch. The overarching operational sentiment was clear:
 “In general, the biggest bottleneck is to improve automation across the entire AB organisation to clear time on execution and create less room for error.”
 We identified 11 potential focus areas spanning Fund Operations, Group Finance, Family Office administration, and New Investments. These were collaboratively mapped out during the workshop into an initial Impact/Effort matrix (visualized in the workshop records as).
 
 The primary friction points involve manual document manipulation, siloed communication via personal inboxes, a lack of automated data flow between core accounting/administration systems, and repetitive document generation tasks.
+
+**Programme goals (KPIs):**
+
+| Goal | Target |
+|------|--------|
+| **Time saved** | High-value hours back for execution, deal work and strategic growth |
+| **More insights** | Real-time visibility into performance, cash positions and LP structures |
+| **Break the silos** | One shared operational backbone across ops, finance and investments |
 3. Business Plan of Each Workflow
 Below is the detailed breakdown of each candidate workflow, organized by its initial matrix categorization.
 Quick Wins (High Impact, Lower Effort)

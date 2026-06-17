@@ -1,11 +1,13 @@
 "use client";
 
 import { useProposal } from "@/components/ProposalProvider";
-import { BulletList } from "./shared";
+import { useProposalUi } from "@/lib/proposals/use-proposal-ui";
+import { BulletList, HighlightedTitle } from "./shared";
 import { WorkflowCompact } from "./WorkflowDetailCard";
 
 export function SlidePhaseNow() {
   const { phases, getWorkflow } = useProposal();
+  const ui = useProposalUi();
   const phase = phases[0];
   const items = phase.workflows.map((id) => getWorkflow(id)).filter(Boolean);
 
@@ -19,8 +21,8 @@ export function SlidePhaseNow() {
           <p className="mt-2 text-xs font-bold tracking-wide text-[var(--brand-primary)] uppercase">
             {phase.label}
           </p>
-          <h1 className="mt-1 text-2xl font-bold text-[var(--brand-fg)] sm:text-3xl">
-            {phase.headline}
+          <h1 className="mt-1 text-2xl text-[var(--brand-fg)] sm:text-3xl">
+            <HighlightedTitle text={phase.headline} variant="light" />
           </h1>
         </div>
         <div className="rounded-xl bg-[var(--brand-accent)] px-5 py-3 text-right">
@@ -32,7 +34,7 @@ export function SlidePhaseNow() {
       </div>
 
       <div className="mb-5 rounded-xl border border-[var(--brand-border)] bg-white p-4 sm:p-5">
-        <p className="mb-2 text-xs font-bold text-[var(--brand-muted)] uppercase">Outcomes</p>
+        <p className="mb-2 text-xs font-bold text-[var(--brand-muted)] uppercase">{ui.outcomes}</p>
         <BulletList items={[...phase.outcomes]} />
       </div>
 

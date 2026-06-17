@@ -6,5 +6,5 @@ export const brand = {
   logoHeight: 38,
   footerCredit: "Prepared by blablabuild · Confidential",
   tagline:
-    "AI-first products and automations for finance and operations — fast, secure, scalable.",
+    "AI-first products and automations for finance and operations: fast, secure, scalable.",
 } as const;

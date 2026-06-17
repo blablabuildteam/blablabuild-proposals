@@ -1,5 +1,8 @@
 import { BLABLABUILD_PROPOSAL_CONFIG } from "@foundation/config";
 import { buildProposalContent } from "@foundation/proposal";
+import {
+  getProposalSection,
+} from "@/components/proposal-library";
 import type { SlideConfig } from "@/lib/types";
 import { packageSources, phaseSources } from "./phases.source";
 import { workflowSources } from "./workflows.source";
@@ -20,7 +23,7 @@ export const wayOfWorking = [
   },
   {
     title: "AI-assisted delivery",
-    body: "Faster delivery, fewer billable hours — reflected in the estimates.",
+    body: "Faster delivery, fewer billable hours, reflected in the estimates.",
   },
   {
     title: "Phased, not big bang",
@@ -28,16 +31,28 @@ export const wayOfWorking = [
   },
 ] as const;
 
-export const slideConfigs: SlideConfig[] = [
-  { label: "Debrief", variant: "light" },
-  { label: "Challenge", variant: "light" },
-  { label: "Way of working", variant: "light" },
-  { label: "Roadmap", variant: "light" },
-  { label: "Phase 1", variant: "light" },
-  { label: "Workflows", variant: "light" },
-  { label: "Prioritisation", variant: "light" },
-  { label: "Investment", variant: "light" },
-  { label: "Next steps", variant: "light" },
-];
+/** Pick sections from the library — customise labels per client. */
+const TEMPLATE_SECTIONS = [
+  "debrief",
+  "understanding",
+  "way-of-working",
+  "approach",
+  "phase-now",
+  "workflows",
+  "prioritization",
+  "investment",
+  "next-steps",
+] as const;
+
+export const slideConfigs: SlideConfig[] = TEMPLATE_SECTIONS.map(
+  (sectionId) => {
+    const section = getProposalSection(sectionId);
+    return {
+      sectionId,
+      label: section.defaultLabel,
+      variant: section.defaultVariant,
+    };
+  },
+);
 
 export const slideLabels = slideConfigs.map((s) => s.label);

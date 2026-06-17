@@ -1,5 +1,9 @@
 import { BLABLABUILD_PROPOSAL_CONFIG } from "@foundation/config";
 import { buildProposalContent } from "@foundation/proposal";
+import {
+  AB_CAPITAL_SECTION_ORDER,
+  getProposalSection,
+} from "@/components/proposal-library";
 import type { SlideConfig } from "@/lib/types";
 import { packageSources, phaseSources } from "./phases.source";
 import { workflowSources } from "./workflows.source";
@@ -20,47 +24,43 @@ const built = buildProposalContent(
   BLABLABUILD_PROPOSAL_CONFIG,
 );
 
-export const { workflows, riceSorted, phases, packages, AI_BUILD_NOTE } = built;
+export const { workflows, riceSorted, phases, packages } = built;
+
+export const AI_BUILD_NOTE =
+  "Schattingen zijn gebaseerd op AI-ondersteunde delivery: kortere doorlooptijden en minder declarabele uren. Hosting en licenties van derden niet inbegrepen.";
 
 export const wayOfWorking = [
   {
-    title: "Discovery-led",
-    body: "We start from your workshop findings — not a generic playbook. Scope is validated before build.",
+    title: "Discovery-gedreven",
+    body: "We starten vanuit jullie workshopbevindingen, niet vanuit een generiek playbook. Scope wordt gevalideerd vóór de build.",
   },
   {
-    title: "AI-assisted delivery",
-    body: "We build with AI — so you get working software faster and at a fraction of classic agency cost.",
+    title: "AI-ondersteunde delivery",
+    body: "We bouwen met AI, zodat jullie sneller werkende software krijgen tegen een fractie van klassieke agency-kosten.",
   },
   {
-    title: "Phased, not big bang",
-    body: "Each phase delivers usable value before the next starts. You choose how far to go.",
+    title: "Gefaseerd, geen big bang",
+    body: "Elke fase levert bruikbare waarde voordat de volgende start. Jullie bepalen hoe ver we gaan.",
   },
   {
-    title: "Your data, your control",
-    body: "Especially for AB Capital: private AI, EU hosting, no training on your confidential information.",
+    title: "Jullie data, jullie security",
+    body: "Vooral voor AB Capital: private AI, EU-hosting, geen training op jullie vertrouwelijke informatie.",
   },
 ] as const;
 
-export const slideConfigs: SlideConfig[] = [
-  { label: "Debrief", variant: "light" },
-  { label: "Challenge", variant: "light" },
-  { label: "Way of working", variant: "light" },
-  { label: "Roadmap", variant: "light" },
-  { label: "Phase 1", variant: "light" },
-  { label: "Phase 2", variant: "light" },
-  { label: "Phase 3", variant: "light" },
-  { label: "Workflows", variant: "light" },
-  { label: "Prioritisation", variant: "light" },
-  { label: "Investment", variant: "light" },
-  { label: "Next steps", variant: "light" },
-];
+export const slideConfigs: SlideConfig[] = AB_CAPITAL_SECTION_ORDER.map(
+  (sectionId) => {
+    const section = getProposalSection(sectionId);
+    return {
+      sectionId,
+      label: section.defaultLabel,
+      variant: section.defaultVariant,
+    };
+  },
+);
 
 export const slideLabels = slideConfigs.map((s) => s.label);
 
 export function getWorkflow(id: string) {
   return workflows.find((w) => w.id === id);
-}
-
-export function getSlideVariant(index: number): "light" | "blue" {
-  return slideConfigs[index]?.variant ?? "light";
 }

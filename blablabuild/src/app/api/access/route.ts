@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { sessionCookieSecure } from "@/lib/auth/cookies";
 import { verifyCredentials } from "@/lib/auth/credentials";
 import {
   COOKIE_NAME,
@@ -39,7 +40,7 @@ export async function POST(request: Request) {
 
   response.cookies.set(COOKIE_NAME, token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: sessionCookieSecure(),
     sameSite: "lax",
     path: "/",
     maxAge: MAX_AGE_SECONDS,

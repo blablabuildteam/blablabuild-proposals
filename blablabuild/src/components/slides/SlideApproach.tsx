@@ -1,10 +1,20 @@
 "use client";
 
 import { useProposal } from "@/components/ProposalProvider";
-import { Callout, PhaseTimeline, SlideTitle } from "./shared";
+import { PhaseTimeline, SlideTitle } from "./shared";
+
+const defaultCopy = {
+  kicker: "Roadmap",
+  title: "Three phases, one programme",
+  subtitle:
+    "Each phase delivers usable value before the next starts. WF9 (website) runs in parallel during Phase 2, separate track, same timeline.",
+  parallelLabel: "Parallel",
+  parallelBody: "Marketing updates without blocking ops automation.",
+};
 
 export function SlideApproach() {
-  const { phases } = useProposal();
+  const { phases, slideCopy } = useProposal();
+  const copy = slideCopy?.approach ?? defaultCopy;
 
   const timeline = [
     {
@@ -38,27 +48,17 @@ export function SlideApproach() {
 
   return (
     <div>
-      <SlideTitle
-        kicker="Roadmap"
-        title="Three phases — one programme"
-        subtitle="Each phase delivers usable value before the next starts. WF9 (website) runs in parallel during Phase 2 — separate track, same timeline."
-      />
+      <SlideTitle kicker={copy.kicker} title={copy.title} subtitle={copy.subtitle} />
 
       <PhaseTimeline phases={timeline} />
 
-      <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-        <div className="flex-1 rounded-lg border border-dashed border-[var(--brand-primary)]/40 bg-[var(--brand-primary)]/5 px-4 py-3">
-          <p className="text-xs font-bold text-[var(--brand-primary)] uppercase">
-            Parallel · {phases[2].period}
-          </p>
-          <p className="mt-1 text-sm text-[var(--brand-fg-secondary)]">
-            <strong>WF9 Website</strong> — {phases[2].invest}. Marketing
-            updates without blocking ops automation.
-          </p>
-        </div>
-        <Callout tone="lime" title="Start here">
-          Phase 1 only: {phases[0].invest} · {phases[0].period}
-        </Callout>
+      <div className="mt-5 rounded-lg border border-dashed border-[var(--brand-primary)]/40 bg-[var(--brand-primary)]/5 px-4 py-3">
+        <p className="text-xs font-bold text-[var(--brand-primary)] uppercase">
+          {copy.parallelLabel} · {phases[2].period}
+        </p>
+        <p className="mt-1 text-sm text-[var(--brand-fg-secondary)]">
+          <strong>WF9 Website</strong> · {phases[2].invest}. {copy.parallelBody}
+        </p>
       </div>
     </div>
   );

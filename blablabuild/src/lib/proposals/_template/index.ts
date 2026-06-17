@@ -12,13 +12,32 @@ export const debrief = {
   quote: "Key quote from discovery workshop.",
   quoteSource: "Discovery workshop",
   summary: "One paragraph on where the client is and where they need to go.",
-  ecosystem: "Tool · Tool · Tool",
   focusAreas: "N focus areas from workshop",
   date: "Month Year",
 } as const;
 
+export const access = {
+  landing: {
+    kicker: "Proposal for",
+    greetingTemplate: "Hi {name},",
+    clientLabel: "Client",
+    passwordLabel: "Password",
+    passwordHint: "Use the password from your invitation email.",
+    submit: "Open proposal",
+    submitting: "Checking…",
+    opening: "Opening proposal…",
+    sessionExpired: "Session expired. Sign in again.",
+    invalidAccessLink:
+      "This link is invalid or expired. Enter the password from your invitation.",
+    accessDenied: "Invalid client or password",
+    genericError: "Something went wrong. Please try again.",
+    confidentialNote: "Confidential · prepared by blablabuild",
+  },
+} as const;
+
 export const bundle: ProposalBundle = {
   meta,
+  access,
   debrief,
   workflows: data.workflows,
   riceSorted: data.riceSorted,

@@ -20,7 +20,7 @@ export const wayOfWorking = [
   },
   {
     title: "Sharp delivery",
-    body: "AI-assisted production — fast iteration, clear scope.",
+    body: "AI-assisted production: fast iteration, clear scope.",
   },
   {
     title: "Phased rollout",

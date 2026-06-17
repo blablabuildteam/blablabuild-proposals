@@ -168,13 +168,14 @@ export function Badge({
   variant = "neutral",
 }: {
   children: ReactNode;
-  variant?: "lime" | "blue" | "neutral" | "black";
+  variant?: "lime" | "blue" | "neutral" | "black" | "glass";
 }) {
   const styles = {
     lime: "bg-[var(--brand-accent)] text-[var(--brand-fg)]",
     blue: "bg-[var(--brand-primary)] text-white",
     neutral: "bg-[#E8E8E8] text-[var(--brand-muted)]",
     black: "bg-[var(--brand-fg)] text-white",
+    glass: "border border-white/30 bg-white/15 text-white",
   };
   return (
     <span

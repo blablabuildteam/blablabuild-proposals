@@ -27,7 +27,10 @@ export type Workflow = {
 
 export type SlideVariant = "light" | "blue";
 
+import type { ProposalSectionId } from "@/components/proposal-library/types";
+
 export type SlideConfig = {
+  sectionId: ProposalSectionId;
   label: string;
   variant: SlideVariant;
 };

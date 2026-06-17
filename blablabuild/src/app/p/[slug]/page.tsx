@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { SlideDeck } from "@/components/SlideDeck";
 import { ProposalProvider } from "@/components/ProposalProvider";
 import { brand } from "@/lib/brand";
+import { prepareBundleForClient } from "@/lib/proposals/prepare-bundle";
 import { getProposalBundle } from "@/lib/proposals/registry";
 
 type Props = {
@@ -27,7 +28,7 @@ export default async function ProposalPage({ params }: Props) {
   if (!bundle) notFound();
 
   return (
-    <ProposalProvider bundle={bundle}>
+    <ProposalProvider bundle={prepareBundleForClient(bundle)}>
       <SlideDeck />
     </ProposalProvider>
   );

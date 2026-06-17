@@ -38,7 +38,7 @@ export function SlideDebrief() {
             &ldquo;{debrief.quote}&rdquo;
           </p>
           <footer className="mt-3 text-xs font-medium text-[var(--brand-muted)]">
-            — {debrief.quoteSource}
+            {debrief.quoteSource}
           </footer>
         </blockquote>
 

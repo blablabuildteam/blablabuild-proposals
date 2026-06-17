@@ -11,7 +11,7 @@ export function SlideWayOfWorking() {
       <SlideTitle
         kicker="Way of working"
         title="Discovery in. Working software out."
-        subtitle="Four principles that shape how we build with you — not a generic agency playbook."
+        subtitle="Four principles that shape how we build with you, not a generic agency playbook."
       />
 
       <StepFlow steps={wayOfWorking} />
@@ -22,7 +22,7 @@ export function SlideWayOfWorking() {
             AI-assisted delivery
           </p>
           <p className="mt-2 text-sm leading-relaxed text-white/85">
-            We build with AI — shorter timelines, leaner estimates, working
+            We build with AI: shorter timelines, leaner estimates, working
             software at each gate.
           </p>
         </div>

@@ -33,7 +33,7 @@ export const workflowSources: WorkflowSource[] = [
       return estimateCostFromDays(daysMin, daysMax, rateCard);
     })(),
     summary: "One-line outcome the client cares about.",
-    why: "Why this matters — pain in their words from discovery.",
+    why: "Why this matters: pain in their words from discovery.",
     benefits: ["Benefit 1", "Benefit 2", "Benefit 3"],
     timeSaved: "~X hours/week",
     deliverables: ["Deliverable 1", "Deliverable 2"],
