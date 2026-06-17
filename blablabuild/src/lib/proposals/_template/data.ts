@@ -4,15 +4,6 @@ import type { SlideConfig } from "@/lib/types";
 import { packageSources, phaseSources } from "./phases.source";
 import { workflowSources } from "./workflows.source";
 
-export const BRAND = {
-  bg: "var(--brand-bg)",
-  lime: "var(--brand-accent)",
-  blue: "var(--brand-primary)",
-  black: "var(--brand-fg)",
-  muted: "#666666",
-  border: "var(--brand-border)",
-} as const;
-
 const built = buildProposalContent(
   workflowSources,
   phaseSources,
@@ -25,19 +16,15 @@ export const { workflows, riceSorted, phases, packages, AI_BUILD_NOTE } = built;
 export const wayOfWorking = [
   {
     title: "Discovery-led",
-    body: "We start from your workshop findings — not a generic playbook. Scope is validated before build.",
+    body: "Scope is validated in a deep-dive before build starts.",
   },
   {
     title: "AI-assisted delivery",
-    body: "We build with AI — so you get working software faster and at a fraction of classic agency cost.",
+    body: "Faster delivery, fewer billable hours — reflected in the estimates.",
   },
   {
     title: "Phased, not big bang",
-    body: "Each phase delivers usable value before the next starts. You choose how far to go.",
-  },
-  {
-    title: "Your data, your control",
-    body: "Especially for AB Capital: private AI, EU hosting, no training on your confidential information.",
+    body: "Each phase delivers usable value before the next begins.",
   },
 ] as const;
 
@@ -47,8 +34,6 @@ export const slideConfigs: SlideConfig[] = [
   { label: "Way of working", variant: "light" },
   { label: "Roadmap", variant: "light" },
   { label: "Phase 1", variant: "light" },
-  { label: "Phase 2", variant: "light" },
-  { label: "Phase 3", variant: "light" },
   { label: "Workflows", variant: "light" },
   { label: "Prioritisation", variant: "light" },
   { label: "Investment", variant: "light" },
@@ -56,11 +41,3 @@ export const slideConfigs: SlideConfig[] = [
 ];
 
 export const slideLabels = slideConfigs.map((s) => s.label);
-
-export function getWorkflow(id: string) {
-  return workflows.find((w) => w.id === id);
-}
-
-export function getSlideVariant(index: number): "light" | "blue" {
-  return slideConfigs[index]?.variant ?? "light";
-}
