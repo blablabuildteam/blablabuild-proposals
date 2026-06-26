@@ -6,7 +6,7 @@ import { BulletList, HighlightedTitle } from "./shared";
 import { WorkflowCompact } from "./WorkflowDetailCard";
 
 export function SlidePhaseNear() {
-  const { phases, getWorkflow, slideCopy } = useProposal();
+  const { phases, getWorkflow } = useProposal();
   const ui = useProposalUi();
   const phase = phases[3];
   const items = phase.workflows
@@ -28,10 +28,18 @@ export function SlidePhaseNear() {
           </h1>
         </div>
         <div className="rounded-xl bg-[var(--brand-accent)] px-5 py-3 text-right">
+          {phase.investStandalone && (
+            <p className="font-mono text-sm text-[var(--brand-fg)]/50 line-through">
+              {phase.investStandalone}
+            </p>
+          )}
           <p className="font-mono text-xl font-bold text-[var(--brand-fg)] sm:text-2xl">
             {phase.invest}
           </p>
-          <p className="text-xs font-medium text-[var(--brand-fg)]/70">{phase.period}</p>
+          <p className="text-xs font-medium text-[var(--brand-fg)]/70">
+            {phase.investStandalone ? "incl. combinatievoordeel · " : ""}
+            {phase.period}
+          </p>
         </div>
       </div>
 
@@ -43,11 +51,6 @@ export function SlidePhaseNear() {
       <div className="grid gap-4 sm:grid-cols-2">
         {items.map((wf) => wf && <WorkflowCompact key={wf.id} wf={wf} />)}
       </div>
-
-      <p className="mt-4 text-xs text-[var(--brand-muted)]">
-        {slideCopy?.phaseNear?.wf10Note ??
-          "WF10 starts with discovery only; build scope decided after deep-dive."}
-      </p>
     </div>
   );
 }

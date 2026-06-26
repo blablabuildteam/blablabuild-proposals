@@ -1,70 +1,59 @@
-import { bundle as abCapitalBundle } from "./ab-capital";
+import { buildPasswordlessAccessUrl } from "@foundation/auth/access-link";
+import {
+  getClientProposalMap,
+  type ClientProposal,
+} from "@foundation/proposals/clients";
+import { createProposalRegistry } from "@foundation/proposals/registry";
+import type { ProposalLocale } from "./locale";
+import { CLIENT_PROPOSALS } from "./clients";
 import { defaultProposalAccess } from "./access-defaults";
-import type { ProposalAccess, ProposalBundle, PublicProposal } from "./types";
+import type { ProposalBundle, PublicProposal } from "./types";
 
-const bundles: Record<string, ProposalBundle> = {
-  "ab-capital": abCapitalBundle,
-};
+const registry = createProposalRegistry({
+  proposals: getClientProposalMap(CLIENT_PROPOSALS),
+  defaultAccess: defaultProposalAccess,
+  buildPasswordlessAccessUrl,
+});
 
-function resolveAccess(bundle: ProposalBundle): ProposalAccess {
-  if (!bundle.access) return defaultProposalAccess;
-  return {
-    landing: {
-      ...defaultProposalAccess.landing,
-      ...bundle.access.landing,
-    },
-  };
+export function getProposalBundles(
+  slug: string,
+): Record<ProposalLocale, ProposalBundle> | undefined {
+  return registry.getProposalBundles(slug) as
+    | Record<ProposalLocale, ProposalBundle>
+    | undefined;
 }
 
-export function getProposalBundle(slug: string): ProposalBundle | undefined {
-  return bundles[slug];
+export function getProposalBundle(
+  slug: string,
+  locale: ProposalLocale = "nl",
+): ProposalBundle | undefined {
+  return registry.getProposalBundle(slug, locale) as ProposalBundle | undefined;
 }
 
-export function getPublicProposal(slug: string): PublicProposal | undefined {
-  const bundle = getProposalBundle(slug);
-  if (!bundle) return undefined;
-
-  const { meta } = bundle;
-  return {
-    slug: meta.slug,
-    clientName: meta.clientName,
-    title: meta.title,
-    subtitle: meta.subtitle,
-    access: resolveAccess(bundle),
-  };
+export function getPublicProposal(
+  slug: string,
+  locale: ProposalLocale = "nl",
+): PublicProposal | undefined {
+  return registry.getPublicProposal(slug, locale);
 }
 
-export function getPublicProposals(): PublicProposal[] {
-  return Object.values(bundles).map((b) => ({
-    slug: b.meta.slug,
-    clientName: b.meta.clientName,
-    title: b.meta.title,
-    subtitle: b.meta.subtitle,
-    access: resolveAccess(b),
-  }));
+export function getPublicProposals(
+  locale: ProposalLocale = "nl",
+): PublicProposal[] {
+  return registry.getPublicProposals(locale);
 }
+
+export function getPublicProposalsLocalized(): Record<
+  ProposalLocale,
+  PublicProposal[]
+> {
+  return registry.getPublicProposalsLocalized();
+}
+
+export const resolveClientSlug = registry.resolveClientSlug;
+export const getPasswordForSlug = registry.getPasswordForSlug;
 
 export { buildShareableAccessUrl } from "./access-url";
-export { buildPasswordlessAccessUrl } from "../auth/access-link";
+export { buildPasswordlessAccessUrl };
 
-export function resolveClientSlug(clientInput: string): string | null {
-  const normalized = clientInput.trim().toLowerCase();
-  if (!normalized) return null;
-
-  for (const bundle of Object.values(bundles)) {
-    const { slug, clientName } = bundle.meta;
-    if (
-      normalized === slug ||
-      normalized === clientName.toLowerCase() ||
-      normalized.replace(/\s+/g, "-") === slug
-    ) {
-      return slug;
-    }
-  }
-  return null;
-}
-
-export function getPasswordForSlug(slug: string): string | undefined {
-  const envKey = `PROPOSAL_${slug.toUpperCase().replace(/-/g, "_")}_PASSWORD`;
-  return process.env[envKey];
-}
+export type { ClientProposal };

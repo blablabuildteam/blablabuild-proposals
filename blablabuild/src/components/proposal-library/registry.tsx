@@ -2,6 +2,7 @@ import { SlideApproach } from "@/components/slides/SlideApproach";
 import { SlideDebrief } from "@/components/slides/SlideDebrief";
 import { SlideInvestment } from "@/components/slides/SlideInvestment";
 import { SlideNextSteps } from "@/components/slides/SlideNextSteps";
+import { SlidePhaseBacklog } from "@/components/slides/SlidePhaseBacklog";
 import { SlidePhaseNear } from "@/components/slides/SlidePhaseNear";
 import { SlidePhaseNext } from "@/components/slides/SlidePhaseNext";
 import { SlidePhaseNow } from "@/components/slides/SlidePhaseNow";
@@ -75,11 +76,20 @@ export const PROPOSAL_SECTIONS = [
   {
     id: "phase-near",
     name: "Phase Detail · NEAR",
-    description: "Phase 3 detail with long-term backlog note.",
+    description: "Phase 3 detail with dataplatform workflows.",
     defaultLabel: "Fase 3",
     defaultVariant: "light",
     category: "phases",
     component: SlidePhaseNear,
+  },
+  {
+    id: "phase-backlog",
+    name: "Phase Detail · Backlog",
+    description: "WF10 Bunch replacement discovery, separate from phased roadmap.",
+    defaultLabel: "Backlog",
+    defaultVariant: "light",
+    category: "phases",
+    component: SlidePhaseBacklog,
   },
   {
     id: "workflows",
@@ -131,6 +141,20 @@ const sectionMap = new Map(
   PROPOSAL_SECTIONS.map((section) => [section.id, section]),
 );
 
+export const THUISHAVEN_SECTION_ORDER: ProposalSectionId[] = [
+  "debrief",
+  "understanding",
+  "way-of-working",
+  "approach",
+  "phase-now",
+  "phase-next",
+  "phase-backlog",
+  "prioritization",
+  "workflows",
+  "investment",
+  "next-steps",
+];
+
 /** Default section order used by AB Capital. */
 export const AB_CAPITAL_SECTION_ORDER: ProposalSectionId[] = [
   "debrief",
@@ -140,6 +164,7 @@ export const AB_CAPITAL_SECTION_ORDER: ProposalSectionId[] = [
   "phase-now",
   "phase-next",
   "phase-near",
+  "phase-backlog",
   "workflows",
   "prioritization",
   "investment",

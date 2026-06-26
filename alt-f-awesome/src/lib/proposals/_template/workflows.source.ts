@@ -1,9 +1,10 @@
 import type { WorkflowSource } from "@foundation/types";
 import { impactFromLabel } from "@foundation/rice";
-import { estimateCostFromDays, estimateDaysFromEffort } from "@foundation/cost";
+import { buildAiWorkflowEstimate } from "@foundation/cost";
 import { ALT_F_AWESOME_RATE_CARD } from "@foundation/config";
 
 const rateCard = ALT_F_AWESOME_RATE_CARD;
+const example = buildAiWorkflowEstimate(1.5, rateCard);
 
 export const workflowSources: WorkflowSource[] = [
   {
@@ -19,19 +20,11 @@ export const workflowSources: WorkflowSource[] = [
     impactLabel: "High",
     phaseOriginal: "NOW",
     phaseRevised: "NOW",
-    effort: (() => {
-      const { daysMin, daysMax } = estimateDaysFromEffort(1.5, rateCard);
-      return {
-        daysMin,
-        daysMax,
-        weeks: "2–3",
-        daysLabel: `${daysMin}–${daysMax} days`,
-      };
-    })(),
-    cost: (() => {
-      const { daysMin, daysMax } = estimateDaysFromEffort(1.5, rateCard);
-      return estimateCostFromDays(daysMin, daysMax, rateCard);
-    })(),
+    effort: {
+      ...example.effort,
+      daysLabel: example.effort.daysLabel.replace(" dagen", " days"),
+    },
+    cost: example.cost,
     summary: "One-line outcome the client cares about.",
     why: "Why this matters: pain in their words from discovery.",
     benefits: ["Benefit 1", "Benefit 2", "Benefit 3"],

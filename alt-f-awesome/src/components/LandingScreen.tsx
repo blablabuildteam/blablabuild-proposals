@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
+import { LanguageToggle } from "@/components/LanguageToggle";
 import { LoginHeroBackground } from "@/components/LoginHeroBackground";
 import { brand } from "@/lib/brand";
 import {
@@ -14,6 +15,12 @@ import {
   resolveAccessSlug,
   resolveContactName,
 } from "@/lib/proposals/access-url";
+import {
+  DEFAULT_PROPOSAL_LOCALE,
+  LOCALE_STORAGE_KEY,
+  resolveProposalLocale,
+  type ProposalLocale,
+} from "@/lib/proposals/locale";
 import type { PublicProposal } from "@/lib/proposals/types";
 
 function buildAccessLinkUrl(
@@ -47,13 +54,34 @@ function parseHighlightedTitle(text: string) {
   return parts.length > 0 ? parts : [{ text, highlight: false }];
 }
 
-export function LandingScreen({ clients }: { clients: PublicProposal[] }) {
+export function LandingScreen({
+  clientsByLocale,
+}: {
+  clientsByLocale: Record<ProposalLocale, PublicProposal[]>;
+}) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const slugParam = resolveAccessSlug(searchParams);
   const accessKey = resolveAccessKey(searchParams);
   const contactName = resolveContactName(searchParams);
   const errorParam = searchParams.get("error");
+
+  const [locale, setLocale] = useState<ProposalLocale>(DEFAULT_PROPOSAL_LOCALE);
+
+  useEffect(() => {
+    setLocale(resolveProposalLocale(localStorage.getItem(LOCALE_STORAGE_KEY)));
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
+
+  const handleLocaleChange = (next: ProposalLocale) => {
+    setLocale(next);
+    localStorage.setItem(LOCALE_STORAGE_KEY, next);
+  };
+
+  const clients = clientsByLocale[locale];
 
   const proposal = useMemo(
     () => clients.find((c) => c.slug === slugParam),
@@ -114,6 +142,13 @@ export function LandingScreen({ clients }: { clients: PublicProposal[] }) {
       <LoginHeroBackground />
 
       <div className="relative z-10 flex min-h-dvh items-center justify-center px-4 py-12">
+        <div className="absolute right-4 top-4 sm:right-6 sm:top-6">
+          <LanguageToggle
+            locale={locale}
+            onChange={handleLocaleChange}
+            variant="on-dark"
+          />
+        </div>
         <div
           className={`w-full border border-white/15 bg-black/55 p-6 backdrop-blur-sm sm:p-8 ${
             isPersonalized ? "max-w-md" : "max-w-sm"

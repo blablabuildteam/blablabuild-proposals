@@ -1,0 +1,12 @@
+ID,Titel,Beschrijving,Estimate,Prijs min (EUR),Prijs max (EUR),Prijs,Implementatie (indicatief)
+WF0,Veilig AI-fundament,"Een eigen private AI-omgeving, gebouwd voor gevoelige financiële en klantdata. Inclusief teamtraining.",2–3 dagen (1 week),1500,5000,"€2–5k",
+WF5,Fondsdocument-pipeline,"Stop met handmatig hernoemen en uploaden van fondsdocumenten. De dagelijkse admin verdwijnt.",4–5 dagen (1 week),3000,7000,"€3–7k",
+WF7,Juridische documenten en KYC,"Onboardingpapierwerk vooringevuld vanuit data die jullie al hebben. Juridische review blijft in control.",6–7 dagen (1–2 weken),4000,10000,"€4–10k",
+WF8,Deal flow en investment memos,"Drie modules met interface: risicobeoordeling, profiel en memo. Van opportunity naar investment committee.",10–12 dagen (2 weken),7000,16000,"€7–16k",
+WF1,Bestands- en documentbeheer,"Eén plek voor elk bestand, met chatinterface om documenten en informatie direct op te vragen.",7–9 dagen (1–2 weken),5000,12000,"€5–12k",
+WF9,Website & merk,"Update jullie site en content zonder op developers te wachten.",5–7 dagen (1 week),4000,9000,"€4–9k",
+WF3,Inzicht in fondsprestaties,"Client-ready portfolio-views (extern), bouwt voort op WF2 (intern).",11–13 dagen (2–3 weken),7500,18000,"€8–18k",
+WF6,E-mailworkflows,"Belangrijke acties uit e-mail geëxtraheerd en getrackt in Notion — gerichte automatisering.",4–5 dagen (1 week),3000,6000,"€3–6k",
+WF4,Dashboard voor investeerders (LP),"Direct zicht op LP-posities, capital calls en fondsperformance.",14–18 dagen (3–4 weken),9500,23000,"€10–23k",
+WF2,Actueel financieel overzicht,"Zie cash en expenses over 40 entiteiten live — niet meer afhankelijk van cijfers van drie maanden geleden.",20–25 dagen (4–5 weken),13000,33000,"€13–33k",
+WF10,Bunch vervangen · discovery,"Los traject op verzoek: stakeholders, requirements en build vs. buy. Geen prijs of doorlooptijd in roadmap.",,,Nader te bepalen,

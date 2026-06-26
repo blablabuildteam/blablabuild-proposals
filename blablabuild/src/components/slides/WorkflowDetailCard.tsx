@@ -12,30 +12,35 @@ export function formatWeeksNl(weeks: string): string {
 
   const [, range, rest] = match;
   const parts = range.split(/\s*[–-]\s*/).map((n) => n.replace(".", ","));
+  const asNumber = (n: string) => parseFloat(n.replace(",", "."));
 
   const label =
     parts.length === 2
-      ? `${parts[0]} tot ${parts[1]} weken`
-      : `${parts[0]} weken`;
+      ? `${parts[0]}–${parts[1]} weken`
+      : `${parts[0]} ${asNumber(parts[0]) === 1 ? "week" : "weken"}`;
 
   const suffix = rest?.trim();
   return suffix ? `${label} · ${suffix}` : label;
 }
 
+/** Duration on workflow cards — prefers billable days (e.g. "5–7 dagen") */
 export function WorkflowWeekLabel({
+  effortDays,
   weeks,
   tone = "muted",
 }: {
-  weeks: string;
+  effortDays?: string;
+  weeks?: string;
   tone?: "muted" | "light";
 }) {
+  const label = effortDays ?? (weeks ? formatWeeksNl(weeks) : "");
   return (
     <span
       className={`shrink-0 text-[10px] font-light sm:text-xs ${
         tone === "light" ? "text-white/75" : "text-[var(--brand-muted)]"
       }`}
     >
-      {formatWeeksNl(weeks)}
+      {label}
     </span>
   );
 }
@@ -53,11 +58,15 @@ export function WorkflowCompact({ wf }: { wf: Workflow }) {
       <div className="mb-2 flex items-start justify-between gap-3">
         <div className="flex min-w-0 flex-wrap items-center gap-2">
           <Badge variant="black">{wf.id}</Badge>
-          <span className="font-mono text-sm font-bold text-[var(--brand-primary)]">
-            {wf.investment}
-          </span>
+          {!wf.hideTimeline && (
+            <span className="font-mono text-sm font-bold text-[var(--brand-primary)]">
+              {wf.investment}
+            </span>
+          )}
         </div>
-        <WorkflowWeekLabel weeks={wf.weeks} />
+        {!wf.hideTimeline && (
+          <WorkflowWeekLabel effortDays={wf.effortDays} weeks={wf.weeks} />
+        )}
       </div>
       <h3 className="text-base text-[var(--brand-fg)]">{wf.title}</h3>
       <p className="mt-1.5 flex-1 text-sm leading-relaxed text-[var(--brand-muted)]">
@@ -86,7 +95,9 @@ export function WorkflowDetailCard({ wf }: { wf: Workflow }) {
             {wf.investment}
           </span>
         </div>
-        <WorkflowWeekLabel weeks={wf.weeks} />
+        {!wf.hideTimeline && (
+          <WorkflowWeekLabel effortDays={wf.effortDays} weeks={wf.weeks} />
+        )}
       </div>
 
       <h3 className="mb-1 text-base text-[var(--brand-fg)] sm:text-lg">
@@ -138,13 +149,17 @@ export function WorkflowRow({ wf }: { wf: Workflow }) {
         </p>
       </div>
       <div className="flex shrink-0 flex-wrap items-center justify-end gap-3 text-xs sm:text-sm">
-        <WorkflowWeekLabel weeks={wf.weeks} />
+        {!wf.hideTimeline && (
+          <WorkflowWeekLabel effortDays={wf.effortDays} weeks={wf.weeks} />
+        )}
         <Badge variant="neutral">
           {labelFor(ui.phaseLabels, wf.phaseRevised)}
         </Badge>
-        <span className="font-mono font-bold text-[var(--brand-primary)]">
-          {wf.investment}
-        </span>
+        {!wf.hideTimeline && (
+          <span className="font-mono font-bold text-[var(--brand-primary)]">
+            {wf.investment}
+          </span>
+        )}
         <button
           type="button"
           onClick={() => openWorkflow(wf.id)}

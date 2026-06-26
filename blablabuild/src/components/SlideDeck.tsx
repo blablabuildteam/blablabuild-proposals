@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
@@ -8,7 +9,8 @@ import {
   useDeckNavigation,
 } from "@/components/DeckNavigation";
 import { BrandLogo } from "./BrandLogo";
-import { useProposal } from "@/components/ProposalProvider";
+import { LanguageToggle } from "./LanguageToggle";
+import { useProposal, useProposalLocale } from "@/components/ProposalProvider";
 import { useProposalUi } from "@/lib/proposals/use-proposal-ui";
 import { resolveSlideComponents } from "@/components/proposal-library";
 import { SlideWorkflowUseCase } from "./slides/SlideWorkflowUseCase";
@@ -26,6 +28,7 @@ export function SlideDeck() {
 
 function SlideDeckInner() {
   const { slideLabels, meta, getWorkflow, slideConfigs } = useProposal();
+  const { locale, setLocale } = useProposalLocale();
   const ui = useProposalUi();
   const { workflowDetailId, closeWorkflow } = useDeckNavigation();
   const router = useRouter();
@@ -140,15 +143,30 @@ function SlideDeckInner() {
           >
             |
           </span>
-          <span
-            className={`hidden truncate text-sm sm:inline ${
-              isBlue ? "text-white/70" : "text-[var(--brand-muted)]"
-            }`}
-          >
-            {meta.clientName}
-          </span>
+          {meta.clientLogo ? (
+            <Image
+              src={meta.clientLogo}
+              alt={meta.clientName}
+              width={28}
+              height={28}
+              className="hidden h-7 w-7 shrink-0 rounded sm:block"
+            />
+          ) : (
+            <span
+              className={`hidden truncate text-sm sm:inline ${
+                isBlue ? "text-white/70" : "text-[var(--brand-muted)]"
+              }`}
+            >
+              {meta.clientName}
+            </span>
+          )}
         </div>
         <div className="flex shrink-0 items-center gap-2 sm:gap-4">
+          <LanguageToggle
+            locale={locale}
+            onChange={setLocale}
+            variant={isBlue ? "on-dark" : "light"}
+          />
           <span
             className={`max-w-[9rem] truncate text-xs sm:max-w-none sm:text-sm md:hidden ${
               isBlue ? "text-white/75" : "text-[var(--brand-muted)]"

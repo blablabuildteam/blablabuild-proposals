@@ -1,6 +1,13 @@
 import { formatInvestment } from "./cost";
 import { computeRiceFromInput, roundRice } from "./rice";
-import type { Bucket, ImpactLevel, Phase, WorkflowSource } from "./types";
+import type {
+  Bucket,
+  ImpactLevel,
+  ImplementationEstimate,
+  Phase,
+  WorkflowRelation,
+  WorkflowSource,
+} from "./types";
 
 /** Deck-ready workflow — flat shape for slide components */
 export type BuiltWorkflow = {
@@ -21,10 +28,31 @@ export type BuiltWorkflow = {
   summary: string;
   why: string;
   benefits: string[];
-  foundationFor?: string[];
+  prerequisites?: WorkflowRelation[];
+  unlocks?: WorkflowRelation[];
   timeSaved: string;
   deliverables: string[];
+  implementationEstimate?: {
+    label: string;
+    weeks: string;
+    effortDays: string;
+    investment: string;
+  };
+  platformId?: string;
+  hideTimeline?: boolean;
 };
+
+function mapImplementationEstimate(
+  estimate: ImplementationEstimate,
+): BuiltWorkflow["implementationEstimate"] {
+  return {
+    label: estimate.label,
+    weeks: estimate.effort.weeks,
+    effortDays: estimate.effort.daysLabel,
+    investment:
+      estimate.investmentLabel ?? formatInvestment(estimate.cost),
+  };
+}
 
 export function buildWorkflow(source: WorkflowSource): BuiltWorkflow {
   const riceReported = roundRice(computeRiceFromInput(source.rice));
@@ -43,13 +71,19 @@ export function buildWorkflow(source: WorkflowSource): BuiltWorkflow {
     phaseRevised: source.phaseRevised,
     weeks: source.effort.weeks,
     effortDays: source.effort.daysLabel,
-    investment: formatInvestment(source.cost),
+    investment: source.investmentLabel ?? formatInvestment(source.cost),
     summary: source.summary,
     why: source.why,
     benefits: source.benefits,
-    foundationFor: source.foundationFor,
+    prerequisites: source.prerequisites,
+    unlocks: source.unlocks,
     timeSaved: source.timeSaved,
     deliverables: source.deliverables,
+    implementationEstimate: source.implementationEstimate
+      ? mapImplementationEstimate(source.implementationEstimate)
+      : undefined,
+    platformId: source.platformId,
+    hideTimeline: source.hideTimeline,
   };
 }
 

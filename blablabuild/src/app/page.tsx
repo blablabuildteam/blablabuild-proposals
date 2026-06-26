@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { LandingScreen } from "@/components/LandingScreen";
-import { getPublicProposals } from "@/lib/proposals/registry";
+import { getPublicProposalsLocalized } from "@/lib/proposals/registry";
 
 function LandingFallback() {
   return (
@@ -11,11 +11,11 @@ function LandingFallback() {
 }
 
 export default function Home() {
-  const clients = getPublicProposals();
+  const clientsByLocale = getPublicProposalsLocalized();
 
   return (
     <Suspense fallback={<LandingFallback />}>
-      <LandingScreen clients={clients} />
+      <LandingScreen clientsByLocale={clientsByLocale} />
     </Suspense>
   );
 }

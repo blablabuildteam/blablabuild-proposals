@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
+import { LanguageToggle } from "@/components/LanguageToggle";
 import {
   HighlightedTitle,
   KickerPill,
@@ -17,6 +18,12 @@ import {
   resolveAccessSlug,
   resolveContactName,
 } from "@/lib/proposals/access-url";
+import {
+  DEFAULT_PROPOSAL_LOCALE,
+  LOCALE_STORAGE_KEY,
+  resolveProposalLocale,
+  type ProposalLocale,
+} from "@/lib/proposals/locale";
 import type { PublicProposal } from "@/lib/proposals/types";
 
 function buildAccessLinkUrl(
@@ -29,13 +36,34 @@ function buildAccessLinkUrl(
   return `/api/access/link?${params}`;
 }
 
-export function LandingScreen({ clients }: { clients: PublicProposal[] }) {
+export function LandingScreen({
+  clientsByLocale,
+}: {
+  clientsByLocale: Record<ProposalLocale, PublicProposal[]>;
+}) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const slugParam = resolveAccessSlug(searchParams);
   const accessKey = resolveAccessKey(searchParams);
   const contactName = resolveContactName(searchParams);
   const errorParam = searchParams.get("error");
+
+  const [locale, setLocale] = useState<ProposalLocale>(DEFAULT_PROPOSAL_LOCALE);
+
+  useEffect(() => {
+    setLocale(resolveProposalLocale(localStorage.getItem(LOCALE_STORAGE_KEY)));
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
+
+  const handleLocaleChange = (next: ProposalLocale) => {
+    setLocale(next);
+    localStorage.setItem(LOCALE_STORAGE_KEY, next);
+  };
+
+  const clients = clientsByLocale[locale];
 
   const proposal = useMemo(
     () => clients.find((c) => c.slug === slugParam),
@@ -98,21 +126,18 @@ export function LandingScreen({ clients }: { clients: PublicProposal[] }) {
           isPersonalized ? "max-w-md" : "max-w-sm"
         }`}
       >
-        <div
-          className={`flex justify-center ${
-            isPersonalized
-              ? "mb-6 border-b border-[var(--brand-border)] pb-6"
-              : "mb-8 border-b border-[var(--brand-border)] pb-6"
-          }`}
-        >
-          <Image
-            src={brand.logo}
-            alt={brand.name}
-            width={brand.logoWidth}
-            height={brand.logoHeight}
-            priority
-            className="h-8 w-auto"
-          />
+        <div className="mb-6 flex items-center justify-between gap-4 border-b border-[var(--brand-border)] pb-6">
+          <div className="flex flex-1 justify-center">
+            <Image
+              src={brand.logo}
+              alt={brand.name}
+              width={brand.logoWidth}
+              height={brand.logoHeight}
+              priority
+              className="h-8 w-auto"
+            />
+          </div>
+          <LanguageToggle locale={locale} onChange={handleLocaleChange} />
         </div>
 
         {isPersonalized && proposal && (
@@ -150,7 +175,7 @@ export function LandingScreen({ clients }: { clients: PublicProposal[] }) {
                   name="client"
                   value={client}
                   onChange={(e) => setClient(e.target.value)}
-                  placeholder="AB Capital"
+                  placeholder="ABCapital"
                   autoComplete="organization"
                   list="proposal-clients"
                   required

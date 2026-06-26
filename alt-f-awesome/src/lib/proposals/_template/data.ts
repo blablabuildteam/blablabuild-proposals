@@ -28,16 +28,24 @@ export const wayOfWorking = [
   },
 ] as const;
 
-export const slideConfigs: SlideConfig[] = [
-  { label: "Debrief", variant: "light" },
-  { label: "Challenge", variant: "light" },
-  { label: "Way of working", variant: "light" },
-  { label: "Roadmap", variant: "light" },
-  { label: "Phase 1", variant: "light" },
-  { label: "Workflows", variant: "light" },
-  { label: "Prioritisation", variant: "light" },
-  { label: "Investment", variant: "light" },
-  { label: "Next steps", variant: "light" },
+const TEMPLATE_SECTIONS: readonly {
+  sectionId: string;
+  label: string;
+  variant: SlideConfig["variant"];
+}[] = [
+  { sectionId: "debrief", label: "Debrief", variant: "light" },
+  { sectionId: "understanding", label: "Challenge", variant: "light" },
+  { sectionId: "way-of-working", label: "Way of working", variant: "light" },
+  { sectionId: "approach", label: "Roadmap", variant: "light" },
+  { sectionId: "phase-now", label: "Phase 1", variant: "light" },
+  { sectionId: "phase-next", label: "Phase 2", variant: "light" },
+  { sectionId: "phase-near", label: "Phase 3", variant: "light" },
+  { sectionId: "workflows", label: "Workflows", variant: "light" },
+  { sectionId: "prioritization", label: "Prioritisation", variant: "light" },
+  { sectionId: "investment", label: "Investment", variant: "light" },
+  { sectionId: "next-steps", label: "Next steps", variant: "light" },
 ];
+
+export const slideConfigs: SlideConfig[] = [...TEMPLATE_SECTIONS];
 
 export const slideLabels = slideConfigs.map((s) => s.label);

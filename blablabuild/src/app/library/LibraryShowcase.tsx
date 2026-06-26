@@ -3,7 +3,8 @@
 import { useMemo, useState } from "react";
 import { BrandLogo } from "@/components/BrandLogo";
 import { DeckNavigationProvider } from "@/components/DeckNavigation";
-import { ProposalProvider } from "@/components/ProposalProvider";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { ProposalProvider, useProposalLocale } from "@/components/ProposalProvider";
 import {
   PROPOSAL_OVERLAYS,
   PROPOSAL_SECTIONS,
@@ -11,10 +12,36 @@ import {
   SlideThemeProvider,
 } from "@/components/proposal-library";
 import type { ProposalSectionCategory } from "@/components/proposal-library";
+import type { ProposalLocale } from "@/lib/proposals/locale";
 import type { SlideVariant } from "@/lib/types";
 import type { ProposalBundle } from "@/lib/proposals/types";
 
-export function LibraryShowcase({ bundle }: { bundle: ProposalBundle }) {
+function LibraryHeader() {
+  const { locale, setLocale } = useProposalLocale();
+  return (
+    <div className="flex items-center justify-between gap-4">
+      <div className="flex min-w-0 items-center gap-3">
+        <BrandLogo className="h-5 w-auto shrink-0 sm:h-6" />
+        <div className="min-w-0">
+          <p className="truncate text-sm font-semibold">
+            Proposal Component Library
+          </p>
+          <p className="truncate text-xs text-[var(--brand-muted)]">
+            {PROPOSAL_SECTIONS.length} secties · {PROPOSAL_OVERLAYS.length}{" "}
+            overlay · ABCapital preview data
+          </p>
+        </div>
+      </div>
+      <LanguageToggle locale={locale} onChange={setLocale} />
+    </div>
+  );
+}
+
+export function LibraryShowcase({
+  bundles,
+}: {
+  bundles: Record<ProposalLocale, ProposalBundle>;
+}) {
   const [activeCategory, setActiveCategory] = useState<
     ProposalSectionCategory | "all"
   >("all");
@@ -30,28 +57,12 @@ export function LibraryShowcase({ bundle }: { bundle: ProposalBundle }) {
   );
 
   return (
-    <ProposalProvider bundle={bundle}>
+    <ProposalProvider bundles={bundles}>
       <DeckNavigationProvider>
         <div className="min-h-dvh bg-[var(--brand-bg)] text-[var(--brand-fg)]">
           <header className="sticky top-0 z-30 border-b border-[var(--brand-border)] bg-white/95 backdrop-blur-sm">
             <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:px-6 sm:py-5">
-              <div className="flex items-center justify-between gap-4">
-                <div className="flex min-w-0 items-center gap-3">
-                  <BrandLogo className="h-5 w-auto shrink-0 sm:h-6" />
-                  <div className="min-w-0">
-                    <p className="truncate text-sm font-semibold">
-                      Proposal Component Library
-                    </p>
-                    <p className="truncate text-xs text-[var(--brand-muted)]">
-                      {PROPOSAL_SECTIONS.length} secties · {PROPOSAL_OVERLAYS.length}{" "}
-                      overlay · AB Capital preview data
-                    </p>
-                  </div>
-                </div>
-                <span className="shrink-0 rounded-full bg-[var(--brand-accent)] px-3 py-1 text-xs font-bold text-[var(--brand-fg)]">
-                  blablabuild
-                </span>
-              </div>
+              <LibraryHeader />
 
               <nav className="flex flex-wrap gap-1.5">
                 <CategoryFilter

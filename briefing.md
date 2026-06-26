@@ -1,8 +1,8 @@
 1. Overall Context / Introduction
-AB Capital has successfully navigated the start-up phase, building a robust portfolio and establishing a strong market presence. However, operating at scale requires a shift from human-dependent, fragmented processes to institutionalized, automated workflows.
+ABCapital has successfully navigated the start-up phase, building a robust portfolio and establishing a strong market presence. However, operating at scale requires a shift from human-dependent, fragmented processes to institutionalized, automated workflows.
 As organizations scale, administrative overhead grows exponentially rather than linearly. The primary objective of this initiative is to eliminate operational bottlenecks, reduce the margin for human error, and free up high-value hours for execution and strategic growth. This document outlines the digital transformation roadmap to establish a smoother, highly scalable operational foundation.
 2. Quick Summary of Discovery Workshop
-During our intake sessions, we mapped out AB Capital's current ecosystem, comprising tools like Twinfield, Basecone, Harvest, Notion, Sharepoint, Claude, and Bunch. The overarching operational sentiment was clear:
+During our intake sessions, we mapped out ABCapital's current ecosystem, comprising tools like Twinfield, Basecone, Harvest, Notion, Sharepoint, Claude, and Bunch. The overarching operational sentiment was clear:
 “In general, the biggest bottleneck is to improve automation across the entire AB organisation to clear time on execution and create less room for error.”
 We identified 11 potential focus areas spanning Fund Operations, Group Finance, Family Office administration, and New Investments. These were collaboratively mapped out during the workshop into an initial Impact/Effort matrix (visualized in the workshop records as).
 
@@ -58,7 +58,7 @@ Investment Needs: Medium to High.
 Impact/Effort Category: Quick Win / High Value
 WF9: Flexible Tech Stack Website Migration
 Project Definition: Front-end and Content Management Stack modernizing.
-Concept & Scope: Migrating the public-facing corporate website to a modern, decoupled tech stack (e.g., Headless CMS + Next.js) giving AB Capital complete independence over content, layout, and future client portal integrations.
+Concept & Scope: Migrating the public-facing corporate website to a modern, decoupled tech stack (e.g., Headless CMS + Next.js) giving ABCapital complete independence over content, layout, and future client portal integrations.
 Objectives: Achieve total flexibility over marketing/brand updates without technical dependencies.
 Approach:
 Investment Needs: Low to Medium.
@@ -222,7 +222,7 @@ Deep programmatic synchronization for WF2 (Financial Overview) and WF4 (LP Dashb
 WF10 remains firmly on the long-term backlog strategy due to its heavy switching friction.
 6. Next Steps
 To move from this framework to active implementation, we propose the following sequential steps:
-Workflow Selection: AB Capital reviews this framework and confirms which workflow(s) from the NOW bucket will serve as the initial implementation target.
+Workflow Selection: ABCapital reviews this framework and confirms which workflow(s) from the NOW bucket will serve as the initial implementation target.
 Targeted Deep-Dive: We schedule a technical deep-dive session focusing exclusively on the chosen workflows to map API schemas, exact document templates, and user interactions.
 In-Depth Proposal & Project Plan: Based on the deep-dive, we deliver an un-ballparked, line-item budget proposal, delivery schedule, and milestone roadmap to kick off production.
 

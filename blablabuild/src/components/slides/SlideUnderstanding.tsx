@@ -46,6 +46,91 @@ export function SlideUnderstanding() {
   const { understanding } = useProposal();
   const copy = understanding ?? defaultUnderstanding;
 
+  if (
+    "layout" in copy &&
+    copy.layout === "growth" &&
+    "growth" in copy &&
+    copy.growth
+  ) {
+    const growth = copy.growth;
+
+    return (
+      <div className="flex flex-col gap-5">
+        <SlideTitle
+          kicker={copy.kicker}
+          title={copy.title}
+          subtitle={copy.subtitle}
+          compact
+        />
+
+        <div className="grid gap-3 md:grid-cols-3">
+          {(
+            [
+              {
+                label: growth.strengthsLabel,
+                items: growth.strengths,
+                accent: "bg-[var(--brand-fg)] text-white",
+                body: "text-white/85",
+              },
+              {
+                label: growth.ambitionLabel,
+                items: growth.ambition,
+                accent: "bg-[var(--brand-accent)]",
+                body: "text-[var(--brand-fg-secondary)]",
+              },
+              {
+                label: growth.gapLabel,
+                items: growth.gap,
+                accent: "border-2 border-[var(--brand-primary)] bg-white",
+                body: "text-[var(--brand-fg-secondary)]",
+              },
+            ] as const
+          ).map((column) => (
+            <div
+              key={column.label}
+              className={`flex flex-col overflow-hidden rounded-xl ${column.accent}`}
+            >
+              <p className="px-4 py-3 text-xs font-bold tracking-wide uppercase">
+                {column.label}
+              </p>
+              <ul className={`space-y-2 px-4 pb-4 text-sm leading-relaxed ${column.body}`}>
+                {column.items.map((item) => (
+                  <li key={item} className="flex gap-2">
+                    <span className="opacity-60">·</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {growth.opportunities && growth.opportunities.length > 0 ? (
+          <div>
+            <p className="mb-3 text-xs font-bold tracking-wide text-[var(--brand-muted)] uppercase">
+              {growth.opportunitiesLabel ?? copy.frictionLabel}
+            </p>
+            <div className="grid gap-3 sm:grid-cols-3">
+              {growth.opportunities.map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-xl border border-[var(--brand-border)] bg-white p-4"
+                >
+                  <p className="text-xs font-bold text-[var(--brand-fg)]">{item.title}</p>
+                  {item.body ? (
+                    <p className="mt-1.5 text-sm leading-relaxed text-[var(--brand-fg-secondary)]">
+                      {item.body}
+                    </p>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : null}
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col gap-4 lg:grid lg:grid-cols-[280px_1fr] lg:gap-8">
       <div className="order-1 lg:order-2">

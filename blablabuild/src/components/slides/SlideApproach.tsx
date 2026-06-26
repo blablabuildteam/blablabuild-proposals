@@ -9,42 +9,43 @@ const defaultCopy = {
   subtitle:
     "Each phase delivers usable value before the next starts. WF9 (website) runs in parallel during Phase 2, separate track, same timeline.",
   parallelLabel: "Parallel",
-  parallelBody: "Marketing updates without blocking ops automation.",
+  parallelBody: "Marketingupdates zonder ops-automatisering te blokkeren.",
+  backlogLabel: "Backlog",
+  backlogBody:
+    "Bunch-vervanging start met discovery; implementatie volgt pas na een onderbouwde beslissing.",
 };
 
+const timelineAccents = ["lime", "blue", "neutral"] as const;
+
 export function SlideApproach() {
-  const { phases, slideCopy } = useProposal();
+  const { phases, getWorkflow, slideCopy } = useProposal();
   const copy = slideCopy?.approach ?? defaultCopy;
 
-  const timeline = [
-    {
-      num: "01",
-      label: phases[0].label,
-      period: phases[0].period,
-      invest: phases[0].invest,
-      headline: phases[0].headline,
-      workflows: phases[0].workflows,
-      accent: "lime" as const,
-    },
-    {
-      num: "02",
-      label: phases[1].label,
-      period: phases[1].period,
-      invest: phases[1].invest,
-      headline: phases[1].headline,
-      workflows: phases[1].workflows,
-      accent: "blue" as const,
-    },
-    {
-      num: "03",
-      label: phases[3].label,
-      period: phases[3].period,
-      invest: phases[3].invest,
-      headline: phases[3].headline,
-      workflows: phases[3].workflows,
-      accent: "neutral" as const,
-    },
-  ];
+  const nearPhase = phases.find((p) => p.id === "near");
+  const parallelPhase = phases.find((p) => p.id === "parallel");
+  const backlogPhase = phases.find((p) => p.id === "backlog");
+
+  const timeline = ["now", "next", "near"]
+    .map((id) => phases.find((p) => p.id === id))
+    .filter((phase): phase is NonNullable<typeof phase> => Boolean(phase))
+    .map((phase, index) => ({
+      num: String(index + 1).padStart(2, "0"),
+      label: phase.label,
+      period: phase.period,
+      invest: phase.invest,
+      investStandalone: phase.investStandalone,
+      headline: phase.headline,
+      workflows: phase.workflows,
+      accent: timelineAccents[index] ?? "neutral",
+    }));
+
+  const backlogWorkflowLabel = backlogPhase?.workflows
+    .map((id) => getWorkflow(id)?.title ?? id)
+    .join(" · ");
+
+  const parallelWorkflowLabel = parallelPhase?.workflows
+    .map((id) => getWorkflow(id)?.title ?? id)
+    .join(" · ");
 
   return (
     <div>
@@ -52,14 +53,31 @@ export function SlideApproach() {
 
       <PhaseTimeline phases={timeline} />
 
-      <div className="mt-5 rounded-lg border border-dashed border-[var(--brand-primary)]/40 bg-[var(--brand-primary)]/5 px-4 py-3">
-        <p className="text-xs font-bold text-[var(--brand-primary)] uppercase">
-          {copy.parallelLabel} · {phases[2].period}
-        </p>
-        <p className="mt-1 text-sm text-[var(--brand-fg-secondary)]">
-          <strong>WF9 Website</strong> · {phases[2].invest}. {copy.parallelBody}
-        </p>
-      </div>
+      {parallelPhase ? (
+        <div className="mt-5 rounded-lg border border-dashed border-[var(--brand-primary)]/40 bg-[var(--brand-primary)]/5 px-4 py-3">
+          <p className="text-xs font-bold text-[var(--brand-primary)] uppercase">
+            {copy.parallelLabel} · {parallelPhase.period}
+          </p>
+          <p className="mt-1 text-sm text-[var(--brand-fg-secondary)]">
+            <strong>{parallelWorkflowLabel}</strong> · {parallelPhase.invest}.{" "}
+            {copy.parallelBody}
+          </p>
+        </div>
+      ) : null}
+
+      {backlogPhase ? (
+        <div className="mt-3 rounded-lg border border-dashed border-[var(--brand-border)] bg-[var(--brand-bg)] px-4 py-3">
+          <p className="text-xs font-bold text-[var(--brand-muted)] uppercase">
+            {copy.backlogLabel ?? "Backlog"} · {backlogPhase.period}
+          </p>
+          <p className="mt-1 text-sm text-[var(--brand-fg-secondary)]">
+            <strong>{backlogWorkflowLabel}</strong>
+            {backlogPhase.invest ? ` · ${backlogPhase.invest}` : null}.{" "}
+            {copy.backlogBody ??
+              "Discovery eerst; implementatie volgt na expliciete go/no-go."}
+          </p>
+        </div>
+      ) : null}
     </div>
   );
 }

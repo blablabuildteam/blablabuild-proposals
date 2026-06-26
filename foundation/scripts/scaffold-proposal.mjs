@@ -7,7 +7,7 @@
  *   node foundation/scripts/scaffold-proposal.mjs acme-corp "Acme Corp" --brand alt-f-awesome
  */
 
-import { cpSync, existsSync, readFileSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -28,11 +28,22 @@ if (!slug || !clientName) {
 
 const appDir = join(root, brand);
 const templateDir = join(appDir, "src/lib/proposals/_template");
-const targetDir = join(appDir, "src/lib/proposals", slug);
+const clientsDir = join(appDir, "src/lib/proposals/clients");
+const targetDir = join(clientsDir, slug);
 
 if (existsSync(targetDir)) {
   console.error(`Already exists: ${targetDir}`);
   process.exit(1);
+}
+
+mkdirSync(clientsDir, { recursive: true });
+
+const clientsIndexPath = join(clientsDir, "index.ts");
+if (!existsSync(clientsIndexPath)) {
+  writeFileSync(
+    clientsIndexPath,
+    `import type { ClientProposal } from "@foundation/proposals/clients";\n\nexport const CLIENT_PROPOSALS: readonly ClientProposal[] = [];\n`,
+  );
 }
 
 cpSync(templateDir, targetDir, { recursive: true });
@@ -48,20 +59,28 @@ for (const file of ["index.ts", "data.ts", "workflows.source.ts", "phases.source
   writeFileSync(path, content);
 }
 
-const registryPath = join(appDir, "src/lib/proposals/registry.ts");
-let registry = readFileSync(registryPath, "utf8");
+const importLine = `import { build${toPascal(slug)}Bundles } from "./${slug}";`;
+const entryLine = `  { slug: "${slug}", bundles: build${toPascal(slug)}Bundles() },`;
 
-const importLine = `import { bundle as ${toCamel(slug)}Bundle } from "./${slug}";`;
+let registry = readFileSync(clientsIndexPath, "utf8");
+
 if (!registry.includes(importLine)) {
-  registry = registry.replace(
-    /^(import type \{ ProposalBundle.*\n)/m,
-    `$1${importLine}\n`,
-  );
-  registry = registry.replace(
-    /const bundles: Record<string, ProposalBundle> = \{\n/,
-    `const bundles: Record<string, ProposalBundle> = {\n  "${slug}": ${toCamel(slug)}Bundle,\n`,
-  );
-  writeFileSync(registryPath, registry);
+  registry = `${importLine}\n${registry}`;
+}
+
+if (!registry.includes(entryLine)) {
+  if (registry.includes("CLIENT_PROPOSALS: readonly ClientProposal[] = [];")) {
+    registry = registry.replace(
+      "export const CLIENT_PROPOSALS: readonly ClientProposal[] = [];",
+      `export const CLIENT_PROPOSALS: readonly ClientProposal[] = [\n${entryLine}\n];`,
+    );
+  } else {
+    registry = registry.replace(
+      /export const CLIENT_PROPOSALS: readonly ClientProposal\[\] = \[\n/,
+      `export const CLIENT_PROPOSALS: readonly ClientProposal[] = [\n${entryLine}\n`,
+    );
+  }
+  writeFileSync(clientsIndexPath, registry);
 }
 
 console.log(`
@@ -76,6 +95,9 @@ Next steps:
   5. Register env var on Vercel (production)
 `);
 
-function toCamel(slug) {
-  return slug.replace(/-([a-z])/g, (_, c) => c.toUpperCase()).replace(/-/g, "");
+function toPascal(slug) {
+  return slug
+    .split("-")
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join("");
 }

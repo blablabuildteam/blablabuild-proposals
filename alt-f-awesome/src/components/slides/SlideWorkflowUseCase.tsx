@@ -79,18 +79,18 @@ export function SlideWorkflowUseCase({
           </div>
         </section>
 
-        {wf.foundationFor && wf.foundationFor.length > 0 && (
+        {wf.unlocks && wf.unlocks.length > 0 && (
           <section className="rounded-xl border border-[var(--brand-primary)]/20 bg-[var(--brand-primary)]/5 p-5 sm:min-w-[220px] sm:p-6">
             <p className="text-[10px] font-bold tracking-wide text-[var(--brand-primary)] uppercase">
               Unlocks
             </p>
             <ul className="mt-3 space-y-2">
-              {wf.foundationFor.map((item) => (
+              {wf.unlocks.map((item) => (
                 <li
-                  key={item}
+                  key={item.workflowId}
                   className="text-sm leading-snug text-[var(--brand-fg-secondary)]"
                 >
-                  {item}
+                  {item.qualifier ?? item.workflowId}
                 </li>
               ))}
             </ul>

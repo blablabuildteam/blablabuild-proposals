@@ -83,25 +83,32 @@ export function SlideTitle({
   title,
   subtitle,
   compact,
+  dense,
+  balanced,
 }: {
   kicker?: string;
   title: string;
   subtitle?: string;
   compact?: boolean;
+  dense?: boolean;
+  balanced?: boolean;
 }) {
   const theme = useSlideTheme();
   const isBlue = theme === "blue";
+  const tight = dense && !balanced;
 
   return (
     <div
       className={
-        compact
-          ? "mb-4 space-y-1 sm:mb-5"
+        compact || balanced
+          ? tight
+            ? "mb-3 space-y-1 sm:mb-4"
+            : "mb-4 space-y-1.5 sm:mb-5"
           : "mb-6 space-y-2 sm:mb-8 sm:space-y-3 md:mb-10 md:space-y-4"
       }
     >
       {kicker && (
-        <div className="mb-3 sm:mb-4">
+        <div className={compact || balanced ? "mb-2 sm:mb-3" : "mb-3 sm:mb-4"}>
           {isBlue ? (
             <KickerPill variant="on-dark">{kicker}</KickerPill>
           ) : (
@@ -110,17 +117,25 @@ export function SlideTitle({
         </div>
       )}
       <h1
-        className={`max-w-3xl text-2xl leading-[1.15] tracking-tight sm:text-3xl md:text-[2.75rem] md:leading-[1.1] ${
-          isBlue ? "text-white" : "text-[var(--brand-fg)]"
-        }`}
+        className={`max-w-3xl leading-[1.15] tracking-tight ${
+          tight
+            ? "text-xl sm:text-2xl md:text-[2rem] md:leading-[1.1]"
+            : balanced
+              ? "text-2xl sm:text-[1.75rem] md:text-[2.25rem] md:leading-[1.1]"
+              : "text-2xl sm:text-3xl md:text-[2.75rem] md:leading-[1.1]"
+        } ${isBlue ? "text-white" : "text-[var(--brand-fg)]"}`}
       >
         <HighlightedTitle text={title} />
       </h1>
       {subtitle && (
         <p
-          className={`max-w-2xl text-sm leading-relaxed sm:text-base md:text-lg ${
-            isBlue ? "text-white/80" : "text-[var(--brand-muted)]"
-          }`}
+          className={`max-w-2xl leading-relaxed ${
+            tight
+              ? "text-xs sm:text-sm"
+              : balanced
+                ? "text-sm md:text-[0.95rem]"
+                : "text-sm sm:text-base md:text-lg"
+          } ${isBlue ? "text-white/80" : "text-[var(--brand-muted)]"}`}
         >
           <HighlightedTitle text={subtitle} />
         </p>
@@ -329,6 +344,7 @@ export function PhaseTimeline({
     label: string;
     period: string;
     invest: string;
+    investStandalone?: string;
     headline: string;
     workflows: readonly string[];
     accent?: "lime" | "blue" | "neutral";
@@ -368,15 +384,20 @@ export function PhaseTimeline({
                 {phase.label}
               </p>
               <p className={`mt-0.5 text-xs ${headerMuted}`}>{phase.period}</p>
+              {phase.investStandalone && (
+                <p className={`mt-2 font-mono text-xs line-through ${headerMuted}`}>
+                  {phase.investStandalone}
+                </p>
+              )}
               <p
-                className={`mt-2 font-mono text-sm font-bold ${headerText}`}
+                className={`${phase.investStandalone ? "mt-0.5" : "mt-2"} font-mono text-sm font-bold ${headerText}`}
               >
                 {phase.invest}
               </p>
             </div>
             <div className="flex flex-1 flex-col p-4 sm:p-5">
               <p className="text-sm font-bold text-[var(--brand-fg)]">
-                {phase.headline}
+                <HighlightedTitle text={phase.headline} />
               </p>
               <div className="mt-3 flex flex-wrap gap-1.5">
                 {phase.workflows.map((wf) => (
@@ -396,45 +417,79 @@ export function PhaseTimeline({
 export function StepFlow({
   steps,
   icons,
+  compact,
+  comfortable,
+  balanced,
 }: {
   steps: ReadonlyArray<{ title: string; body: string }>;
   icons?: readonly string[];
+  compact?: boolean;
+  comfortable?: boolean;
+  balanced?: boolean;
 }) {
   const theme = useSlideTheme();
   const isBlue = theme === "blue";
+  const spacious = comfortable && !compact && !balanced;
+  const middle = balanced && !compact && !comfortable;
 
   return (
-    <div className="relative">
-      <div
-        className={`absolute top-10 right-0 left-10 hidden h-0.5 sm:block ${
-          isBlue ? "bg-white/20" : "bg-[var(--brand-border)]"
-        }`}
-      />
-      <div className="grid gap-6 sm:grid-cols-4 sm:gap-4">
+    <div
+      className={
+        compact
+          ? "grid gap-4 sm:grid-cols-4 sm:gap-3"
+          : middle
+            ? "grid gap-5 sm:grid-cols-4 sm:gap-4 md:gap-5"
+            : spacious
+              ? "grid gap-6 sm:grid-cols-4 sm:gap-5 md:gap-8"
+              : "grid gap-6 sm:grid-cols-4 sm:gap-4"
+      }
+    >
         {steps.map((step, i) => (
           <div key={step.title} className="relative">
             {icons?.[i] ? (
               <Image
                 src={icons[i]}
                 alt=""
-                width={80}
-                height={80}
-                className="mb-3 h-20 w-auto object-contain drop-shadow-lg"
+                width={compact ? 112 : middle ? 104 : spacious ? 136 : 80}
+                height={compact ? 112 : middle ? 104 : spacious ? 136 : 80}
+                className={
+                  compact
+                    ? "mb-2 h-24 w-auto object-contain drop-shadow-lg sm:h-28"
+                    : middle
+                      ? "mb-3 h-24 w-auto object-contain drop-shadow-lg md:h-28"
+                      : spacious
+                        ? "mb-4 h-28 w-auto object-contain drop-shadow-lg md:mb-5 md:h-32"
+                        : "mb-3 h-20 w-auto object-contain drop-shadow-lg"
+                }
               />
             ) : (
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--brand-primary)] font-mono text-sm font-bold text-white">
+              <div
+                className={`mb-3 flex items-center justify-center rounded-full bg-[var(--brand-primary)] font-mono font-bold text-white ${
+                  compact ? "h-9 w-9 text-xs" : middle ? "h-10 w-10 text-sm" : spacious ? "h-12 w-12 text-sm" : "h-10 w-10 text-sm"
+                }`}
+              >
                 {String(i + 1).padStart(2, "0")}
               </div>
             )}
             <p
-              className={`text-sm font-bold ${
+              className={`font-bold ${
+                compact ? "text-xs" : middle ? "text-sm" : spacious ? "text-sm md:text-base" : "text-sm"
+              } ${
                 isBlue ? "text-[var(--brand-accent)]" : "text-[var(--brand-fg)]"
               }`}
             >
               {step.title}
             </p>
             <p
-              className={`mt-1.5 text-xs leading-relaxed sm:text-sm ${
+              className={`${
+                compact
+                  ? "mt-1 text-[11px] leading-snug sm:text-xs"
+                  : middle
+                    ? "mt-1.5 text-xs leading-relaxed sm:text-sm"
+                    : spacious
+                      ? "mt-2 text-sm leading-relaxed"
+                      : "mt-1.5 text-xs leading-relaxed sm:text-sm"
+              } ${
                 isBlue ? "text-white/75" : "text-[var(--brand-muted)]"
               }`}
             >
@@ -442,7 +497,6 @@ export function StepFlow({
             </p>
           </div>
         ))}
-      </div>
     </div>
   );
 }

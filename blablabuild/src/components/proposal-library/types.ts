@@ -1,7 +1,7 @@
 import type { ComponentType } from "react";
 import type { SlideVariant } from "@/lib/types";
 
-/** Stable IDs for every proposal deck section (derived from AB Capital). */
+/** Stable IDs for every proposal deck section (derived from ABCapital). */
 export type ProposalSectionId =
   | "debrief"
   | "understanding"
@@ -10,6 +10,7 @@ export type ProposalSectionId =
   | "phase-now"
   | "phase-next"
   | "phase-near"
+  | "phase-backlog"
   | "workflows"
   | "prioritization"
   | "investment"

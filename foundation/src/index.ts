@@ -2,5 +2,8 @@ export * from "./types";
 export * from "./rice";
 export * from "./cost";
 export * from "./workflow";
+export * from "./platform";
 export * from "./proposal";
 export * from "./config";
+export * from "./proposals";
+export * from "./auth";

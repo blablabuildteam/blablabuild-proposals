@@ -11,6 +11,10 @@ Monorepo for password-protected client proposal decks, split by brand.
 
 Each folder is a standalone Next.js app. Deploy them as separate Vercel projects.
 
+Client proposals live under `src/lib/proposals/clients/<client-slug>/` inside each app. Register new clients in `clients/index.ts`.
+
+Shared proposal infrastructure (registry, locale, auth, types) lives in [`foundation/src/proposals/`](foundation/src/proposals/) and [`foundation/src/auth/`](foundation/src/auth/). Both apps import via `@foundation/*`.
+
 ## Quick start
 
 ```bash
@@ -28,9 +32,7 @@ PROPOSAL_AB_CAPITAL_PASSWORD=your-password
 
 ## Adding a proposal
 
-**blablabuild:** copy `src/lib/proposals/ab-capital/` and register the bundle in `src/lib/proposals/registry.ts`.
-
-**alt-f-awesome:** same pattern under `src/lib/proposals/` (registry starts empty).
+**blablabuild / alt-f-awesome:** copy `src/lib/proposals/clients/ab-capital/` (blablabuild) and register in `src/lib/proposals/clients/index.ts`, or run the scaffold script.
 
 ## Briefing source
 
@@ -46,6 +48,8 @@ Shared RICE scoring, cost calculation, and proposal builder used by both apps.
 | `foundation/src/cost.ts` | Day-rate estimates, € range formatting, phase/package totals |
 | `foundation/src/proposal.ts` | `buildProposalContent()` — workflows → deck data |
 | `foundation/src/config.ts` | Rate cards per brand (blablabuild / Alt F Awesome) |
+| `foundation/src/proposals/` | Shared locale, registry, types, access URLs, UI defaults |
+| `foundation/src/auth/` | Session tokens, passwordless links, credential verification |
 
 ### New client proposal
 
@@ -61,7 +65,7 @@ Then edit `workflows.source.ts` (RICE + cost per workflow), `phases.source.ts` (
 
 ### Component library
 
-All proposal deck sections live in `blablabuild/src/components/proposal-library/`. Preview them at `/library` (AB Capital sample data).
+All proposal deck sections live in `blablabuild/src/components/proposal-library/`. Preview them at `/library` (ABCapital sample data).
 
 | Section ID | Component |
 |------------|-----------|
