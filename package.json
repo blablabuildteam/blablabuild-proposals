@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "name": "blablabuild-proposals-monorepo",
+  "scripts": {
+    "postinstall": "npm install --prefix blablabuild",
+    "build": "npm run build --prefix blablabuild"
+  },
+  "dependencies": {
+    "next": "16.2.9"
+  }
+}
