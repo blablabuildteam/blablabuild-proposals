@@ -327,7 +327,9 @@ export function SlidePrioritization() {
                           </p>
                         </div>
                         <div className={PRIO_SCORE_COL}>
-                          <PrioScore wf={wf} breakdown={riceBreakdown} />
+                          {!wf.excludeFromPrio ? (
+                            <PrioScore wf={wf} breakdown={riceBreakdown} />
+                          ) : null}
                         </div>
                       </div>
                       {workflowRationale && (
@@ -335,12 +337,14 @@ export function SlidePrioritization() {
                           {workflowRationale}
                         </p>
                       )}
-                      <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/60">
-                        <div
-                          className={`h-full rounded-full ${style.bar}`}
-                          style={{ width: `${width}%` }}
-                        />
-                      </div>
+                      {!wf.excludeFromPrio ? (
+                        <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/60">
+                          <div
+                            className={`h-full rounded-full ${style.bar}`}
+                            style={{ width: `${width}%` }}
+                          />
+                        </div>
+                      ) : null}
                     </div>
                   );
                 })}

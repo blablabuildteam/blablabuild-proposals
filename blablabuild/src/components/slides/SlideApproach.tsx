@@ -39,6 +39,7 @@ export function SlideApproach() {
       invest: phase.invest,
       workflows: phase.workflows,
       accent: timelineAccents[index] ?? "neutral",
+      companions: phase.companions,
     }));
 
   const secondaryPhases = phases.filter(

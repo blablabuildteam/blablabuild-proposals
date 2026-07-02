@@ -11,6 +11,7 @@ import {
 } from "react";
 import { createPortal } from "react-dom";
 import { useDeckNavigation } from "@/components/DeckNavigation";
+import type { PhaseCompanionSource } from "@foundation/types";
 import type { Workflow } from "@/lib/types";
 import { Badge } from "./shared";
 
@@ -21,6 +22,7 @@ type TimelinePhase = {
   invest: string;
   workflows: readonly string[];
   accent?: "lime" | "blue" | "neutral";
+  companions?: readonly PhaseCompanionSource[];
 };
 
 type Edge = {
@@ -308,6 +310,20 @@ export function RoadmapTimeline({
     (p) => p.id === "backlog" || p.id === "parallel",
   );
 
+  const inlineCompanionPhaseIds = useMemo(() => {
+    const ids = new Set<string>();
+    for (const phase of mainPhases) {
+      for (const companion of phase.companions ?? []) {
+        ids.add(companion.phaseId);
+      }
+    }
+    return ids;
+  }, [mainPhases]);
+
+  const visibleSecondaryPhases = secondaryPhases.filter(
+    (phase) => !inlineCompanionPhaseIds.has(phase.id),
+  );
+
   const allWorkflowIds = useMemo(
     () => phases.flatMap((phase) => [...phase.workflows]),
     [phases],
@@ -553,16 +569,50 @@ export function RoadmapTimeline({
                         highlighted={highlighted}
                         dimmed={dimmed}
                         onHover={setHoveredId}
+                        variant={
+                          wf.cardVariant === "highlight" ? "highlight" : "default"
+                        }
                       />
                     );
+                  })}
+                  {phase.companions?.map((companion) => {
+                    const companionPhase = phases.find(
+                      (p) => p.id === companion.phaseId,
+                    );
+                    if (!companionPhase) return null;
+
+                    return companionPhase.workflows.map((id) => {
+                      const wf = getWorkflow(id);
+                      if (!wf) return null;
+
+                      const highlighted = connectedIds?.has(id) ?? false;
+                      const dimmed =
+                        connectedIds !== null && !connectedIds.has(id);
+
+                      return (
+                        <RoadmapProjectCard
+                          key={`${companion.phaseId}-${id}`}
+                          wf={wf}
+                          registerRef={registerRef(id)}
+                          highlighted={highlighted}
+                          dimmed={dimmed}
+                          onHover={setHoveredId}
+                          variant={
+                            companion.style === "highlight"
+                              ? "highlight"
+                              : "default"
+                          }
+                        />
+                      );
+                    });
                   })}
                 </div>
               );
             })}
           </div>
 
-          {/* Secondary track: parallel / strategic session */}
-          {secondaryPhases.length > 0 ? (
+          {/* Secondary track: parallel / strategic session not inlined on a phase */}
+          {visibleSecondaryPhases.length > 0 ? (
             <div className="mt-6 border-t border-dashed border-[var(--brand-border)] pt-5">
               <div
                 className="grid gap-4 px-1"
@@ -570,7 +620,7 @@ export function RoadmapTimeline({
                   gridTemplateColumns: `repeat(${mainPhases.length}, minmax(0, 1fr))`,
                 }}
               >
-                {secondaryPhases.map((phase) => {
+                {visibleSecondaryPhases.map((phase) => {
                   const column =
                     phase.id === "parallel"
                       ? Math.min(2, mainPhases.length)
@@ -579,14 +629,8 @@ export function RoadmapTimeline({
                   return (
                     <div
                       key={phase.id}
-                      style={
-                        phase.id === "backlog"
-                          ? { gridColumn: "1 / -1" }
-                          : column
-                            ? { gridColumn: column }
-                            : undefined
-                      }
-                      className={`min-w-0 ${phase.id === "backlog" ? "max-w-md" : ""}`}
+                      style={column ? { gridColumn: column } : undefined}
+                      className="min-w-0"
                     >
                       <p
                         className={`mb-2 text-[10px] font-bold tracking-wide uppercase ${

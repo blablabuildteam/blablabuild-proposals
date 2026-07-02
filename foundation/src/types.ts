@@ -81,6 +81,8 @@ export type WorkflowSource = {
   investmentLabel?: string;
   /** Omit workflow cost from phase and package totals */
   excludeFromTotals?: boolean;
+  /** Hide PRIO/RICE score on prioritisation and detail views */
+  excludeFromPrio?: boolean;
   /** Hide duration on cards and detail slides (e.g. discovery-only backlog items) */
   hideTimeline?: boolean;
   summary: string;
@@ -106,6 +108,8 @@ export type WorkflowSource = {
   platformId?: string;
   /** Operations, marketing or sales focus — shown on detail views */
   domainLabels?: readonly WorkflowDomain[];
+  /** Distinct card styling on phase and roadmap views (e.g. optional strategic session) */
+  cardVariant?: "highlight";
 };
 
 export type PhaseCompanionSource = {

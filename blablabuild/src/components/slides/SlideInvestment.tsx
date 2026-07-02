@@ -114,20 +114,48 @@ function PhaseInvestBlock({
             row.kind === "workflow" ? (
               <div
                 key={row.wf.id}
-                className="flex flex-col gap-2 px-4 py-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4"
+                className={`flex flex-col gap-2 px-4 py-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4 ${
+                  row.wf.cardVariant === "highlight"
+                    ? "bg-[var(--brand-highlight)] text-white"
+                    : ""
+                }`}
               >
                 <div className="min-w-0 flex-1">
                   <div className="flex items-start gap-3">
-                    <Badge variant="black">{row.wf.id}</Badge>
+                    <Badge
+                      variant={
+                        row.wf.cardVariant === "highlight" ? "glass" : "black"
+                      }
+                    >
+                      {row.wf.id}
+                    </Badge>
                   </div>
-                  <p className="mt-1.5 text-sm font-semibold text-[var(--brand-fg)]">
+                  <p
+                    className={`mt-1.5 text-sm font-semibold ${
+                      row.wf.cardVariant === "highlight"
+                        ? "text-white"
+                        : "text-[var(--brand-fg)]"
+                    }`}
+                  >
                     {row.wf.title}
                   </p>
-                  <p className="mt-1 text-sm leading-relaxed text-[var(--brand-muted)]">
+                  <p
+                    className={`mt-1 text-sm leading-relaxed ${
+                      row.wf.cardVariant === "highlight"
+                        ? "text-white/70"
+                        : "text-[var(--brand-muted)]"
+                    }`}
+                  >
                     {row.wf.summary}
                   </p>
                 </div>
-                <p className="shrink-0 font-mono text-sm font-bold text-[var(--brand-primary)] sm:pt-0.5 sm:text-base">
+                <p
+                  className={`shrink-0 font-mono text-sm font-bold sm:pt-0.5 sm:text-base ${
+                    row.wf.cardVariant === "highlight"
+                      ? "text-[var(--brand-accent)]"
+                      : "text-[var(--brand-primary)]"
+                  }`}
+                >
                   {row.wf.investment}
                 </p>
               </div>

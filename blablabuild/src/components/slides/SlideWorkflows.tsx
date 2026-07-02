@@ -120,11 +120,9 @@ export function SlideWorkflows() {
           <span>{ui.tableInitiative}</span>
           <span className="text-right">{ui.tablePhaseInvest}</span>
         </div>
-        <div className="px-4 sm:px-5">
-          {filtered.map((wf) => (
-            <WorkflowRow key={wf.id} wf={wf} />
-          ))}
-        </div>
+        {filtered.map((wf) => (
+          <WorkflowRow key={wf.id} wf={wf} />
+        ))}
       </div>
 
       <p className="mt-3 text-xs text-[var(--brand-muted)]">

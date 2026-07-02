@@ -182,7 +182,7 @@ export const nl: ThuishavenLocaleContent = {
         "Druk van de ketel en data op orde eerst. Fase 1 levert direct tijdwinst en inzicht. Projecten die data delen zijn visueel gekoppeld — klik op een pijl voor uitleg.",
       parallelLabel: "Strategische sessie",
       parallelBody:
-        "Sessie om de Loyalty Experience te verkennen: scope, doelgroep en pricing bepalen. Maakt nog geen deel uit van fase 1 — planning volgt later.",
+        "Sessie om de Loyalty Experience te verkennen: scope, doelgroep en pricing bepalen — optioneel in fase 1.",
       backlogLabel: "Strategische sessie",
       backlogBody: "",
       connectionHint:
@@ -224,6 +224,8 @@ export const nl: ThuishavenLocaleContent = {
           "Live inzicht in ticketverkoop per platform, inclusief alert wanneer externe kanalen nog tickets aanbieden terwijl de officiële verkoop uitverkocht is. Essentieel voor marketingbeslissingen en direct gekoppeld aan het Marketing Dashboard.",
         "05":
           "Automatische outbound naar zakelijke prospects. Relatief snelle oplevering met directe omzetpotentie, los te zien van de dashboards.",
+        "08":
+          "Optionele strategische sessie: blueprint voor de Loyalty Experience — vorm, pricing en voordelen — voordat het programma wordt gebouwd.",
         "06":
           "Vier onderdelen in één studio: captions, fotoselectie, beeldgeneratie en nieuwsbrieven. Wacht op dashboards uit fase 1 voor optimale training en segmentatie.",
         "04":
@@ -232,7 +234,7 @@ export const nl: ThuishavenLocaleContent = {
           "Live bar- en consumptiedata via Weeztix-koppeling. Complexere integratie; loont zodra ticketing- en marketingdata betrouwbaar zijn.",
       },
       wf0Note:
-        "Prio = (Bereik × Impact × Zekerheid) ÷ Inspanning. De volgorde binnen elke fase weegt roadmap-afhankelijkheden zwaarder dan de kale score. Fase 1 (01–03, 05) levert snel zichtbare waarde. Fase 2 (06) volgt zodra de dashboards live zijn. Fase 3 (04, 07) schaalt data en sales zodra de basis staat.",
+        "Prio = (Bereik × Impact × Zekerheid) ÷ Inspanning. De volgorde binnen elke fase weegt roadmap-afhankelijkheden zwaarder dan de kale score. Fase 1 (01–03, 05, 08) levert snel zichtbare waarde. Fase 2 (06) volgt zodra de dashboards live zijn. Fase 3 (04, 07) schaalt data en sales zodra de basis staat.",
       riceBreakdown: {
         title: "Prio-berekening",
         reach: "Bereik",
@@ -284,7 +286,7 @@ export const nl: ThuishavenLocaleContent = {
     },
     phaseBacklog: {
       note:
-        "De strategische sessie voor de Loyalty Experience maakt nog geen deel uit van fase 1. Doel: de vorm, pricing en voordelen verkennen, zodat we daarna kunnen beslissen wanneer en hoe het loyaliteitsprogramma wordt gebouwd.",
+        "De strategische sessie voor de Loyalty Experience is een optioneel onderdeel van fase 1. Doel: vorm, pricing en voordelen verkennen voordat het loyaliteitsprogramma wordt gebouwd.",
     },
   },
   wayOfWorking: [
@@ -327,12 +329,13 @@ export const nl: ThuishavenLocaleContent = {
       label: "Fase 1, NOW",
       period: "Maand 0 tot 2",
       headline: "**Direct impact** — inzicht en efficiency",
-      workflows: ["01", "02", "03", "05"],
+      workflows: ["01", "02", "03", "05", "08"],
       outcomes: [
         "Digitaal personeelsformulier live met automatische XPS-koppeling",
         "Marketing Dashboard met alle kanalen, asset-performance via visual recognition en AI-vragen",
         "Kaartverkoop Dashboard met live verkoopcijfers per platform en signalering van secundaire aanbod na uitverkocht",
         "Bedrijfsevent Outreach met automatische outbound naar zakelijke prospects",
+        "Strategische sessie Loyalty Experience: vorm, pricing en voordelen verkennen",
         "Databasis voor datagedreven besluitvorming in fase 2 en 3",
       ],
     },
@@ -358,19 +361,6 @@ export const nl: ThuishavenLocaleContent = {
       outcomes: [
         "DJ Talenten Radar met objectieve Groeiscore en alerts",
         "Bar & Consumptie Data: live omzet per bar, product en locatie",
-      ],
-    },
-    {
-      id: "backlog",
-      label: "Strategische sessie",
-      period: "Nog niet in fase 1",
-      headline: "**Loyalty Experience** verkennen",
-      workflows: ["08"],
-      outcomes: [
-        "Vorm en pricing van het loyaliteitsprogramma bepalen",
-        "Voordelen definiëren: early access, kortingen, gastenlijst",
-        "Technisch fundament kiezen: app, web of integratie",
-        "Concreet stappenplan voor de realisatiefase",
       ],
     },
   ],

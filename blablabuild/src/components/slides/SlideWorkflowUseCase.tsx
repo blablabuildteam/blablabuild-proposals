@@ -161,9 +161,11 @@ export function SlideWorkflowUseCase({
         <span className="rounded-full bg-[var(--brand-bg)] px-3 py-1">
           {wf.effortDays}
         </span>
-        <span className="rounded-full bg-[var(--brand-bg)] px-3 py-1">
-          {ui.prioScoreLabel ?? ui.tableRice} {wf.riceReported}
-        </span>
+        {!wf.excludeFromPrio ? (
+          <span className="rounded-full bg-[var(--brand-bg)] px-3 py-1">
+            {ui.prioScoreLabel ?? ui.tableRice} {wf.riceReported}
+          </span>
+        ) : null}
         <span className="rounded-full bg-[var(--brand-bg)] px-3 py-1">
           {labelFor(ui.bucketLabels, wf.bucket)}
         </span>

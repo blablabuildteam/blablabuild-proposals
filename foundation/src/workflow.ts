@@ -57,6 +57,9 @@ export type BuiltWorkflow = {
   epicsSectionTitle?: string;
   epicsStandaloneInvest?: string;
   epicsCombinedNote?: string;
+  cardVariant?: "highlight";
+  excludeFromTotals?: boolean;
+  excludeFromPrio?: boolean;
 };
 
 function mapImplementationEstimate(
@@ -117,6 +120,9 @@ export function buildWorkflow(
       : undefined,
     platformId: source.platformId,
     hideTimeline: source.hideTimeline,
+    cardVariant: source.cardVariant,
+    excludeFromTotals: source.excludeFromTotals,
+    excludeFromPrio: source.excludeFromPrio,
     epics: source.epics?.map((epic) => ({
       id: epic.id,
       title: epic.title,

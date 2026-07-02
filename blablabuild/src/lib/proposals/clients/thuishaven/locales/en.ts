@@ -182,7 +182,7 @@ export const en: ThuishavenLocaleContent = {
         "Relieve pressure and get data in order first. Phase 1 delivers immediate time savings and insight. Projects that share data are connected — click an arrow for details.",
       parallelLabel: "Strategic session",
       parallelBody:
-        "Session to explore the Loyalty Experience: define scope, audience and pricing. Not part of phase 1 yet — scheduling to follow.",
+        "Session to explore the Loyalty Experience: define scope, audience and pricing — optional in phase 1.",
       backlogLabel: "Strategic session",
       backlogBody: "",
       connectionHint:
@@ -224,6 +224,8 @@ export const en: ThuishavenLocaleContent = {
           "Live insight into ticket sales per platform, including alerts when external channels still list tickets while official sales are sold out. Essential for marketing decisions and directly linked to the Marketing Dashboard.",
         "05":
           "Automatic outbound to business prospects. Relatively fast delivery with direct revenue potential, independent of the dashboards.",
+        "08":
+          "Optional strategic session: blueprint for the Loyalty Experience — format, pricing and benefits — before building the programme.",
         "06":
           "Four epics in one studio: captions, photo selection, image generation and newsletters. Waits for phase 1 dashboards for optimal training and segmentation.",
         "04":
@@ -232,7 +234,7 @@ export const en: ThuishavenLocaleContent = {
           "Live bar and consumption data via Weeztix integration. More complex integration; pays off once ticketing and marketing data are reliable.",
       },
       wf0Note:
-        "Priority = (Reach × Impact × Confidence) ÷ Effort. Order within each phase weighs roadmap dependencies more heavily than the raw score. Phase 1 (01–03, 05) delivers quickly visible value. Phase 2 (06) follows once dashboards are live. Phase 3 (04, 07) scales data and sales once the foundation is in place.",
+        "Priority = (Reach × Impact × Confidence) ÷ Effort. Order within each phase weighs roadmap dependencies more heavily than the raw score. Phase 1 (01–03, 05, 08) delivers quickly visible value. Phase 2 (06) follows once dashboards are live. Phase 3 (04, 07) scales data and sales once the foundation is in place.",
       riceBreakdown: {
         title: "Priority calculation",
         reach: "Reach",
@@ -284,7 +286,7 @@ export const en: ThuishavenLocaleContent = {
     },
     phaseBacklog: {
       note:
-        "The strategic session for the Loyalty Experience is not part of phase 1 yet. Goal: explore the format, pricing and benefits, so we can then decide when and how the loyalty programme will be built.",
+        "The strategic session for the Loyalty Experience is an optional part of phase 1. Goal: explore format, pricing and benefits before building the loyalty programme.",
     },
   },
   wayOfWorking: [
@@ -327,12 +329,13 @@ export const en: ThuishavenLocaleContent = {
       label: "Phase 1, NOW",
       period: "Month 0 to 2",
       headline: "**Direct impact** — insight and efficiency",
-      workflows: ["01", "02", "03", "05"],
+      workflows: ["01", "02", "03", "05", "08"],
       outcomes: [
         "Digital staff form live with automatic XPS integration",
         "Marketing Dashboard with all channels, asset performance via visual recognition and AI questions",
         "Ticket Sales Dashboard with live sales per platform and alerts for secondary listings after sell-out",
         "Corporate Event Outreach with automatic outbound to business prospects",
+        "Strategic Loyalty Experience session: explore format, pricing and benefits",
         "Data foundation for data-driven decision-making in phase 2 and 3",
       ],
     },
@@ -358,19 +361,6 @@ export const en: ThuishavenLocaleContent = {
       outcomes: [
         "DJ Talent Radar with objective Growth Score and alerts",
         "Bar & Consumption Data: live revenue per bar, product and location",
-      ],
-    },
-    {
-      id: "backlog",
-      label: "Strategic session",
-      period: "Not part of phase 1 yet",
-      headline: "**Explore** the Loyalty Experience",
-      workflows: ["08"],
-      outcomes: [
-        "Determine format and pricing of the loyalty programme",
-        "Define benefits: early access, discounts, guest list",
-        "Choose technical foundation: app, web or integration",
-        "Concrete step-by-step plan for the realisation phase",
       ],
     },
   ],

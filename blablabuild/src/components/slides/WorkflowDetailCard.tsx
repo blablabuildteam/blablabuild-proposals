@@ -66,6 +66,13 @@ export function WorkflowWeekLabel({
   );
 }
 
+export function WorkflowCompactCard({ wf }: { wf: Workflow }) {
+  if (wf.cardVariant === "highlight") {
+    return <WorkflowCompactHighlight wf={wf} />;
+  }
+  return <WorkflowCompact wf={wf} />;
+}
+
 export function WorkflowCompact({ wf }: { wf: Workflow }) {
   const { openWorkflow } = useDeckNavigation();
   const ui = useProposalUi();
@@ -193,27 +200,54 @@ export function WorkflowDetailCard({ wf }: { wf: Workflow }) {
 export function WorkflowRow({ wf }: { wf: Workflow }) {
   const { openWorkflow } = useDeckNavigation();
   const ui = useProposalUi();
+  const isHighlight = wf.cardVariant === "highlight";
 
   return (
-    <div className="flex flex-col gap-2 border-b border-[var(--brand-border)] px-4 py-3 last:border-0 sm:flex-row sm:items-center sm:gap-4">
+    <div
+      className={`flex flex-col gap-2 border-b px-4 py-3 sm:flex-row sm:items-center sm:gap-4 sm:px-5 ${
+        isHighlight
+          ? "border-[var(--brand-highlight)] bg-[var(--brand-highlight)] text-white last:border-[var(--brand-highlight)]"
+          : "border-[var(--brand-border)] last:border-0"
+      }`}
+    >
       <div className="flex w-16 shrink-0 items-center gap-2">
-        <Badge variant="black">{wf.id}</Badge>
+        <Badge variant={isHighlight ? "glass" : "black"}>{wf.id}</Badge>
       </div>
       <div className="min-w-0 flex-1">
-        <p className="font-semibold text-[var(--brand-fg)]">{wf.title}</p>
-        <p className="truncate text-xs text-[var(--brand-muted)] sm:text-sm">
+        <p
+          className={`font-semibold ${
+            isHighlight ? "text-white" : "text-[var(--brand-fg)]"
+          }`}
+        >
+          {wf.title}
+        </p>
+        <p
+          className={`truncate text-xs sm:text-sm ${
+            isHighlight ? "text-white/70" : "text-[var(--brand-muted)]"
+          }`}
+        >
           {wf.summary}
         </p>
       </div>
       <div className="flex shrink-0 flex-wrap items-center justify-end gap-3 text-xs sm:text-sm">
         {!wf.hideTimeline && (
-          <WorkflowWeekLabel effortDays={wf.effortDays} weeks={wf.weeks} />
+          <WorkflowWeekLabel
+            effortDays={wf.effortDays}
+            weeks={wf.weeks}
+            tone={isHighlight ? "light" : "muted"}
+          />
         )}
         <Badge variant={phaseBadgeVariant(wf.phaseRevised)}>
           {labelFor(ui.phaseLabels, wf.phaseRevised)}
         </Badge>
         {!wf.hideTimeline && (
-          <span className="font-mono font-bold text-[var(--brand-primary)]">
+          <span
+            className={`font-mono font-bold ${
+              isHighlight
+                ? "text-[var(--brand-accent)]"
+                : "text-[var(--brand-primary)]"
+            }`}
+          >
             {wf.investment}
           </span>
         )}
