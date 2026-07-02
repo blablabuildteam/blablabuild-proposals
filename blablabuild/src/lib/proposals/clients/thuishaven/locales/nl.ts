@@ -1,29 +1,23 @@
-import { BLABLABUILD_RATE_CARD } from "@foundation/config";
-import { buildAiWorkflowEstimate } from "@foundation/cost";
 import type { ThuishavenLocaleContent } from "./types";
-
-const rate = BLABLABUILD_RATE_CARD;
-const eipFoundation = buildAiWorkflowEstimate(2, rate, { speedMultiplier: 4 });
-const wf2OnEip = buildAiWorkflowEstimate(1.6, rate, { speedMultiplier: 5 });
-const wf3OnEip = buildAiWorkflowEstimate(1.4, rate, { speedMultiplier: 5 });
 
 export const nl: ThuishavenLocaleContent = {
   meta: {
     slug: "thuishaven",
     clientName: "Thuishaven",
     clientLogo: "/thuishaven-logo.png",
-    title: "**Marketing innovatie** & AI-sparring",
-    subtitle: "juni 2026",
+    title: "**Transformatie** Tactiek",
+    subtitle: "juli 2026",
   },
   debrief: {
     quote:
-      "Thuishaven heeft de afgelopen jaren een sterke marketingbasis opgebouwd en behaalt uitstekende resultaten. De focus ligt nu op het verder professionaliseren en optimaliseren van de marketingaanpak. Door de dagelijkse operatie is er beperkt ruimte om nieuwe technologieën, AI en innovatieve werkwijzen te onderzoeken. Er is daarom behoefte aan een ervaren sparringpartner die helpt om kansen te identificeren en de volgende groeistap te realiseren.",
+      "Thuishaven heeft net een ongekend goed seizoen achter de rug. De druk op zowel de operationele bezetting als op marketing om evenementen zo snel mogelijk uit te verkopen is hoog. Veel cruciale beslissingen worden nu nog noodgedwongen op onderbuikgevoel genomen, simpelweg omdat waardevolle data verspreid staat over losse systemen of omdat het handmatig verzamelen ervan te veel tijd kost.",
     quoteSource: "Discovery workshop",
     summary:
-      "Dit voorstel laat zien waar AI het snelst waarde toevoegt: contentcapaciteit terugwinnen (WF1), datagedreven sturing op campagnes en tickets (WF2–WF3), en een laagdrempelige start via het Starter-pakket.",
-    focusAreas:
-      "Sparring · Marketing AI · Gefaseerde groei",
-    date: "juni 2026",
+      "Dit voorstel beschrijft zeven projecten en één strategische activiteit die samen de bouwstenen vormen om Thuishaven efficiënter te laten werken, data slim in te zetten en gericht te groeien.",
+    focusAreas: "Operations · Marketing · Sales & Data",
+    date: "juli 2026",
+    heroGif:
+      "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExdGloc2Zmb3FucGR4cjNyamR6d21neTdyMm15YjE2cW1kMGk0dm10MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/M9xtw95RB2ZMc/giphy.gif",
   },
   impactMatrix: {
     quadrants: {
@@ -33,66 +27,49 @@ export const nl: ThuishavenLocaleContent = {
       moneySinks: "Weinig rendement",
     },
     postIts: [
-      { id: "WF1", label: "AI Marketing Copilot", x: 14, y: 74, rotation: -3 },
-      { id: "WF4", label: "Dagcontracten", x: 26, y: 68, rotation: 2 },
-      { id: "WF3", label: "Ticket Sales", x: 20, y: 58, rotation: -2 },
-      { id: "WF2", label: "Marketing Intel", x: 32, y: 80, rotation: 4 },
-      { id: "WF5", label: "Line-up sync", x: 40, y: 52, rotation: -1 },
-      { id: "WF9", label: "Corporate Sales", x: 36, y: 38, rotation: 3 },
-      { id: "WF7", label: "DJ Intelligence", x: 50, y: 46, rotation: -4 },
-      { id: "WF6", label: "Ticket Pricing", x: 56, y: 64, rotation: 2 },
-      { id: "WF8", label: "Loyalty App", x: 64, y: 54, rotation: -2 },
-      { id: "WF10", label: "Intelligence", x: 74, y: 84, rotation: 3 },
+      { id: "01", label: "Personeelsformulier", x: 12, y: 72, rotation: -3 },
+      { id: "02", label: "Marketing Dashboard", x: 30, y: 82, rotation: 2 },
+      { id: "03", label: "Kaartverkoop Dashboard", x: 32, y: 76, rotation: -2 },
+      { id: "05", label: "Bedrijvenpost", x: 34, y: 70, rotation: 4 },
+      { id: "08", label: "Loyalty Sessie", x: 14, y: 58, rotation: -1 },
+      { id: "06", label: "Content Studio", x: 56, y: 78, rotation: 3 },
+      { id: "04", label: "DJ Talenten Radar", x: 52, y: 64, rotation: -4 },
+      { id: "07", label: "Bar & Consumptie Data", x: 42, y: 66, rotation: 2 },
     ],
     axisX: { low: "Lage inspanning", high: "Inspanning" },
     axisY: { low: "Lage impact", high: "Impact" },
     caption:
-      "Impact/effort-matrix uit de workshop: 10 workflows in kaart gebracht.",
+      "Impact/effort-matrix uit de workshop: 7 projecten en 1 activiteit in kaart gebracht.",
   },
   understanding: {
     layout: "growth",
     growth: {
       strengthsLabel: "Waar jullie staan",
       strengths: [
-        "Uitstekende commerciële resultaten en sterke merkpositie",
-        "Actieve marketing op Instagram, TikTok en YouTube",
-        "Bewijs dat de huidige aanpak werkt — nu professionaliseren",
+        "Ongekend goed seizoen — organische basis sterker dan ooit",
+        "Maximaal loyale achterban en herkenbare merkidentiteit",
+        "Succesvol marketingteam dat evenementen snel uitverkoopt",
       ],
       ambitionLabel: "Waar jullie naartoe",
       ambition: [
-        "Marketingaanpak verder professionaliseren en optimaliseren",
-        "AI en innovatie structureel benutten",
-        "Volgende groeistap zonder het team uit te breiden",
+        "Druk van de ketel halen op operations en content",
+        "Beslissingen onderbouwen met keiharde cijfers",
+        "Goedkoper meer mensen bereiken en marges maximaliseren",
       ],
       gapLabel: "Wat ontbreekt",
       gap: [
-        "Dagelijkse operatie laat weinig ruimte voor tech-verkenning",
-        "Geen senior laag voor innovatie en sparring",
-        "Kanalen en data worden nog niet maximaal gecombineerd",
-      ],
-      opportunitiesLabel: "Eerste AI-kansen",
-      opportunities: [
-        {
-          title: "WF1 · Marketing Copilot",
-          body: "8–12 uur per week terug op content — direct inzetbaar op jullie kanalen.",
-        },
-        {
-          title: "Starter-pakket",
-          body: "WF1 + dagcontracten: laag risico, snelle ROI, ideaal als eerste pilot.",
-        },
-        {
-          title: "WF2 + WF3 · Dashboards",
-          body: "Stop met onderbuikgevoel — start met datagedreven campagne- en ticketsturing.",
-        },
+        "Waardevolle data verspreid over losse systemen",
+        "Handmatige administratie kost te veel tijd",
+        "Geen structureel inzicht in welke campagne het meest oplevert",
       ],
     },
     klanten: { label: "Marketing", value: "Sterk", hint: "" },
     pillarsLabel: "Focusgebieden",
-    pillars: ["Marketing", "Operatie", "Data"],
+    pillars: ["Operations", "Marketing", "Sales & Data"],
     kicker: "De kans",
-    title: "Sterke basis, **ruimte voor innovatie**",
+    title: "Sterk seizoen, **nu doorpakken**",
     subtitle:
-      "Jullie hoeven niet harder te werken — wel slimmer. AI en automatisering vullen precies het gat dat ontstaat doordat de operatie vol zit en innovatie nu geen vaste plek heeft.",
+      "De basis is sterker dan ooit. Door data slim te combineren en handmatig werk te digitaliseren, wordt Thuishaven sneller, scherper en winstgevender — zonder extra mensen.",
     goalsLabel: "Doelen",
     goals: [],
     frictionLabel: "Kansen",
@@ -103,15 +80,16 @@ export const nl: ThuishavenLocaleContent = {
       kicker: "Voorstel voor",
       greetingTemplate: "Hoi {name},",
       clientLabel: "Klant",
-      passwordLabel: "Wachtwoord",
-      passwordHint: "Gebruik het wachtwoord uit je uitnodiging.",
+      passwordLabel: "Wie is Thuishaven's grootste fan?",
+      passwordHint: "",
+      passwordInputType: "text",
       submit: "Open voorstel",
       submitting: "Controleren…",
       opening: "Voorstel openen…",
       sessionExpired: "Je sessie is verlopen. Log opnieuw in.",
       invalidAccessLink:
-        "Deze link is ongeldig of verlopen. Vul het wachtwoord uit je uitnodiging in.",
-      accessDenied: "Onjuiste klant of wachtwoord",
+        "Deze link is ongeldig of verlopen. Probeer het opnieuw via je uitnodiging.",
+      accessDenied: "Hmm, dat klinkt niet als onze grootste fan.",
       genericError: "Er ging iets mis. Probeer het opnieuw.",
       confidentialNote: "Vertrouwelijk, opgesteld door blablabuild",
     },
@@ -123,27 +101,29 @@ export const nl: ThuishavenLocaleContent = {
       outcomes: "Resultaten",
       why: "Waarom",
       timeBack: "Tijdwinst",
-      openUseCase: "Bekijk toelichting",
-      useCase: "Toelichting",
+      openUseCase: "Details",
+      useCase: "Details",
       backToOverview: "Terug naar overzicht",
       whyThisMatters: "Waarom dit telt",
       whatYouGet: "Wat je krijgt",
       whatWeDeliver: "Wat we opleveren",
+      expectedValue: "Verwachte waarde",
       prerequisites: "Vereisten",
       unlocks: "Maakt mogelijk",
       impactSuffix: "impact",
       exit: "Afsluiten",
       previous: "Vorige",
       next: "Volgende",
-      useCaseFallback: "Toelichting",
+      useCaseFallback: "Details",
       tableRank: "#",
       tableId: "ID",
-      tableInitiative: "Initiatief",
+      tableInitiative: "Project",
       tablePhaseInvest: "Fase, investering",
-      tableRice: "RICE",
-      fullRiceRanking: "Volledige RICE-ranking",
+      tableRice: "Prio",
+      prioScoreLabel: "PRIO SCORE",
+      fullRiceRanking: "Volledige Prio-ranking",
       phaseOneBadge: "F1",
-      showingWorkflowsTemplate: "{filtered} van {total} workflows",
+      showingWorkflowsTemplate: "{filtered} van {total} projecten",
       filterByPhase: "Filter op fase",
       phaseFilters: {
         ALL: "Alles",
@@ -171,35 +151,39 @@ export const nl: ThuishavenLocaleContent = {
         Medium: "Gemiddeld",
         Low: "Laag",
       },
+      domainLabels: {
+        Operations: "Operatie",
+        Marketing: "Marketing",
+        Sales: "Sales",
+      },
     },
     debriefKicker: "Intake samengevat",
     wayOfWorking: {
       kicker: "Werkwijze",
-      title: "**Sparren eerst**, daarna **bouwen wat past**.",
+      title: "**Samenwerken**, dan **bouwen wat past**.",
       subtitle:
-        "Geen groot bureautraject — wel een partner die meedenkt over wat AI concreet oplevert voor Thuishaven.",
-      aiTitle: "Maandelijks sparren",
+        "De verkenning is achter de rug. We weten waar de kansen liggen — nu gaan we concreet aan de slag met de projecten die het meeste opleveren.",
+      aiTitle: "Vast ritme",
       aiBody:
-        "Vast ritme om ideeën te toetsen, prioriteiten te scherpen en nieuwe AI-kansen te identificeren — zonder jullie dagelijkse operatie te belasten.",
-      controlTitle: "Pilot eerst, schaal later",
+        "Periodiek afstemmen om prioriteiten scherp te houden, voortgang te bespreken en nieuwe kansen te signaleren — zonder jullie dagelijkse operatie te belasten.",
+      controlTitle: "Bewezen waarde eerst",
       controlBody:
-        "Start met WF1 of het Starter-pakket. Bewijs waarde in weken, niet maanden. Jullie bepalen of en wanneer we opschalen.",
+        "Start met fase 1. Bewijs waarde in weken, niet maanden. Jullie bepalen of en wanneer we opschalen naar de volgende fase.",
     },
     approach: {
       kicker: "Roadmap",
-      title: "**Start klein**, schaal wat werkt",
+      title: "**Nu, volgende, later** — gefaseerde oplevering",
       subtitle:
-        "Marketing eerst: WF1 levert direct capaciteit terug. Daarna dashboards en automatisering. Fase 2 en 3 volgen pas als de basis staat — geen big bang.",
-      parallelLabel: "Parallel",
+        "Druk van de ketel en data op orde eerst. Fase 1 levert direct tijdwinst en inzicht. Projecten die data delen zijn visueel gekoppeld — hover om de interconnecties te zien.",
+      parallelLabel: "Strategische sessie",
       parallelBody:
-        "Marketing en operatie kunnen tegelijk doorontwikkelen zonder elkaar te blokkeren.",
-      backlogLabel: "Backlog",
-      backlogBody:
-        "Intelligence bouwen we op via losse workflows en brengen uiteindelijk samen. De Loyalty App volgt wanneer ticket- en bezoekersdata op orde zijn.",
+        "Sessie om de Loyalty Experience te verkennen: scope, doelgroep en pricing bepalen. Loopt parallel aan fase 1, zonder de overige projecten te blokkeren.",
+      backlogLabel: "Strategische sessie",
+      backlogBody: "",
     },
     workflows: {
       kicker: "Overzicht",
-      title: "Alle **10 workflows**",
+      title: "Alle **projecten**",
       subtitle:
         "Volledig overzicht, filter op fase. De detailpagina's hierboven gaan in op wat het meest telt.",
     },
@@ -207,79 +191,104 @@ export const nl: ThuishavenLocaleContent = {
       kicker: "Prioritering",
       title: "Waarom **deze volgorde**?",
       subtitle:
-        "Gescoord op bereik, impact, zekerheid en inspanning, daarna gewogen op wat je eerst nodig hebt om de rest te kunnen bouwen.",
+        "Gescoord op bereik, impact, zekerheid en inspanning. Projecten zijn ingedeeld in drie fases op basis van wat je eerst nodig hebt om de rest te kunnen bouwen.",
       startHere: "Start hier",
       phaseOne: "Fase 1",
       riceNote: "roadmap-volgorde boven kale score",
       phaseOneRationale:
-        "RICE meet losse opbrengst per workflow. De roadmap meet volgorde: wat levert snel waarde in marketing en operatie, en wat legt de datalaag voor alles wat volgt? WF1–WF4 vormen fase 1: directe tijdwinst plus de basis voor datagedreven marketing en ticketsturing.",
+        "Fase 1 richt zich op de hoogste directe impact: het Marketing Dashboard en Kaartverkoop Dashboard geven direct inzicht in campagneprestaties en ticketverkoop. Het Personeelsformulier haalt de druk van HR. Bedrijvenpost opent een nieuwe omzetstroom. Samen leggen ze de databasis voor alles wat volgt.",
+      phaseRationales: {
+        now:
+          "Fase 1 richt zich op de hoogste directe impact: het Marketing Dashboard en Kaartverkoop Dashboard geven direct inzicht in campagneprestaties en ticketverkoop. Het Personeelsformulier haalt de druk van HR. Bedrijvenpost opent een nieuwe omzetstroom. Samen leggen ze de databasis voor alles wat volgt.",
+        next:
+          "De Content Studio bouwt voort op de marketingdata uit fase 1. Zodra dashboards live zijn, kan AI content genereren op basis van echte campagneprestaties en tone of voice.",
+        near:
+          "Fase 3 bevat projecten met hoge strategische waarde maar meer afhankelijkheden of integraties. De DJ Talenten Radar en Bar & Consumptie Data profiteren van de databasis en tooling uit eerdere fases.",
+      },
       workflowRationale: {
-        WF1:
-          "Hoogste impact met beperkte inspanning: het marketingteam krijgt direct capaciteit terug. Leert de tone of voice van Thuishaven en levert meerdere contentvarianten voor A/B-testen. Geen blokkerende afhankelijkheden, ideaal als eerste live workflow.",
-        WF2:
-          "Fundament voor datagedreven marketing: alle kanalen in één dashboard met AI-vragen. Combineer met WF3 op het Event Intelligence Platform voor gedeelde datalaag, minder dubbel werk en lager totaalbedrag. Maakt WF6 (pricing) en strategische besluitvorming mogelijk.",
+        "01":
+          "Hoogste Prio-score: laagste inspanning met directe tijdwinst op HR. Standalone project zonder afhankelijkheden, ideaal als eerste live oplevering.",
+        "02":
+          "Brengt alle marketingdata samen op één scherm met AI-vragen. Directe koppeling met het Kaartverkoop Dashboard en basis voor de Content Studio.",
+        "03":
+          "Live inzicht in ticketverkoop per platform. Essentieel voor marketingbeslissingen en direct gekoppeld aan het Marketing Dashboard.",
+        "05":
+          "Automatische outbound naar zakelijke prospects. Relatief snelle oplevering met directe omzetpotentie, los te zien van de dashboards.",
+        "06":
+          "AI-gedreven contentcreatie op basis van bewezen campagnedata. Wacht op dashboards uit fase 1 voor optimale training en segmentatie.",
+        "04":
+          "Objectieve DJ-scoring op basis van verkoop- en marketingdata. Vereist stabiele datafeeds uit fase 1 en 2.",
+        "07":
+          "Live bar- en consumptiedata via Weeztix-koppeling. Complexere integratie; loont zodra ticketing- en marketingdata betrouwbaar zijn.",
       },
       wf0Note:
-        "RICE = (Bereik × Impact × Zekerheid) ÷ Inspanning. Quick wins (WF1–WF4) scoren hoog op zekerheid en snelle oplevering. Intelligence (WF10) en de Loyalty App (WF8) staan bewust in de backlog: eerst waarde uit fase 1 en 2, daarna samenbrengen en uitbouwen.",
+        "Prio = (Bereik × Impact × Zekerheid) ÷ Inspanning. De volgorde binnen elke fase weegt roadmap-afhankelijkheden zwaarder dan de kale score. Fase 1 (01–03, 05) levert snel zichtbare waarde. Fase 2 (06) volgt zodra de dashboards live zijn. Fase 3 (04, 07) schaalt data en sales zodra de basis staat.",
+      riceBreakdown: {
+        title: "Prio-berekening",
+        reach: "Bereik",
+        impact: "Impact",
+        confidence: "Zekerheid",
+        effort: "Inspanning",
+      },
     },
     investment: {
       kicker: "Investering",
       title: "Investering **per fase**",
       subtitle:
-        "Vier fases met onderbouwing per workflow. Elke fase levert waarde voordat de volgende start.",
-      platformBundleTitle: "Combinatievoordeel",
-      platformSavingsLabel: "Bespaar",
-      platformNote:
-        "WF2 en WF3 samen op het Event Intelligence Platform. De faseprijs hierboven is al gebaseerd op dit combinatievoordeel.",
+        "Drie fases met onderbouwing per project. Elke fase levert waarde voordat de volgende start. De getoonde bedragen zijn ballpark ranges — indicaties op basis van de huidige scope. Mochten we hiermee verder gaan, dan vertalen we dit naar een concreet financieel voorstel op basis van aanvullend onderzoek.",
+      platformBundleTitle: "",
+      platformSavingsLabel: "",
+      platformNote: "",
     },
     nextSteps: {
       kicker: "Volgende stappen",
       title: "Klaar om **te starten**",
-      subtitle: "Van sparren naar een concrete pilot — vier stappen, laagdrempelig.",
+      subtitle: "Van voorstel naar concrete realisatie — vijf stappen.",
       steps: [
         {
-          n: "01",
-          title: "Spar-sessie",
-          body:
-            "Samen de kansenkaart doorspreken: waar levert AI het snelst waarde op voor jullie marketing en operatie?",
+          n: "🔍",
+          title: "Voorstel bekijken",
+          body: "Jullie krijgen de tijd om dit voorstel in eigen tempo door te nemen. Noteer vragen, prioriteiten en wat anders moet.",
         },
         {
-          n: "02",
-          title: "Pilot kiezen",
-          body:
-            "Starter (WF1 + WF4) of Momentum (WF1–WF3): klein beginnen, snel zichtbaar resultaat.",
+          n: "🍺",
+          title: "Toelichting & afstemming",
+          body: "We komen samen — desgewenst onder het genot van een biertje — zodat wij toelichting kunnen geven op de projecten, aanpak en fasering. Open gesprek, geen verplichtingen.",
         },
         {
-          n: "03",
-          title: "Bouwen & trainen",
-          body:
-            "Live tooling in jullie tone of voice, inclusief teamtraining en gebruiksrichtlijnen.",
+          n: "🎯",
+          title: "Selectie maken",
+          body: "Samen bepalen welke projecten als eerste worden opgepakt. Op basis van jullie prioriteiten en de roadmap.",
         },
         {
-          n: "04",
-          title: "Evalueren & opschalen",
-          body:
-            "Meten wat werkt. Daarna door naar fase 2 of verder uitbreiden — alleen wat bewezen waarde levert.",
+          n: "📄",
+          title: "Concrete voorstellen",
+          body: "Per geselecteerd project leveren wij een concreet voorstel met exact budget, aanpak, planning en deliverables.",
+        },
+        {
+          n: "🚀",
+          title: "Starten met bouwen",
+          body: "Zodra er akkoord is, gaan we direct aan de slag. Werkende resultaten in weken, niet maanden.",
         },
       ],
     },
     phaseBacklog: {
       note:
-        "Backlog = Intelligence + Loyalty App. Intelligence groeit mee met de workflows uit fase 1 en 2 (dashboards, pricing, DJ-data) en wordt uiteindelijk samengebracht in één laag. De Loyalty App volgt wanneer bezoekers- en ticketdata betrouwbaar beschikbaar zijn.",
+        "De strategische sessie voor de Loyalty Experience loopt parallel aan fase 1. Doel: de vorm, pricing en voordelen bepalen, zodat we daarna kunnen beslissen wanneer en hoe het loyaliteitsprogramma wordt gebouwd.",
     },
   },
   wayOfWorking: [
     {
-      title: "Sparringpartner",
-      body: "Eerst verkennen waar AI en automatisering het meeste opleveren — pragmatisch, niet vanuit een standaard playbook.",
+      title: "Partner, geen bureau",
+      body: "We denken mee als sparringpartner — pragmatisch, niet vanuit een standaard playbook. De verkenning is gedaan, nu bouwen we.",
     },
     {
       title: "Bouwen met AI",
-      body: "Werkende tools in weken, niet maanden. Marketing blijft focussen op resultaat, wij brengen de innovatie.",
+      body: "Werkende tools in weken, niet maanden. Marketing en operatie blijven focussen op resultaat, wij brengen de innovatie.",
     },
     {
-      title: "Pilot eerst",
-      body: "Start klein met WF1 of het Starter-pakket. Bewijs waarde, dan pas opschalen naar dashboards en automatisering.",
+      title: "Bewezen waarde eerst",
+      body: "Start met fase 1: directe impact, snel zichtbaar resultaat. Opschalen naar fase 2 en 3 alleen als de basis staat.",
     },
     {
       title: "Tech zonder overhead",
@@ -294,337 +303,289 @@ export const nl: ThuishavenLocaleContent = {
     "phase-now": "Fase 1",
     "phase-next": "Fase 2",
     "phase-near": "Fase 3",
-    "phase-backlog": "Backlog",
-    workflows: "Workflows",
+    "phase-backlog": "Strategische sessie",
+    workflows: "Projecten",
     prioritization: "Prioritering",
     investment: "Investering",
     "next-steps": "Volgende stappen",
   },
   aiBuildNote:
-    "Schattingen gaan uit van AI-ondersteunde oplevering (ongeveer 5× sneller bouwen). Bandbreedtes zijn bewust ruim gehouden tot scope is vastgelegd. Hosting en licenties van derden niet inbegrepen.",
+    "Schattingen zijn gebaseerd op AI-ondersteunde oplevering. Bandbreedtes zijn bewust ruim gehouden tot scope is vastgelegd. Hosting en licenties van derden niet inbegrepen.",
   phases: [
     {
       id: "now",
-      label: "Fase 1, NOW",
+      label: "Fase 1, NU",
       period: "Maand 0 tot 2",
-      headline: "**Marketing eerst** — quick wins die direct renderen",
-      workflows: ["WF1", "WF2", "WF3", "WF4"],
+      headline: "**Directe realisatie** — inzicht en efficiency",
+      workflows: ["01", "02", "03", "05"],
       outcomes: [
-        "AI Marketing Copilot live voor contentcreatie in jullie tone of voice",
-        "Marketing- en ticketdashboards met realtime inzicht",
-        "Digitale dagcontracten zonder handmatige administratie",
-        "Fundament voor datagedreven besluitvorming in fase 2",
+        "Digitaal personeelsformulier live met automatische XPS-koppeling",
+        "Marketing Dashboard met alle kanalen en AI-vragen",
+        "Kaartverkoop Dashboard met live verkoopcijfers per platform",
+        "Bedrijvenpost met automatische outbound naar zakelijke prospects",
+        "Databasis voor datagedreven besluitvorming in fase 2 en 3",
       ],
+      companions: [{ phaseId: "backlog", style: "highlight" }],
     },
     {
       id: "next",
-      label: "Fase 2, NEXT",
+      label: "Fase 2, VOLGENDE",
       period: "Maand 2 tot 5",
-      headline: "Automatisering en **commerciële intelligence**",
-      workflows: ["WF5", "WF6", "WF7", "WF9"],
+      headline: "**Content innovatie** — slimmer maken wat werkt",
+      workflows: ["06"],
       outcomes: [
-        "Line-up wijzigingen automatisch gepubliceerd op alle platforms",
-        "Datagedreven ticketprijsadvies op basis van historische verkopen",
-        "DJ Momentum Score voor vroegtijdige artiestenscouting",
-        "Geautomatiseerde outbound voor zakelijke evenementen",
+        "AI Caption Generator getraind op Thuishaven tone of voice",
+        "Slimme fotoselectie: van 500 foto's naar de beste in seconden",
+        "Statische beeldgeneratie in de huisstijl",
+        "Gesegmenteerde nieuwsbrieven voor gerichte doelgroepen",
+      ],
+    },
+    {
+      id: "near",
+      label: "Fase 3, LATER",
+      period: "Maand 5+",
+      headline: "**Schaalbaarheid** — data en sales uitbreiden",
+      workflows: ["04", "07"],
+      outcomes: [
+        "DJ Talenten Radar met objectieve Groeiscore en alerts",
+        "Bar & Consumptie Data: live omzet per bar, product en locatie",
       ],
     },
     {
       id: "backlog",
-      label: "Backlog",
-      period: "Na fase 1 & 2",
-      headline: "**Intelligence** samenbrengen & **Loyalty App**",
-      workflows: ["WF10", "WF8"],
+      label: "Strategische sessie",
+      period: "Parallel aan fase 1",
+      headline: "**Loyalty Experience** verkennen",
+      workflows: ["08"],
       outcomes: [
-        "Intelligence opgebouwd via losse workflows, uiteindelijk samengebracht in één laag",
-        "AI-chat en voorspellingen over edities, prijzen, campagnes en verkoop",
-        "Loyalty App voor trouwe bezoekers: early access, beloningen en memberships",
-        "Pas starten wanneer de databasis uit fase 1 en 2 op orde is",
+        "Vorm en pricing van het loyaliteitsprogramma bepalen",
+        "Voordelen definiëren: early access, kortingen, gastenlijst",
+        "Technisch fundament kiezen: app, web of integratie",
+        "Concreet stappenplan voor de realisatiefase",
       ],
     },
   ],
   packages: [
     {
-      name: "Starter",
+      name: "Operations First",
       tag: "Instap",
-      workflows: "WF1 + WF4",
-      workflowIds: ["WF1", "WF4"],
-      weeks: "3 tot 4",
+      workflows: "01",
+      workflowIds: ["01"],
+      weeks: "1 tot 2",
       description:
-        "Ideale eerste stap: marketing copilot plus digitale dagcontracten. Laag risico, snelle ROI — perfect na een spar-sessie.",
+        "Start met het Digitale Personeelsformulier. Directe tijdsbesparing op HR, geen afhankelijkheden.",
     },
     {
-      name: "Momentum",
+      name: "Data & Inzicht",
       tag: "Aanbevolen",
-      workflows: "WF1 + WF2 + WF3",
-      workflowIds: ["WF1", "WF2", "WF3"],
-      weeks: "5 tot 7",
+      workflows: "01 + 02 + 03",
+      workflowIds: ["01", "02", "03"],
+      weeks: "4 tot 6",
       description:
-        "Marketing copilot plus dashboards: directe tijdwinst én datagedreven sturing op campagnes en ticketverkoop.",
+        "Volledige fase 1: personeelsformulier plus beide dashboards. Directe tijdwinst én datagedreven marketing.",
       recommended: true,
     },
-    {
-      name: "Full Phase 1",
-      tag: "Compleet",
-      workflows: "WF1–WF4",
-      workflowIds: ["WF1", "WF2", "WF3", "WF4"],
-      weeks: "6 tot 8",
-      description:
-        "Volledige NOW-roadmap: marketing, data, tickets en operatie in één traject.",
-    },
   ],
-  platformBundles: [
-    {
-      id: "eip",
-      name: "Event Intelligence Platform",
-      tagline: "Eén centrale datalaag voor marketing en tickets",
-      description:
-        "In plaats van WF2 en WF3 als losse koppelingen te bouwen, leggen we eerst een gedeelde datalaag: koppelingen met Instagram, TikTok, YouTube, Brevo, Weeztix, TicketSwap en meer, één datamodel en één pipeline. Daarna worden het marketingdashboard en het ticketverkoopdashboard weergaven op dezelfde bron. Minder dubbel werk, sneller live, lager totaalbedrag.",
-      workflowIds: ["WF2", "WF3"],
-      foundation: eipFoundation,
-      layers: [
-        {
-          workflowId: "WF2",
-          label: "Marketing Intelligence Dashboard",
-          effort: wf2OnEip.effort,
-          cost: wf2OnEip.cost,
-        },
-        {
-          workflowId: "WF3",
-          label: "Ticket Sales Dashboard",
-          effort: wf3OnEip.effort,
-          cost: wf3OnEip.cost,
-        },
-      ],
-      deliverables: [
-        "Centrale data-opslag met versiebeheer en controlelog",
-        "Koppelingen met marketing- en ticketplatformen",
-        "Gedeeld datamodel voor campagnes en verkoop",
-        "API-laag voor toekomstige workflows (o.a. WF6 en WF10)",
-      ],
-    },
-  ],
+  platformBundles: [],
   workflows: {
-    WF1: {
-      title: "AI Marketing Copilot",
+    "01": {
+      title: "Het Digitale Personeelsformulier",
       summary:
-        "Een AI-assistent die het marketingteam ondersteunt bij het creëren van content in de tone of voice van Thuishaven.",
-      why: "Marketing draait op een compact team met veel verantwoordelijkheid. Content voor Instagram, TikTok, nieuwsbrieven en pushnotificaties kost nu veel tijd — terwijl de vraag alleen maar groeit. Dit is de snelste AI-win: direct capaciteit terug zonder extra mensen.",
+        "Een online formulier waar medewerkers zelf gegevens invullen, met automatische doorstroom naar XPS en signalering bij drie losse diensten.",
+      why: "Iedereen die bij Thuishaven werkt vult nu een papieren formulier in dat handmatig wordt overgetypt in een IB47-formulier voor uitbetaling in XPS. Na drie losse werkdagen moet handmatig worden bijgehouden of iemand een langer contract moet krijgen. Dit kost onnodig veel tijd.",
       benefits: [
-        "Minder tijd besteden aan contentcreatie",
-        "Consistente merkcommunicatie over alle kanalen",
-        "Hogere output zonder extra capaciteit",
-        "Meerdere varianten per bericht voor A/B-testen",
-        "Leert van bestaande social posts en past zich aan jullie stijl aan",
+        "Geen papieren formulieren meer",
+        "Automatische doorstroom naar XPS",
+        "Blokkering en melding na vier losse diensten",
+        "Live overzichtsscherm met status van alle medewerkers",
+        "Minder fouten bij contracttermijnen",
       ],
-      unlocks: [{ workflowId: "WF2", qualifier: "Rijkere contentdata voor marketinginzichten" }],
-      timeSaved: "8 tot 12 uur per week contentcreatie",
+      timeSaved: "Enorme wekelijkse tijdsbesparing op HR-administratie",
+      expectedValue:
+        "Enorme wekelijkse tijdsbesparing op de HR-administratie en het uitsluiten van fouten bij contracttermijnen.",
       deliverables: [
-        "AI-assistent getraind op Thuishaven tone of voice",
-        "Generatie van captions, stories, nieuwsbrieven en pushnotificaties",
-        "A/B-varianten per contenttype",
-        "Teamtraining en gebruiksrichtlijnen",
+        "Online invulformulier voor medewerkers",
+        "Automatische IB47-generatie en XPS-koppeling",
+        "Signaalregel bij vier werkdagen met contractmelding",
+        "Overzichtsdashboard voor management",
       ],
     },
-    WF2: {
-      title: "Marketing Intelligence Dashboard",
+    "02": {
+      title: "Het Marketing Dashboard",
       summary:
-        "Een centraal dashboard waarin alle marketingprestaties samenkomen, met AI om vragen te stellen over campagnes en resultaten.",
-      why: "Marketing wordt nu aangestuurd op onderbuikgevoel. Data uit Instagram, TikTok, YouTube, Brevo, Weeztix en TicketSwap staat verspreid, waardoor het lastig is om te begrijpen waarom een editie minder verkoopt of welke campagne het meeste oplevert.",
+        "Eén overzichtelijk scherm met alle marketingdata, gekoppeld aan ticketverkoop, met een slimme chatfunctie voor directe vragen.",
+      why: "Beslissingen over marketing worden nu op onderbuikgevoel genomen. Belangrijke data uit Instagram, TikTok, YouTube, Brevo, Weeztix en TicketSwap staat overal verspreid. Hierdoor is het lastig te zien waarom de ene editie sneller uitverkoopt dan de andere, of welke campagne het meeste oplevert.",
       benefits: [
-        "Datagedreven marketingbeslissingen in plaats van onderbuikgevoel",
-        "Continu inzicht in campagneprestaties over alle kanalen",
-        "AI-vragen zoals: waarom verkoopt deze editie minder?",
-        "Inzicht in optimale postmomenten en kanaalprestaties",
-        "Combineer met WF3 op het Event Intelligence Platform voor schaalvoordeel",
+        "Alle marketingdata op één scherm",
+        "Direct zien welke campagne de meeste tickets verkoopt",
+        "AI-chatfunctie voor vragen in gewone taal",
+        "Inzicht in campagneprestaties per editie",
+        "Betere kwaliteit van campagnes en gerichte groei",
       ],
       unlocks: [
-        { workflowId: "WF6", qualifier: "Marketingdata als input voor prijsadvies" },
-        { workflowId: "WF10", qualifier: "Marketinglaag in het centrale platform" },
+        { workflowId: "06", qualifier: "Conversiedata voor de Content Studio" },
+        { workflowId: "08", qualifier: "Community-data voor de Loyalty Experience" },
       ],
-      timeSaved: "4 tot 6 uur per week rapportage en analyse",
+      timeSaved: "Direct inzicht in marketinguitgaven",
+      expectedValue:
+        "Direct inzicht in je marketinguitgaven, wat zorgt voor een betere kwaliteit van je campagnes en gerichte groei in kaartverkoop.",
       deliverables: [
-        "Dashboard met koppelingen naar alle marketingkanalen",
-        "AI-querylaag voor campagne- en verkoopvragen",
+        "Dashboard met koppelingen naar Instagram, TikTok, YouTube, Brevo, Weeztix, TicketSwap",
+        "Directe koppeling met ticketverkoop",
+        "AI-chatfunctie voor vragen als: waarom verkoopt deze editie beter?",
         "Campagneprestatie-overzichten per editie",
-        "Documentatie en teamtraining",
       ],
     },
-    WF3: {
-      title: "Ticket Sales Dashboard",
+    "03": {
+      title: "Het Kaartverkoop Dashboard",
       summary:
-        "Realtime inzicht in ticketverkoop over alle verkoopkanalen, inclusief TicketSwap.",
-      why: "Ticketverkoop wordt nu deels bijgehouden in handmatige spreadsheets. Zonder realtime zicht op ticketfasen, omzet en verkooptempo is commerciële sturing reactief in plaats van proactief.",
+        "Live dashboard dat verkoopcijfers rechtstreeks ophaalt uit Weeztix, Resident Advisor, Appic en TicketSwap.",
+      why: "Er wordt nu handmatig in spreadsheets bijgehouden hoeveel kaarten er worden verkocht. Het totale aantal is wel bekend, maar de verdeling per platform en het exacte moment van aankoop ontbreekt. Dit kost uren spreadsheet-werk.",
       benefits: [
-        "Geen handmatige spreadsheets meer voor ticketverkoop",
-        "Altijd realtime inzicht in verkoop per kanaal en fase",
-        "Betere commerciële sturing op prijsfasen en uitverkoop",
-        "Combineer met WF2 op het Event Intelligence Platform: gedeelde datalaag, lager totaalbedrag",
+        "Geen handmatige spreadsheets meer",
+        "Live inzicht per platform, tijdstip en prijs",
+        "Historische data voor slim prijsadvies",
+        "Directe koppeling met marketingcampagnes",
+        "Strategisch inzicht om ticketprijzen datagedreven te verhogen",
       ],
       prerequisites: [
-        {
-          workflowId: "WF2",
-          qualifier: "Sterker gecombineerd op Event Intelligence Platform",
-        },
+        { workflowId: "02", qualifier: "Gekoppeld voor historische verkoopcurves en marketinguitingen" },
       ],
       unlocks: [
-        { workflowId: "WF6", qualifier: "Verkoopdata als basis voor prijsadvies" },
+        { workflowId: "04", qualifier: "Impact van DJ-boekingen op kaartverkoop meten" },
+        { workflowId: "07", qualifier: "Bezoekersuitgaven combineren met ticketdata" },
       ],
-      timeSaved: "3 tot 5 uur per week handmatige rapportage",
+      timeSaved: "Uren per week aan handmatig spreadsheet-werk",
+      expectedValue:
+        "Directe tijdsbesparing op de administratie én strategisch inzicht om ticketprijzen datagedreven te verhogen voor meer omzet.",
       deliverables: [
-        "Automatische koppeling met alle ticketplatformen",
-        "Realtime dashboard: fasen, omzet, tempo en kanalen",
-        "Waarschuwingen bij afwijkend verkooptempo",
+        "Live dashboard gekoppeld aan Weeztix, Resident Advisor, Appic en TicketSwap",
+        "Verkoop per platform, tijdstip en prijs",
+        "Historische dataopslag voor prijsadvies",
         "Export en rapportage voor management",
       ],
     },
-    WF4: {
-      title: "Digitale Dagcontracten",
+    "04": {
+      title: "Het DJ Talenten Radar",
       summary:
-        "Volledig digitale verwerking van dagcontracten: invullen, ondertekenen, archiveren en doorsturen naar XPS.",
-      why: "Dagcontracten worden nu handmatig verwerkt. Dat kost administratieve tijd, leidt tot fouten en vertraagt de doorstroom naar salarisadministratie. Personeel wil snel kunnen starten zonder papierwerk.",
+        "Dashboard dat automatisch social media, streaming en festivaldata scant en opkomende DJ's signaleert met een objectieve Groeiscore.",
+      why: "Voor Thuishaven is het essentieel om opkomende DJ's vroegtijdig te ontdekken. Hoe eerder een talent op de radar staat, hoe gunstiger de gage en hoe groter de kans op een goede langetermijndeal. Nu is dit nog een handmatig zoekproces.",
       benefits: [
-        "Minder administratie voor HR en operatie",
-        "Minder fouten in contractgegevens",
-        "Snellere verwerking richting XPS",
-        "Automatische signalering na drie losse diensten",
-        "Digitaal archief zonder papieren rompslomp",
-      ],
-      timeSaved: "4 tot 8 uur per week contractadministratie",
-      deliverables: [
-        "Digitaal invul- en ondertekeningsformulier voor personeel",
-        "Automatische PDF-generatie en archivering",
-        "Koppeling en verwerking richting XPS",
-        "Signaalregel voor drie losse diensten",
-      ],
-    },
-    WF5: {
-      title: "Website & Platform Automation",
-      summary:
-        "Automatisch publiceren van line-up wijzigingen op Thuishaven website en externe platforms.",
-      why: "Line-up wijzigingen moeten nu handmatig worden doorgevoerd op de website, Partyflock, DJGuide, Bash en Guestzone. Dat is dubbel werk, foutgevoelig en vertraagt publicatie.",
-      benefits: [
-        "Minder dubbel werk bij elke line-up wijziging",
-        "Minder fouten tussen platforms",
-        "Snellere publicatie van actuele line-ups",
-        "Browserautomatisering waar API's ontbreken",
-      ],
-      prerequisites: [{ workflowId: "WF1", qualifier: "Contentworkflows als basis" }],
-      timeSaved: "2 tot 4 uur per line-up wijziging",
-      deliverables: [
-        "Centrale line-up bron met sync naar alle platforms",
-        "Koppelingen met Thuishaven website, Partyflock, DJGuide, Bash en Guestzone",
-        "Fallback via browserautomatisering waar nodig",
-        "Logging en foutafhandeling",
-      ],
-    },
-    WF6: {
-      title: "Ticket Pricing Intelligence",
-      summary:
-        "Analyse van historische ticketverkopen, weer, line-ups en ticketfasen om prijsadvies te geven.",
-      why: "Ticketprijzen worden nu grotendeels op ervaring bepaald. Zonder systematische analyse blijven vragen onbeantwoord: had deze editie duurder verkocht kunnen worden, is fase drie te goedkoop, wanneer moet een nieuwe fase live?",
-      benefits: [
-        "Datagedreven prijsadvies per editie en ticketfase",
-        "Inzicht in effect van weer en line-up op verkoop",
-        "Snellere beslissingen over nieuwe ticketfasen",
-        "Hogere omzet zonder extra marketingkosten",
+        "Objectieve Groeiscore voor vroegtijdige scouting",
+        "Automatische alerts bij plotselinge populariteitsstijging",
+        "Vergelijking met line-ups van Europese festivals",
+        "Betere kwaliteit van de programmering",
+        "Financiële groei door talent te boeken vóórdat ze onbetaalbaar worden",
       ],
       prerequisites: [
-        { workflowId: "WF2", qualifier: "Marketingdata voor context" },
-        { workflowId: "WF3", qualifier: "Historische verkoopdata" },
+        { workflowId: "03", qualifier: "Impact van DJ-boeking op kaartverkoop meten" },
       ],
-      timeSaved: "Structureel: betere marge per editie",
+      timeSaved: "Uren per week aan handmatig artist research",
+      expectedValue:
+        "Betere kwaliteit van de programmering en financiële groei door opkomend talent te boeken vóórdat ze onbetaalbaar worden.",
       deliverables: [
-        "Prijsadviesmodel op basis van historische data",
-        "Dashboard met scenario's per editie",
-        "Aanbevelingen voor ticketfase-timing",
-        "Rapportage per afgelopen editie",
+        "Dashboard met data uit Instagram, TikTok, Spotify, SoundCloud, Resident Advisor",
+        "Groeiscore per artiest op basis van meerdere databronnen",
+        "Analyse van line-ups van vergelijkbare festivals in West-Europa",
+        "Automatische alerts bij significante groei",
       ],
     },
-    WF7: {
-      title: "DJ Intelligence Platform",
+    "05": {
+      title: "Bedrijvenpost & Verkoop Automatisering",
       summary:
-        "Automatische monitoring van artiesten op social media, streaming en line-ups met een objectieve DJ Momentum Score.",
-      why: "Het scouten van opkomende artiesten gebeurt nu handmatig en subjectief. Data uit Instagram, TikTok, Spotify, SoundCloud, Beatport en Resident Advisor wordt niet systematisch gecombineerd.",
-      benefits: [
-        "Objectieve DJ Momentum Score voor vroegtijdige scouting",
-        "Eerder inspelen op opkomende artiesten",
-        "Minder afhankelijkheid van individueel netwerk",
-        "Monitoring over meerdere platforms in één overzicht",
-      ],
-      timeSaved: "5 tot 10 uur per week artist research",
-      deliverables: [
-        "DJ Momentum Score op basis van meerdere databronnen",
-        "Monitoringdashboard voor artiesten en trends",
-        "Alerts bij significante momentum-wijzigingen",
-        "Integratie met line-up planning",
-      ],
-    },
-    WF8: {
-      title: "Loyalty App",
-      summary:
-        "App voor trouwe bezoekers: loyaliteit op basis van bezoekersgedrag, met early access, exclusieve evenementen en beloningen.",
-      why: "Thuishaven heeft een sterke community maar nog geen gestructureerde Loyalty App. Die hoort in de backlog: pas zinvol wanneer ticket- en bezoekersdata uit de eerdere workflows betrouwbaar beschikbaar zijn.",
-      benefits: [
-        "Early access en exclusieve evenementen voor trouwe bezoekers",
-        "Kortingen en memberships als nieuwe omzetstroom",
-        "Beloningen op basis van bezoekersgedrag",
-        "Sterkere binding met de community",
-      ],
-      prerequisites: [
-        { workflowId: "WF3", qualifier: "Ticketdata voor bezoekersgedrag" },
-      ],
-      timeSaved: "Structureel: hogere lifetime value per bezoeker",
-      deliverables: [
-        "Loyaliteitsprogramma met punten en beloningen",
-        "Membership-tiers met early access",
-        "Koppeling met ticketverkoop en bezoekersdata",
-        "Beheerinterface voor het team",
-      ],
-    },
-    WF9: {
-      title: "Corporate Sales Automation",
-      summary:
-        "Automatisch identificeren van interessante bedrijven voor zakelijke evenementen met gepersonaliseerde outboundcampagnes.",
-      why: "Zakelijke evenementen zijn een groeikans maar vereisen gerichte acquisitie. Handmatig zoeken in KVK en LinkedIn en opvolgen via Brevo kost veel tijd zonder gestructureerde aanpak.",
+        "Automatisch interessante bedrijven identificeren voor zakelijke evenementen en op het juiste moment een persoonlijke e-mail sturen.",
+      why: "Thuishaven draait in de weekenden een topomzet, maar de doordeweekse dagen zijn vaak nog vrij. Er wordt momenteel weinig actieve verkoop richting bedrijven gedaan. Hier ligt een grote kans op extra omzet.",
       benefits: [
         "Automatische identificatie van relevante bedrijven",
-        "Gepersonaliseerde outboundcampagnes via Brevo",
-        "Integratie met KVK en LinkedIn data",
-        "Structurele pipeline voor zakelijke evenementen",
+        "Filtering op bedrijfsgrootte, regio en jubilea",
+        "Persoonlijke e-mails op het perfecte moment",
+        "Warme leads direct doorgestuurd naar het team",
+        "Directe groei in omzet op doordeweekse dagen",
       ],
-      timeSaved: "4 tot 6 uur per week sales research",
+      timeSaved: "Uren per week aan handmatig sales research",
+      expectedValue:
+        "Directe groei in omzet door het slim en automatisch vullen van de nu nog lege, doordeweekse dagen.",
       deliverables: [
-        "Bedrijfsselectie op basis van KVK en LinkedIn",
-        "Outboundcampagnes via Brevo",
-        "CRM-achtige opvolging van leads",
+        "Bedrijfsselectie op basis van KvK en LinkedIn",
+        "Automatische outbound-campagnes met personalisatie",
+        "Lead-notificatie bij positieve respons",
         "Rapportage op conversie en pipeline",
       ],
     },
-    WF10: {
-      title: "Intelligence",
-      investmentLabel: "Nader te bepalen",
-      hideTimeline: true,
+    "06": {
+      title: "De Thuishaven Content Studio",
       summary:
-        "De intelligence-laag waarin operationele en commerciële data samenkomen — opgebouwd via losse workflows en uiteindelijk samengebracht.",
-      why: "Intelligence bouwen we niet in één keer. Elke workflow in fase 1 en 2 levert een stukje: marketingdashboards (WF2), ticketdata (WF3), pricing (WF6), DJ-inzichten (WF7). Uiteindelijk brengen we die samen in één laag met AI-chat voor vragen als: welke editie loopt uit de hand, welke campagne levert het meeste op, kunnen prijzen omhoog? Geen prijs of doorlooptijd tot de basis workflows live zijn.",
+        "Centrale creatieve studio met AI Caption Generator, slimme fotoselectie, beeldgeneratie en gesegmenteerde nieuwsbrieven — vier onderdelen, één platform.",
+      why: "Het handmatig schrijven van teksten voor Instagram, TikTok en nieuwsbrieven kost wekelijks veel tijd. Daarnaast ontvangt Thuishaven wekelijks mappen met 400 tot 500 foto's waarvan het uitzoeken 2 tot 3 uur kost. Door een slim systeem te trainen op de Thuishaven-stijl versnellen we dit drastisch.",
       benefits: [
-        "Alle databronnen in één centraal platform",
-        "AI-chat voor strategische en operationele vragen",
-        "Voorspellingen over uitverkoop en omzet per editie",
-        "ROI-inzicht per campagne en artiest",
-        "Fundament voor volledig datagedreven evenementenorganisatie",
+        "AI Caption Generator getraind op jullie exacte tone of voice",
+        "Fotoselectie van uren naar minuten met visual recognition",
+        "Statische beeldgeneratie in de huisstijl",
+        "Gesegmenteerde nieuwsbrieven voor gerichte doelgroepen",
+        "Self-learning: het systeem wordt continu beter",
       ],
       prerequisites: [
-        { workflowId: "WF2", qualifier: "Marketingdatalaag" },
-        { workflowId: "WF3", qualifier: "Ticketverkoopdatalaag" },
+        { workflowId: "02", qualifier: "Conversiedata om te leren welke content het beste werkt" },
       ],
-      timeSaved: "Structureel: betere besluitvorming op alle niveaus",
+      timeSaved: "Enorme wekelijkse besparing op contentcreatie en fotoselectie",
+      expectedValue:
+        "Enorme wekelijkse tijdsbesparing op contentcreatie en fotoselectie, gecombineerd met een hogere marketingkwaliteit door persoonlijke nieuwsbrieven.",
       deliverables: [
-        "Centraal datawarehouse met alle operationele en commerciële bronnen",
-        "AI-chatinterface voor strategische vragen",
-        "Voorspellende modellen voor verkoop en omzet",
-        "Roadmap en investeringsadvies na verkenningstraject",
+        "Getrainde Caption Generator voor alle kanalen",
+        "AI Visual Selection & Curation module",
+        "Statische Beelden Generator in huisstijl",
+        "Segmented Newsletter Generator",
+      ],
+    },
+    "07": {
+      title: "Slimme Bar- & Consumptie Data",
+      summary:
+        "Hybride bar-model: bezoekers betalen met vertrouwde munten, terwijl personeel elke bestelling digitaal registreert op een mobiel of vast verkooppunt — realtime inzicht zonder volledig cashless te gaan.",
+      why: "Thuishaven koos bewust voor fysieke munten vanwege breakage-omzet en de vertrouwdheid voor bezoekers. Bij een traditioneel muntensysteem weet je pas na afloop — na wegen en tellen — wat de omzet is. Er is geen live zicht op welke producten, bars of tijdstippen het meest opleveren, en handmatig rekenen kost tijd en levert fouten op.",
+      benefits: [
+        "Realtime omzet per bar, product en locatie — tijdens het evenement bijsturen",
+        "Bezoekers blijven betalen met munten; personeel hoeft niet meer te rekenen",
+        "Digitale audittrail per transactie: fraudepreventie en betrouwbare afrekening",
+        "Eco-cup statiegeld, retouren en niet-ingeleverde bekers automatisch verwerkt",
+        "BTW-tarieven per productcategorie (drank vs. beker) correct toegepast",
+        "Behoud van fysieke munten én digitale basis voor toekomstige cashless-stap",
+      ],
+      prerequisites: [
+        { workflowId: "03", qualifier: "Bezoekersuitgaven later combineren met ticketdata" },
+      ],
+      timeSaved: "Kortere wachtrijen aan de bar en geen turflijsten meer na afloop",
+      expectedValue:
+        "Gasten betalen simpelweg met munten, terwijl Thuishaven de professionele controle en commerciële inzichten krijgt van een modern cashless platform — inclusief live sturing op assortiment, personeel en marges.",
+      investmentNote: "Exclusief eventuele POS-hardware en platformlicenties",
+      deliverables: [
+        "Hybride POS-opzet: munten innen + digitale registratie per bestelling",
+        "Product-, locatie- en tijdstip-koppeling voor elke transactie",
+        "Live dashboard: omzet per bar, subcategorie en bestseller",
+        "Eco-cup flow met statiegeld, retouren en inzicht in uitgegeven vs. ingenomen tokens",
+        "BTW-verrekening per productcategorie",
+        "Audittrail gekoppeld aan terminal en medewerker",
+      ],
+    },
+    "08": {
+      title: "Loyalty App – Strategische Sessie",
+      investmentLabel: "€3.500",
+      summary:
+        "Intensieve strategische sessie om de blauwdruk voor de Thuishaven Loyalty Experience te bepalen — scope, pricing en voordelen.",
+      why: "Thuishaven heeft een gigantisch loyale achterban: 7.000 volgers in het Broadcast-kanaal en actieve online communities. De potentie voor een exclusief lidmaatschap is enorm. Om te voorkomen dat er direct een dure app wordt gebouwd zonder te weten wat de fans écht willen, starten we met een strategische sessie.",
+      benefits: [
+        "Voorkomt een dure miskoop of verkeerde softwarekeuze",
+        "Heldere strategie voor de vaste achterban",
+        "Bepaling van vorm, pricing en voordelen",
+        "Bewezen aanpak op basis van ervaring met Q-dance loyalty-app",
+      ],
+      timeSaved: "Voorkomt maanden verkeerde ontwikkeling",
+      expectedValue:
+        "Voorkomt een dure miskoop of verkeerde softwarekeuze door vooraf een glasheldere, rendabele strategie te bepalen voor je vaste achterban.",
+      deliverables: [
+        "Strategisch document met scope en functionele requirements",
+        "Vorm & pricing: app vs. web, gratis vs. betaald lid",
+        "Voordelenpakket: early access, korting, gastenlijst",
+        "Businesscase en concreet stappenplan voor realisatie",
       ],
     },
   },

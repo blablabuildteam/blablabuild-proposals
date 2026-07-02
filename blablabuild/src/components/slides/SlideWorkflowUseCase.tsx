@@ -41,6 +41,11 @@ export function SlideWorkflowUseCase({
               <Badge variant="glass">
                 {labelFor(ui.phaseLabels, wf.phaseRevised)}
               </Badge>
+              {wf.domainLabels?.map((domain) => (
+                <Badge key={domain} variant="glass">
+                  {labelFor(ui.domainLabels ?? {}, domain)}
+                </Badge>
+              ))}
               <Badge variant="glass">
                 {labelFor(ui.impactLabels, wf.impactLabel)} {ui.impactSuffix}
               </Badge>
@@ -52,10 +57,15 @@ export function SlideWorkflowUseCase({
               {wf.summary}
             </p>
           </div>
-          <div className="shrink-0 rounded-xl bg-white/10 px-5 py-4 text-right">
+          <div className="shrink-0 rounded-xl bg-white/10 px-5 py-4 text-right sm:max-w-sm">
             <p className="font-mono text-2xl font-bold sm:text-3xl">
               {wf.investment}
             </p>
+            {wf.investmentNote ? (
+              <p className="mt-1 text-[11px] leading-snug text-white/65">
+                {wf.investmentNote}
+              </p>
+            ) : null}
             {!wf.hideTimeline && (
               <WorkflowWeekLabel
                 effortDays={wf.effortDays}
@@ -63,9 +73,16 @@ export function SlideWorkflowUseCase({
                 tone="light"
               />
             )}
-            <p className="mt-2 text-xs text-[var(--brand-accent)]">
-              {wf.timeSaved}
-            </p>
+            {wf.expectedValue ? (
+              <div className="mt-3 border-t border-white/15 pt-3 text-left">
+                <p className="text-[10px] font-bold tracking-wide text-[var(--brand-accent)] uppercase">
+                  {ui.expectedValue}
+                </p>
+                <p className="mt-1.5 text-sm leading-relaxed text-white/90">
+                  {wf.expectedValue}
+                </p>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
@@ -140,7 +157,7 @@ export function SlideWorkflowUseCase({
           {wf.effortDays}
         </span>
         <span className="rounded-full bg-[var(--brand-bg)] px-3 py-1">
-          RICE {wf.riceReported}
+          {ui.prioScoreLabel ?? ui.tableRice} {wf.riceReported}
         </span>
         <span className="rounded-full bg-[var(--brand-bg)] px-3 py-1">
           {labelFor(ui.bucketLabels, wf.bucket)}

@@ -29,6 +29,7 @@ export function useProposalUi(): ProposalUiCopy {
       phaseLabels: { ...defaultProposalUi.phaseLabels, ...ui.phaseLabels },
       bucketLabels: { ...defaultProposalUi.bucketLabels, ...ui.bucketLabels },
       impactLabels: { ...defaultProposalUi.impactLabels, ...ui.impactLabels },
+      domainLabels: { ...defaultProposalUi.domainLabels, ...ui.domainLabels },
     };
   }, [slideCopy?.ui]);
 }

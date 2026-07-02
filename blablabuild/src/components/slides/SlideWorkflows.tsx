@@ -8,7 +8,7 @@ import { labelFor, useProposalUi } from "@/lib/proposals/use-proposal-ui";
 import { SlideTitle } from "./shared";
 import { WorkflowRow } from "./WorkflowDetailCard";
 
-const filterOrder = [
+const ALL_PHASE_FILTERS = [
   "ALL",
   "NOW",
   "NEXT",
@@ -16,7 +16,7 @@ const filterOrder = [
   "PARALLEL",
   "BACKLOG",
 ] as const;
-type Filter = (typeof filterOrder)[number];
+type Filter = (typeof ALL_PHASE_FILTERS)[number];
 
 export function SlideWorkflows() {
   const { workflows, slideCopy } = useProposal();
@@ -31,9 +31,19 @@ export function SlideWorkflows() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
+  const filterOrder = ALL_PHASE_FILTERS.filter(
+    (p) =>
+      p === "ALL" ||
+      workflows.some((w) => w.phaseRevised === p),
+  );
+
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!filterOrder.includes(filter)) setFilter("ALL");
+  }, [filter, filterOrder]);
 
   const filtered =
     filter === "ALL"

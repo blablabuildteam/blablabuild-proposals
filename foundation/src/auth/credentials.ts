@@ -17,7 +17,7 @@ export function createCredentialsVerifier({
     const expected = getPasswordForSlug(slug);
     if (!expected) return null;
 
-    if (password !== expected) return null;
+    if (password.trim().toLowerCase() !== expected.trim().toLowerCase()) return null;
 
     return slug;
   };

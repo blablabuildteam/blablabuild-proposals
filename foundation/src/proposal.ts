@@ -1,5 +1,5 @@
 import {
-  formatInvestment,
+  formatInvestmentByStyle,
   sumPhaseCosts,
   sumWorkflowCosts,
   widenEurRange,
@@ -55,6 +55,7 @@ function phaseInvestLabel(
   phase: PhaseSource,
   workflowSources: WorkflowSource[],
   cost: ReturnType<typeof sumPhaseCosts>["cost"],
+  investmentFormat: ProposalContentConfig["investmentFormat"],
 ): string {
   const phaseWorkflows = phase.workflows
     .map((id) => workflowSources.find((w) => w.id === id))
@@ -66,7 +67,7 @@ function phaseInvestLabel(
   if (cost.min === 0 && cost.max === 0 && phaseWorkflows.length > 0) {
     return phaseWorkflows[0].investmentLabel ?? "Nader te bepalen";
   }
-  return formatInvestment(cost);
+  return formatInvestmentByStyle(cost, investmentFormat ?? "compact");
 }
 
 export type BuiltPhase = PhaseSource & {
@@ -92,6 +93,7 @@ export function buildPhases(
   phases: readonly PhaseSource[],
   workflowSources: WorkflowSource[],
   platformBundleSources?: readonly PlatformBundleSource[],
+  investmentFormat: ProposalContentConfig["investmentFormat"] = "compact",
 ): BuiltPhase[] {
   return phases.map((phase) => {
     const { cost, standalone } = sumPhaseCosts(
@@ -101,9 +103,14 @@ export function buildPhases(
     );
     return {
       ...phase,
-      invest: phaseInvestLabel(phase, workflowSources, cost),
+      invest: phaseInvestLabel(
+        phase,
+        workflowSources,
+        cost,
+        investmentFormat,
+      ),
       investStandalone: standalone
-        ? formatInvestment(standalone)
+        ? formatInvestmentByStyle(standalone, investmentFormat ?? "compact")
         : undefined,
     };
   });
@@ -112,11 +119,13 @@ export function buildPhases(
 export function buildPackages(
   packages: readonly PackageSource[],
   workflowSources: WorkflowSource[],
+  investmentFormat: ProposalContentConfig["investmentFormat"] = "compact",
 ): BuiltPackage[] {
   return packages.map(({ workflowIds, ...pkg }) => ({
     ...pkg,
-    invest: formatInvestment(
+    invest: formatInvestmentByStyle(
       sumWorkflowCosts(workflowIds, workflowSources),
+      investmentFormat ?? "compact",
     ),
   }));
 }
@@ -136,7 +145,8 @@ export function buildProposalContent(
     platformBundleSources,
     config.costScopeBuffer,
   );
-  const workflows = buildWorkflows(scopedWorkflows);
+  const investmentFormat = config.investmentFormat ?? "compact";
+  const workflows = buildWorkflows(scopedWorkflows, investmentFormat);
   const riceSorted = sortByRice(workflows);
   const platformBundles = scopedPlatforms
     ? buildPlatformBundles(scopedPlatforms, scopedWorkflows)
@@ -145,8 +155,13 @@ export function buildProposalContent(
   return {
     workflows,
     riceSorted,
-    phases: buildPhases(phases, scopedWorkflows, scopedPlatforms),
-    packages: buildPackages(packages, scopedWorkflows),
+    phases: buildPhases(
+      phases,
+      scopedWorkflows,
+      scopedPlatforms,
+      investmentFormat,
+    ),
+    packages: buildPackages(packages, scopedWorkflows, investmentFormat),
     platformBundles,
     AI_BUILD_NOTE: config.aiBuildNote,
   };

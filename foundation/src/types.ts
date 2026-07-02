@@ -1,6 +1,7 @@
 export type Bucket = "Quick Win" | "Incremental" | "Big Bet";
 export type Phase = "NOW" | "NEXT" | "NEAR" | "BACKLOG" | "PARALLEL";
 export type ImpactLevel = "Massive" | "High" | "Medium" | "Low";
+export type WorkflowDomain = "Operations" | "Marketing" | "Sales";
 
 /** RICE inputs — Reach × Impact × Confidence ÷ Effort */
 export type RiceInput = {
@@ -80,10 +81,22 @@ export type WorkflowSource = {
   unlocks?: WorkflowRelation[];
   timeSaved: string;
   deliverables: string[];
+  /** Full expected value narrative shown under ballpark in detail view */
+  expectedValue?: string;
+  /** Footnote under ballpark (e.g. hardware excluded) */
+  investmentNote?: string;
   /** Optional later-phase estimate (e.g. WF10 build after discovery) */
   implementationEstimate?: ImplementationEstimate;
   /** Shared platform bundle id when workflow is cheaper on combined build */
   platformId?: string;
+  /** Operations, marketing or sales focus — shown on detail views */
+  domainLabels?: readonly WorkflowDomain[];
+};
+
+export type PhaseCompanionSource = {
+  /** Phase whose workflows appear alongside on this phase's detail slide */
+  phaseId: string;
+  style?: "highlight";
 };
 
 export type PhaseSource = {
@@ -93,6 +106,7 @@ export type PhaseSource = {
   headline: string;
   workflows: readonly string[];
   outcomes: readonly string[];
+  companions?: readonly PhaseCompanionSource[];
 };
 
 export type PackageSource = {
@@ -119,11 +133,15 @@ export type RateCard = {
   aiSpeedMultiplier?: number;
 };
 
+/** compact = €5–7k; ballpark = €4.500 - €6.500 */
+export type InvestmentFormat = "compact" | "ballpark";
+
 export type ProposalContentConfig = {
   rateCard: RateCard;
   aiBuildNote: string;
   /** Optional widening of workflow cost ranges before display and rollups */
   costScopeBuffer?: CostScopeBuffer;
+  investmentFormat?: InvestmentFormat;
 };
 
 /** Shared data platform — multiple workflows on one foundation (bundle pricing) */

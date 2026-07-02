@@ -8,7 +8,7 @@ import { WorkflowCompact } from "./WorkflowDetailCard";
 export function SlidePhaseNear() {
   const { phases, getWorkflow } = useProposal();
   const ui = useProposalUi();
-  const phase = phases[3];
+  const phase = phases.find((p) => p.id === "near") ?? phases[3];
   const items = phase.workflows
     .map((id) => getWorkflow(id))
     .filter(Boolean);

@@ -39,9 +39,10 @@ export function buildThuishavenBundle(locale: ProposalLocale): ProposalBundle {
     {
       ...BLABLABUILD_PROPOSAL_CONFIG,
       aiBuildNote: content.aiBuildNote,
-      costScopeBuffer: { lowerPct: 0.325, upperPct: 0.39 },
+      costScopeBuffer: undefined,
+      investmentFormat: "ballpark",
     },
-    content.platformBundles,
+    content.platformBundles?.length ? content.platformBundles : undefined,
   );
 
   const slideConfigs = buildSlideConfigs(content);
@@ -50,7 +51,7 @@ export function buildThuishavenBundle(locale: ProposalLocale): ProposalBundle {
     meta: content.meta,
     access: content.access,
     debrief: content.debrief,
-    impactMatrix: content.impactMatrix,
+    debriefVariant: "combined",
     understanding: content.understanding,
     slideCopy: content.slideCopy,
     workflows: built.workflows,

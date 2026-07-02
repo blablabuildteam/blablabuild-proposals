@@ -9,9 +9,11 @@ export function SlidePhaseNext() {
   const { phases, getWorkflow } = useProposal();
   const ui = useProposalUi();
   const phase = phases[1];
-  const parallel = phases[2];
+  const parallel = phases.find((p) => p.id === "parallel");
   const items = phase.workflows.map((id) => getWorkflow(id)).filter(Boolean);
-  const wf9 = getWorkflow("WF9");
+  const parallelWf = parallel
+    ? parallel.workflows.map((id) => getWorkflow(id)).filter(Boolean)[0]
+    : undefined;
 
   return (
     <div>
@@ -44,12 +46,12 @@ export function SlidePhaseNext() {
         {items.map((wf) => wf && <WorkflowCompact key={wf.id} wf={wf} />)}
       </div>
 
-      {wf9 && (
+      {parallel && parallelWf && (
         <div className="mt-5 rounded-xl border border-dashed border-[var(--brand-primary)]/30 bg-white p-4 sm:p-5">
           <p className="mb-3 text-xs font-bold text-[var(--brand-muted)] uppercase">
             {parallel.label} · {parallel.invest}
           </p>
-          <WorkflowCompact wf={wf9} />
+          <WorkflowCompact wf={parallelWf} />
         </div>
       )}
     </div>

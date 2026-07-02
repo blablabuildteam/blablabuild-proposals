@@ -2,12 +2,10 @@
 
 import { useProposal } from "@/components/ProposalProvider";
 import type { PlatformBundle, Workflow } from "@/lib/types";
-import { WorkflowWeekLabel } from "./WorkflowDetailCard";
 import { PlatformBundleCard } from "./PlatformBundleCard";
 import { Badge, HighlightedTitle, SlideTitle } from "./shared";
 
-const phaseNums = ["01", "02", "03"] as const;
-const phaseIndices = [0, 1, 3] as const;
+const mainPhaseIds = new Set(["now", "next", "near"]);
 
 type PhaseRow =
   | { kind: "workflow"; wf: Workflow }
@@ -44,6 +42,7 @@ function PhaseInvestBlock({
   rows,
   accent,
   bundleNote,
+  companionSections,
 }: {
   num: string;
   phase: {
@@ -56,6 +55,12 @@ function PhaseInvestBlock({
   rows: PhaseRow[];
   accent: "lime" | "blue" | "neutral";
   bundleNote?: string;
+  companionSections?: Array<{
+    label: string;
+    period: string;
+    workflows: Workflow[];
+    highlight?: boolean;
+  }>;
 }) {
   const headerBg =
     accent === "lime"
@@ -112,12 +117,8 @@ function PhaseInvestBlock({
                 className="flex flex-col gap-2 px-4 py-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4"
               >
                 <div className="min-w-0 flex-1">
-                  <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-start gap-3">
                     <Badge variant="black">{row.wf.id}</Badge>
-                    <WorkflowWeekLabel
-                      effortDays={row.wf.effortDays}
-                      weeks={row.wf.weeks}
-                    />
                   </div>
                   <p className="mt-1.5 text-sm font-semibold text-[var(--brand-fg)]">
                     {row.wf.title}
@@ -162,6 +163,73 @@ function PhaseInvestBlock({
           )}
         </div>
 
+        {companionSections?.map((section) => (
+          <div key={`${section.label}-${section.period}`} className="mt-4">
+            <p
+              className={`mb-2 text-[10px] font-bold tracking-wide uppercase sm:text-xs ${
+                section.highlight
+                  ? "text-[var(--brand-fg)]"
+                  : "text-[var(--brand-muted)]"
+              }`}
+            >
+              {section.label} · {section.period}
+            </p>
+            <div
+              className={`divide-y rounded-lg border ${
+                section.highlight
+                  ? "divide-white/10 border-[var(--brand-highlight)] bg-[var(--brand-highlight)]"
+                  : "divide-[var(--brand-border)] border-[var(--brand-border)]"
+              }`}
+            >
+              {section.workflows.map((wf) => (
+                <div
+                  key={wf.id}
+                  className={`flex flex-col gap-2 px-4 py-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4 ${
+                    section.highlight ? "text-white" : ""
+                  }`}
+                >
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-start gap-3">
+                      <Badge variant={section.highlight ? "glass" : "black"}>
+                        {wf.id}
+                      </Badge>
+                    </div>
+                    <p
+                      className={`mt-1.5 text-sm font-semibold ${
+                        section.highlight
+                          ? "text-white"
+                          : "text-[var(--brand-fg)]"
+                      }`}
+                    >
+                      {wf.title}
+                    </p>
+                    <p
+                      className={`mt-1 text-sm leading-relaxed ${
+                        section.highlight
+                          ? "text-white/70"
+                          : "text-[var(--brand-muted)]"
+                      }`}
+                    >
+                      {wf.summary}
+                    </p>
+                  </div>
+                  {!wf.hideTimeline && (
+                    <p
+                      className={`shrink-0 font-mono text-sm font-bold sm:pt-0.5 sm:text-base ${
+                        section.highlight
+                          ? "text-[var(--brand-accent)]"
+                          : "text-[var(--brand-primary)]"
+                      }`}
+                    >
+                      {wf.investment}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+
         {bundleNote && (
           <p className="mt-3 text-xs text-[var(--brand-muted)]">{bundleNote}</p>
         )}
@@ -180,19 +248,56 @@ export function SlideInvestment() {
   };
   const parallelLabel = slideCopy?.approach?.parallelLabel ?? "Parallel";
 
-  const blocks = phaseIndices.map((phaseIndex, i) => {
-    const phase = phases[phaseIndex];
+  const mainPhases = phases.filter((p) => mainPhaseIds.has(p.id));
+  const parallelPhase = phases.find((p) => p.id === "parallel");
+  const backlogPhase = phases.find((p) => p.id === "backlog");
+
+  const accents: Array<"lime" | "blue" | "neutral"> = ["lime", "blue", "neutral"];
+  const inlineCompanionPhaseIds = new Set<string>();
+
+  const blocks = mainPhases.map((phase, i) => {
     const rows = buildPhaseRows(phase.workflows, getWorkflow, platformBundles);
-    const accent = (i === 0 ? "lime" : i === 1 ? "blue" : "neutral") as
-      | "lime"
-      | "blue"
-      | "neutral";
-    const bundleNote =
-      phase.investStandalone && i === 2
-        ? (slideCopy?.investment?.platformNote ??
-          "Faseprijs is gebaseerd op het Smart Data Platform voor WF2 + WF4.")
-        : undefined;
-    return { num: phaseNums[i], phase, rows, accent, bundleNote };
+    const accent = accents[i] ?? "neutral";
+    const bundleNote = phase.investStandalone
+      ? (slideCopy?.investment?.platformNote ??
+        "Faseprijs is gebaseerd op het combinatievoordeel.")
+      : undefined;
+
+    const companionSections =
+      phase.companions
+        ?.map((companion) => {
+          const companionPhase = phases.find((p) => p.id === companion.phaseId);
+          if (!companionPhase) return null;
+
+          const companionWorkflows = companionPhase.workflows
+            .map((id) => getWorkflow(id))
+            .filter((wf): wf is Workflow => Boolean(wf));
+
+          if (companionWorkflows.length === 0) return null;
+
+          inlineCompanionPhaseIds.add(companion.phaseId);
+
+          return {
+            label: companionPhase.label,
+            period: companionPhase.period,
+            workflows: companionWorkflows,
+            highlight: companion.style === "highlight",
+          };
+        })
+        .filter(
+          (
+            section,
+          ): section is NonNullable<typeof section> => section !== null,
+        ) ?? [];
+
+    return {
+      num: String(i + 1).padStart(2, "0"),
+      phase,
+      rows,
+      accent,
+      bundleNote,
+      companionSections,
+    };
   });
 
   return (
@@ -210,49 +315,68 @@ export function SlideInvestment() {
         ))}
       </div>
 
-      <div className="mt-4 rounded-lg border border-dashed border-[var(--brand-primary)]/40 bg-[var(--brand-primary)]/5 px-4 py-3">
-        <p className="text-xs font-bold text-[var(--brand-primary)] uppercase">
-          {parallelLabel} · {phases[2].period}
-        </p>
-        <p className="mt-1 text-sm text-[var(--brand-fg-secondary)]">
-          <strong>WF9 Website</strong> · {phases[2].invest}. Loopt naast fase 2, zonder
-          ops-automatisering te blokkeren.
-        </p>
-      </div>
+      {parallelPhase && (
+        <div className="mt-4 rounded-lg border border-dashed border-[var(--brand-primary)]/40 bg-[var(--brand-primary)]/5 px-4 py-3">
+          <p className="text-xs font-bold text-[var(--brand-primary)] uppercase">
+            {parallelLabel} · {parallelPhase.period}
+          </p>
+          <p className="mt-1 text-sm text-[var(--brand-fg-secondary)]">
+            <strong>
+              {parallelPhase.workflows
+                .map((id) => getWorkflow(id)?.title ?? id)
+                .join(" · ")}
+            </strong>{" "}
+            · {parallelPhase.invest}
+          </p>
+        </div>
+      )}
 
       {(() => {
-        const backlog = phases.find((p) => p.id === "backlog");
-        const wf10 = backlog ? getWorkflow("WF10") : undefined;
-        if (!backlog || !wf10) return null;
+        if (!backlogPhase || inlineCompanionPhaseIds.has(backlogPhase.id)) {
+          return null;
+        }
+        const backlogWorkflows = backlogPhase.workflows
+          .map((id) => getWorkflow(id))
+          .filter(Boolean);
+        if (backlogWorkflows.length === 0) return null;
         return (
           <div className="mt-3 overflow-hidden rounded-xl border border-dashed border-[var(--brand-border)] bg-[var(--brand-bg)]">
             <div className="flex flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-5">
               <div>
                 <p className="text-[10px] font-bold tracking-wide text-[var(--brand-muted)] uppercase sm:text-xs">
-                  Backlog · {backlog.period}
+                  {backlogPhase.label} · {backlogPhase.period}
                 </p>
                 <p className="mt-1 text-sm font-bold text-[var(--brand-fg)]">
-                  <HighlightedTitle text={backlog.headline} />
+                  <HighlightedTitle text={backlogPhase.headline} />
                 </p>
               </div>
               <p className="font-mono text-xl font-bold text-[var(--brand-fg)] sm:text-2xl">
-                {backlog.invest}
+                {backlogPhase.invest}
               </p>
             </div>
-            <div className="border-t border-dashed border-[var(--brand-border)] p-4 sm:p-5">
-              <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
-                <div className="min-w-0 flex-1">
-                  <Badge variant="black">{wf10.id}</Badge>
-                  <p className="mt-1.5 text-sm font-semibold text-[var(--brand-fg)]">{wf10.title}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-[var(--brand-muted)]">
-                    {wf10.summary}
-                  </p>
+            {backlogWorkflows.map((wf) =>
+              wf ? (
+                <div
+                  key={wf.id}
+                  className="border-t border-dashed border-[var(--brand-border)] p-4 sm:p-5"
+                >
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+                    <div className="min-w-0 flex-1">
+                      <Badge variant="black">{wf.id}</Badge>
+                      <p className="mt-1.5 text-sm font-semibold text-[var(--brand-fg)]">
+                        {wf.title}
+                      </p>
+                      <p className="mt-1 text-sm leading-relaxed text-[var(--brand-muted)]">
+                        {wf.summary}
+                      </p>
+                    </div>
+                    <p className="shrink-0 font-mono text-sm font-bold text-[var(--brand-primary)] sm:text-base">
+                      {!wf.hideTimeline && wf.investment}
+                    </p>
+                  </div>
                 </div>
-                <p className="shrink-0 font-mono text-sm font-bold text-[var(--brand-primary)] sm:text-base">
-                  {!wf10.hideTimeline && wf10.investment}
-                </p>
-              </div>
-            </div>
+              ) : null,
+            )}
           </div>
         );
       })()}

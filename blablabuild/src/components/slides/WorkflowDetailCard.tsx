@@ -5,6 +5,27 @@ import { useDeckNavigation } from "@/components/DeckNavigation";
 import { labelFor, useProposalUi } from "@/lib/proposals/use-proposal-ui";
 import { Badge, BulletList } from "./shared";
 
+function phaseBadgeVariant(
+  phase: string,
+): "lime" | "blue" | "black" | "neutral" {
+  switch (phase) {
+    case "NOW":
+      return "lime";
+    case "NEXT":
+      return "blue";
+    case "NEAR":
+      return "black";
+    default:
+      return "neutral";
+  }
+}
+
+const detailsButtonClass =
+  "inline-flex w-full items-center justify-center rounded-full bg-[var(--brand-bg)] py-2.5 text-xs font-bold text-[var(--brand-fg)] ring-1 ring-[var(--brand-border)] transition group-hover:bg-[#E8E8E8]";
+
+const detailsButtonInlineClass =
+  "rounded-full bg-[var(--brand-bg)] px-3 py-1.5 text-xs font-bold text-[var(--brand-fg)] ring-1 ring-[var(--brand-border)] transition hover:bg-[#E8E8E8]";
+
 export function formatWeeksNl(weeks: string): string {
   const cleaned = weeks.replace(/\bwk\b/gi, "").trim();
   const match = cleaned.match(/^([\d.]+(?:\s*[–-]\s*[\d.]+)?)(?:\s*(.*))?$/);
@@ -72,7 +93,43 @@ export function WorkflowCompact({ wf }: { wf: Workflow }) {
       <p className="mt-1.5 flex-1 text-sm leading-relaxed text-[var(--brand-muted)]">
         {wf.summary}
       </p>
-      <span className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[var(--brand-primary)] py-2.5 text-xs font-bold text-white transition group-hover:opacity-90">
+      <span className={`mt-4 ${detailsButtonClass}`}>
+        {ui.openUseCase}
+      </span>
+    </button>
+  );
+}
+
+export function WorkflowCompactHighlight({ wf }: { wf: Workflow }) {
+  const { openWorkflow } = useDeckNavigation();
+  const ui = useProposalUi();
+
+  return (
+    <button
+      type="button"
+      onClick={() => openWorkflow(wf.id)}
+      className="group flex h-full w-full flex-col rounded-xl border border-[var(--brand-highlight)] bg-[var(--brand-highlight)] p-4 text-left transition hover:border-[var(--brand-accent)] hover:shadow-lg sm:p-5"
+    >
+      <div className="mb-2 flex items-start justify-between gap-3">
+        <div className="flex min-w-0 flex-wrap items-center gap-2">
+          <Badge variant="glass">{wf.id}</Badge>
+          <span className="font-mono text-sm font-bold text-[var(--brand-accent)]">
+            {wf.investment}
+          </span>
+        </div>
+        {!wf.hideTimeline && (
+          <WorkflowWeekLabel
+            effortDays={wf.effortDays}
+            weeks={wf.weeks}
+            tone="light"
+          />
+        )}
+      </div>
+      <h3 className="text-base text-white">{wf.title}</h3>
+      <p className="mt-1.5 flex-1 text-sm leading-relaxed text-white/70">
+        {wf.summary}
+      </p>
+      <span className={`mt-4 ${detailsButtonClass}`}>
         {ui.openUseCase}
       </span>
     </button>
@@ -125,7 +182,7 @@ export function WorkflowDetailCard({ wf }: { wf: Workflow }) {
       <button
         type="button"
         onClick={() => openWorkflow(wf.id)}
-        className="mt-4 rounded-full bg-[var(--brand-primary)] px-4 py-2 text-sm font-bold text-white transition hover:opacity-90"
+        className={`mt-4 ${detailsButtonInlineClass}`}
       >
         {ui.openUseCase}
       </button>
@@ -152,7 +209,7 @@ export function WorkflowRow({ wf }: { wf: Workflow }) {
         {!wf.hideTimeline && (
           <WorkflowWeekLabel effortDays={wf.effortDays} weeks={wf.weeks} />
         )}
-        <Badge variant="neutral">
+        <Badge variant={phaseBadgeVariant(wf.phaseRevised)}>
           {labelFor(ui.phaseLabels, wf.phaseRevised)}
         </Badge>
         {!wf.hideTimeline && (
@@ -163,7 +220,7 @@ export function WorkflowRow({ wf }: { wf: Workflow }) {
         <button
           type="button"
           onClick={() => openWorkflow(wf.id)}
-          className="rounded-full bg-[var(--brand-primary)] px-3 py-1.5 text-xs font-bold text-white transition hover:opacity-90"
+          className={detailsButtonInlineClass}
         >
           {ui.useCase}
         </button>

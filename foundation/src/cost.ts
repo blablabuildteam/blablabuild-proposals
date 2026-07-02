@@ -2,6 +2,7 @@ import type {
   CostScopeBuffer,
   EurRange,
   EffortEstimate,
+  InvestmentFormat,
   RateCard,
   WorkflowSource,
 } from "./types";
@@ -28,6 +29,20 @@ export function formatInvestment(range: EurRange): string {
   const maxK = Math.round(range.max / 1000);
   if (minK === maxK) return `€${minK}k`;
   return `€${minK}–${maxK}k`;
+}
+
+/** Full ballpark from brief: "€4.500 - €6.500" */
+export function formatBallpark(range: EurRange): string {
+  const format = (amount: number) => EUR.format(amount).replace(/\s/g, "");
+  if (range.min === range.max) return format(range.min);
+  return `${format(range.min)} - ${format(range.max)}`;
+}
+
+export function formatInvestmentByStyle(
+  range: EurRange,
+  style: InvestmentFormat = "compact",
+): string {
+  return style === "ballpark" ? formatBallpark(range) : formatInvestment(range);
 }
 
 /** ± band around midpoint cost (avoids min-days×min-rate vs max-days×max-rate blowout) */

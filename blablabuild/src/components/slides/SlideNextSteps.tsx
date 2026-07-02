@@ -63,7 +63,13 @@ export function SlideNextSteps() {
         {copy.steps.map((s, i) => (
           <div key={s.n} className="flex gap-4 sm:gap-6">
             <div className="flex flex-col items-center">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--brand-primary)] font-mono text-sm font-bold text-white">
+              <div
+                className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--brand-primary)] text-white ${
+                  /^\d/.test(s.n)
+                    ? "font-mono text-sm font-bold"
+                    : "text-2xl leading-none"
+                }`}
+              >
                 {s.n}
               </div>
               {i < copy.steps.length - 1 && (

@@ -147,9 +147,11 @@ function SlideDeckInner() {
             <Image
               src={meta.clientLogo}
               alt={meta.clientName}
-              width={28}
-              height={28}
-              className="hidden h-7 w-7 shrink-0 rounded sm:block"
+              width={558}
+              height={101}
+              className={`hidden h-5 w-auto max-w-[9rem] shrink-0 sm:block sm:h-6 sm:max-w-[11rem] ${
+                isBlue ? "brightness-0 invert" : ""
+              }`}
             />
           ) : (
             <span

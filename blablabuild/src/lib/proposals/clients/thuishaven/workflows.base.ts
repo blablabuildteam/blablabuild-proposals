@@ -1,34 +1,4 @@
-import { BLABLABUILD_RATE_CARD } from "@foundation/config";
-import { buildAiWorkflowEstimate } from "@foundation/cost";
 import type { WorkflowSource } from "@foundation/types";
-
-const rate = BLABLABUILD_RATE_CARD;
-
-const est = (
-  effortMonths: number,
-  speedMultiplier?: number,
-  weeksSuffix?: string,
-) => {
-  const { effort, cost } = buildAiWorkflowEstimate(effortMonths, rate, {
-    speedMultiplier,
-  });
-  if (weeksSuffix) {
-    effort.weeks = `${effort.weeks} ${weeksSuffix}`;
-  }
-  return { effort, cost };
-};
-
-const wf1 = est(1.2, 5);
-const wf2 = est(2, 4);
-const wf3 = est(1.8, 5);
-const wf4 = est(1.5, 5);
-const wf5 = est(2, 4);
-const wf6 = est(3);
-const wf7 = est(3.5);
-const wf8 = est(4);
-const wf9 = est(2);
-const wf2OnEip = est(1.6, 5);
-const wf3OnEip = est(1.4, 5);
 
 export type WorkflowBase = Omit<
   WorkflowSource,
@@ -60,6 +30,8 @@ export type WorkflowLocaleText = Pick<
   | "timeSaved"
   | "deliverables"
   | "investmentLabel"
+  | "expectedValue"
+  | "investmentNote"
 > & {
   implementationEstimate?: { label: string; investmentLabel?: string };
   hideTimeline?: boolean;
@@ -67,115 +39,95 @@ export type WorkflowLocaleText = Pick<
 
 export const workflowBases: readonly WorkflowBase[] = [
   {
-    id: "WF1",
+    id: "01",
     bucket: "Quick Win",
-    rice: { reach: 25, impact: 2.5, confidencePct: 85, effort: 1.2 },
+    rice: { reach: 300, impact: 2, confidencePct: 90, effort: 1 },
     impactLabel: "High",
     phaseOriginal: "NOW",
     phaseRevised: "NOW",
-    effort: wf1.effort,
-    cost: wf1.cost,
+    effort: { daysMin: 5, daysMax: 7, weeks: "1–1½", daysLabel: "5–7 dagen" },
+    cost: { min: 4500, max: 6500 },
+    domainLabels: ["Operations"],
   },
   {
-    id: "WF2",
+    id: "02",
     bucket: "Quick Win",
-    rice: { reach: 30, impact: 2.5, confidencePct: 80, effort: 2 },
-    impactLabel: "High",
+    rice: { reach: 400, impact: 4, confidencePct: 80, effort: 3 },
+    impactLabel: "Massive",
     phaseOriginal: "NOW",
     phaseRevised: "NOW",
-    platformId: "eip",
-    effort: wf2.effort,
-    cost: wf2.cost,
+    effort: { daysMin: 6, daysMax: 8, weeks: "1½–2", daysLabel: "6–8 dagen" },
+    cost: { min: 5500, max: 7500 },
+    domainLabels: ["Marketing"],
   },
   {
-    id: "WF3",
+    id: "03",
     bucket: "Quick Win",
-    rice: { reach: 35, impact: 2.5, confidencePct: 85, effort: 1.8 },
-    impactLabel: "High",
+    rice: { reach: 400, impact: 4, confidencePct: 80, effort: 3 },
+    impactLabel: "Massive",
     phaseOriginal: "NOW",
     phaseRevised: "NOW",
-    platformId: "eip",
-    effort: wf3.effort,
-    cost: wf3.cost,
+    effort: { daysMin: 7, daysMax: 9, weeks: "1½–2", daysLabel: "7–9 dagen" },
+    cost: { min: 6500, max: 8500 },
+    domainLabels: ["Marketing"],
   },
   {
-    id: "WF4",
-    bucket: "Quick Win",
-    rice: { reach: 20, impact: 2, confidencePct: 90, effort: 1.5 },
-    impactLabel: "High",
-    phaseOriginal: "NOW",
-    phaseRevised: "NOW",
-    effort: wf4.effort,
-    cost: wf4.cost,
-  },
-  {
-    id: "WF5",
-    bucket: "Quick Win",
-    rice: { reach: 25, impact: 2, confidencePct: 75, effort: 2 },
-    impactLabel: "High",
-    phaseOriginal: "NEXT",
-    phaseRevised: "NEXT",
-    effort: wf5.effort,
-    cost: wf5.cost,
-  },
-  {
-    id: "WF6",
+    id: "04",
     bucket: "Incremental",
-    rice: { reach: 30, impact: 3, confidencePct: 70, effort: 3 },
+    rice: { reach: 300, impact: 3, confidencePct: 70, effort: 4 },
+    impactLabel: "High",
+    phaseOriginal: "NEAR",
+    phaseRevised: "NEAR",
+    effort: { daysMin: 12, daysMax: 15, weeks: "2½–3", daysLabel: "12–15 dagen" },
+    cost: { min: 11500, max: 14500 },
+    domainLabels: ["Marketing"],
+  },
+  {
+    id: "05",
+    bucket: "Incremental",
+    rice: { reach: 300, impact: 4, confidencePct: 90, effort: 3 },
+    impactLabel: "Massive",
+    phaseOriginal: "NOW",
+    phaseRevised: "NOW",
+    effort: { daysMin: 6, daysMax: 8, weeks: "1½–2", daysLabel: "6–8 dagen" },
+    cost: { min: 6000, max: 8000 },
+    domainLabels: ["Marketing"],
+  },
+  {
+    id: "06",
+    bucket: "Incremental",
+    rice: { reach: 400, impact: 4, confidencePct: 80, effort: 4 },
     impactLabel: "Massive",
     phaseOriginal: "NEXT",
     phaseRevised: "NEXT",
-    effort: wf6.effort,
-    cost: wf6.cost,
+    effort: { daysMin: 15, daysMax: 19, weeks: "3–4", daysLabel: "15–19 dagen" },
+    cost: { min: 14000, max: 18500 },
+    domainLabels: ["Marketing"],
   },
   {
-    id: "WF7",
+    id: "07",
     bucket: "Incremental",
-    rice: { reach: 20, impact: 2.5, confidencePct: 65, effort: 3.5 },
+    rice: { reach: 400, impact: 3, confidencePct: 90, effort: 3 },
     impactLabel: "High",
-    phaseOriginal: "NEXT",
-    phaseRevised: "NEXT",
-    effort: wf7.effort,
-    cost: wf7.cost,
+    phaseOriginal: "NEAR",
+    phaseRevised: "NEAR",
+    effort: { daysMin: 10, daysMax: 13, weeks: "2–2½", daysLabel: "10–13 dagen" },
+    cost: { min: 9500, max: 12500 },
+    domainLabels: ["Sales"],
   },
   {
-    id: "WF9",
-    bucket: "Incremental",
-    rice: { reach: 15, impact: 2, confidencePct: 70, effort: 2 },
+    id: "08",
+    bucket: "Quick Win",
+    rice: { reach: 200, impact: 3, confidencePct: 90, effort: 1 },
     impactLabel: "High",
-    phaseOriginal: "NEXT",
-    phaseRevised: "NEXT",
-    effort: wf9.effort,
-    cost: wf9.cost,
-  },
-  {
-    id: "WF8",
-    bucket: "Incremental",
-    rice: { reach: 40, impact: 2.5, confidencePct: 60, effort: 4 },
-    impactLabel: "High",
-    phaseOriginal: "BACKLOG",
-    phaseRevised: "BACKLOG",
-    effort: wf8.effort,
-    cost: wf8.cost,
-  },
-  {
-    id: "WF10",
-    bucket: "Big Bet",
-    rice: { reach: 50, impact: 3, confidencePct: 40, effort: 1.2 },
-    impactLabel: "Massive",
-    phaseOriginal: "BACKLOG",
-    phaseRevised: "BACKLOG",
-    effort: { daysMin: 0, daysMax: 0, weeks: "", daysLabel: "" },
-    cost: { min: 0, max: 0 },
+    phaseOriginal: "NOW",
+    phaseRevised: "NOW",
+    effort: { daysMin: 3, daysMax: 4, weeks: "1", daysLabel: "3–4 dagen" },
+    cost: { min: 3500, max: 3500 },
     excludeFromTotals: true,
-    hideTimeline: true,
+    domainLabels: ["Marketing"],
   },
 ];
-
-export const eipLayerEstimates = {
-  wf2: wf2OnEip,
-  wf3: wf3OnEip,
-};
 
 export function mergeWorkflowSources(
   texts: Record<string, WorkflowLocaleText>,

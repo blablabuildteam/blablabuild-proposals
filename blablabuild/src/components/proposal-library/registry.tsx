@@ -143,14 +143,13 @@ const sectionMap = new Map(
 
 export const THUISHAVEN_SECTION_ORDER: ProposalSectionId[] = [
   "debrief",
-  "understanding",
   "way-of-working",
+  "workflows",
+  "prioritization",
   "approach",
   "phase-now",
   "phase-next",
-  "phase-backlog",
-  "prioritization",
-  "workflows",
+  "phase-near",
   "investment",
   "next-steps",
 ];

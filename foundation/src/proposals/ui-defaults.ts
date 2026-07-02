@@ -25,6 +25,7 @@ export const defaultProposalUi: ProposalUiCopy = {
   whyThisMatters: "Why this matters",
   whatYouGet: "What you get",
   whatWeDeliver: "What we deliver",
+  expectedValue: "Expected value",
   prerequisites: "Prerequisites",
   unlocks: "Unlocks",
   impactSuffix: "impact",
@@ -68,4 +69,5 @@ export const defaultProposalUi: ProposalUiCopy = {
     Medium: "Medium",
     Low: "Low",
   },
+  domainLabels: {},
 };

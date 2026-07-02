@@ -87,6 +87,12 @@ export function LandingScreen({
   });
 
   useEffect(() => {
+    if (proposal?.clientName) {
+      setClient(proposal.clientName);
+    }
+  }, [proposal?.clientName]);
+
+  useEffect(() => {
     if (!slugParam || !accessKey) return;
     router.replace(buildAccessLinkUrl(slugParam, accessKey, contactName));
   }, [slugParam, accessKey, contactName, router]);
@@ -97,10 +103,13 @@ export function LandingScreen({
     setError(null);
 
     try {
+      const clientForAuth =
+        isPersonalized && proposal ? proposal.clientName : client;
+
       const res = await fetch("/api/access", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ client, password }),
+        body: JSON.stringify({ client: clientForAuth, password }),
       });
 
       const data = await res.json();
@@ -189,21 +198,17 @@ export function LandingScreen({
               </label>
             )}
 
-            {isPersonalized && (
-              <input type="hidden" name="client" value={client} />
-            )}
-
             <label className="block">
               <span className="text-xs font-medium text-[var(--brand-muted)]">
                 {copy.passwordLabel}
               </span>
               <input
-                type="password"
+                type={copy.passwordInputType ?? "password"}
                 name="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                autoComplete="current-password"
+                placeholder=""
+                autoComplete="off"
                 required
                 autoFocus={isPersonalized}
                 className="mt-1.5 w-full rounded-lg border border-[var(--brand-border)] bg-[var(--brand-bg)] px-3 py-2.5 text-sm text-[var(--brand-fg)] outline-none focus:border-[var(--brand-primary)] focus:bg-white"

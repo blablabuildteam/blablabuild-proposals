@@ -10,6 +10,7 @@ export type {
   ProposalUiCopy,
   ProposalUiCopyOverride,
   ProposalUnderstanding,
+  ProposalUnderstandingGrowth,
   PublicProposal,
   SlideVariant,
 } from "@foundation/proposals/types";

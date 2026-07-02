@@ -1,3 +1,4 @@
+import type { BuiltPhase } from "../proposal";
 import type { BuiltPlatformBundle } from "../platform";
 import type { BuiltWorkflow } from "../workflow";
 
@@ -23,6 +24,8 @@ export type ProposalAccessLanding = {
   clientLabel: string;
   passwordLabel: string;
   passwordHint?: string;
+  /** Use "text" for quiz-style answers instead of masked passwords */
+  passwordInputType?: "text" | "password";
   submit: string;
   submitting: string;
   opening: string;
@@ -65,6 +68,8 @@ export type ProposalDebrief = {
   focusAreas: string;
   ecosystem?: string;
   date: string;
+  /** Optional GIF shown top-right on the debrief slide */
+  heroGif?: string;
 };
 
 export type ProposalGoal = {
@@ -111,6 +116,7 @@ export type ProposalUiCopy = {
   whyThisMatters: string;
   whatYouGet: string;
   whatWeDeliver: string;
+  expectedValue: string;
   prerequisites: string;
   unlocks: string;
   impactSuffix: string;
@@ -123,6 +129,7 @@ export type ProposalUiCopy = {
   tableInitiative: string;
   tablePhaseInvest: string;
   tableRice: string;
+  prioScoreLabel?: string;
   fullRiceRanking: string;
   phaseOneBadge: string;
   showingWorkflows: (filtered: number, total: number) => string;
@@ -131,6 +138,7 @@ export type ProposalUiCopy = {
   phaseLabels: Record<string, string>;
   bucketLabels: Record<string, string>;
   impactLabels: Record<string, string>;
+  domainLabels?: Record<string, string>;
 };
 
 export type ProposalUiCopyOverride = Omit<ProposalUiCopy, "showingWorkflows"> & {
@@ -143,6 +151,7 @@ export type ProposalSlideCopy = {
     phaseLabels?: Partial<Record<string, string>>;
     bucketLabels?: Partial<Record<string, string>>;
     impactLabels?: Partial<Record<string, string>>;
+    domainLabels?: Partial<Record<string, string>>;
   };
   debriefKicker?: string;
   wayOfWorking?: {
@@ -172,7 +181,15 @@ export type ProposalSlideCopy = {
     phaseOne: string;
     riceNote: string;
     phaseOneRationale: string;
+    phaseRationales?: Partial<Record<string, string>>;
     workflowRationale?: Partial<Record<string, string>>;
+    riceBreakdown?: {
+      title: string;
+      reach: string;
+      impact: string;
+      confidence: string;
+      effort: string;
+    };
     wf0Note: string;
   };
   investment?: {
@@ -200,21 +217,14 @@ export type ProposalBundle = {
   meta: ProposalMeta;
   access?: ProposalAccess;
   debrief: ProposalDebrief;
+  /** When "combined", debrief slide includes understanding content (no separate tab). */
+  debriefVariant?: "default" | "combined";
   impactMatrix?: ImpactMatrixData;
   understanding?: ProposalUnderstanding;
   slideCopy?: ProposalSlideCopy;
   workflows: BuiltWorkflow[];
   riceSorted: BuiltWorkflow[];
-  phases: readonly {
-    id: string;
-    label: string;
-    period: string;
-    invest: string;
-    investStandalone?: string;
-    headline: string;
-    workflows: readonly string[];
-    outcomes: readonly string[];
-  }[];
+  phases: readonly BuiltPhase[];
   packages: readonly {
     name: string;
     tag: string;

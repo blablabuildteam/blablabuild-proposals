@@ -20,7 +20,7 @@ export function SlidePhaseBacklog() {
       <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="font-mono text-4xl font-bold leading-none tracking-tight text-[var(--brand-muted)] sm:text-5xl">
-            Backlog
+            {phase.label}
           </p>
           <p className="mt-2 text-xs font-bold tracking-wide text-[var(--brand-primary)] uppercase">
             {phase.label}
