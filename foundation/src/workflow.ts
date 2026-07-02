@@ -1,4 +1,4 @@
-import { formatInvestmentByStyle } from "./cost";
+import { formatInvestmentByStyle, sumRanges } from "./cost";
 import { computeRiceFromInput, roundRice } from "./rice";
 import type {
   Bucket,
@@ -9,6 +9,15 @@ import type {
   WorkflowRelation,
   WorkflowSource,
 } from "./types";
+
+/** Deck-ready workflow epic — sub-component with its own ballpark */
+export type BuiltWorkflowEpic = {
+  id: string;
+  title: string;
+  summary: string;
+  deliverables: string[];
+  investment: string;
+};
 
 /** Deck-ready workflow — flat shape for slide components */
 export type BuiltWorkflow = {
@@ -44,6 +53,10 @@ export type BuiltWorkflow = {
   };
   platformId?: string;
   hideTimeline?: boolean;
+  epics?: BuiltWorkflowEpic[];
+  epicsSectionTitle?: string;
+  epicsStandaloneInvest?: string;
+  epicsCombinedNote?: string;
 };
 
 function mapImplementationEstimate(
@@ -65,6 +78,9 @@ export function buildWorkflow(
   investmentFormat: InvestmentFormat = "compact",
 ): BuiltWorkflow {
   const riceReported = roundRice(computeRiceFromInput(source.rice));
+  const epicCosts = source.epics?.map((epic) => epic.cost) ?? [];
+  const epicsStandalone =
+    epicCosts.length > 0 ? sumRanges(epicCosts) : undefined;
 
   return {
     id: source.id,
@@ -101,6 +117,18 @@ export function buildWorkflow(
       : undefined,
     platformId: source.platformId,
     hideTimeline: source.hideTimeline,
+    epics: source.epics?.map((epic) => ({
+      id: epic.id,
+      title: epic.title,
+      summary: epic.summary,
+      deliverables: [...epic.deliverables],
+      investment: formatInvestmentByStyle(epic.cost, investmentFormat),
+    })),
+    epicsSectionTitle: source.epicsSectionTitle,
+    epicsStandaloneInvest: epicsStandalone
+      ? formatInvestmentByStyle(epicsStandalone, investmentFormat)
+      : undefined,
+    epicsCombinedNote: source.epicsCombinedNote,
   };
 }
 

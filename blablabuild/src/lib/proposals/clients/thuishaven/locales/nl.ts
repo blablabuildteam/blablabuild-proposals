@@ -30,7 +30,7 @@ export const nl: ThuishavenLocaleContent = {
       { id: "01", label: "Personeelsformulier", x: 12, y: 72, rotation: -3 },
       { id: "02", label: "Marketing Dashboard", x: 30, y: 82, rotation: 2 },
       { id: "03", label: "Kaartverkoop Dashboard", x: 32, y: 76, rotation: -2 },
-      { id: "05", label: "Bedrijvenpost", x: 34, y: 70, rotation: 4 },
+      { id: "05", label: "Bedrijfsevent Outreach", x: 34, y: 70, rotation: 4 },
       { id: "08", label: "Loyalty Sessie", x: 14, y: 58, rotation: -1 },
       { id: "06", label: "Content Studio", x: 56, y: 78, rotation: 3 },
       { id: "04", label: "DJ Talenten Radar", x: 52, y: 64, rotation: -4 },
@@ -46,17 +46,17 @@ export const nl: ThuishavenLocaleContent = {
     growth: {
       strengthsLabel: "Waar jullie staan",
       strengths: [
-        "Ongekend goed seizoen — organische basis sterker dan ooit",
+        "Ongekend goed seizoen — basis sterker dan ooit",
         "Maximaal loyale achterban en herkenbare merkidentiteit",
         "Succesvol marketingteam dat evenementen snel uitverkoopt",
       ],
-      ambitionLabel: "Waar jullie naartoe",
+      ambitionLabel: "Waar de kansen liggen",
       ambition: [
         "Druk van de ketel halen op operations en content",
         "Beslissingen onderbouwen met keiharde cijfers",
         "Goedkoper meer mensen bereiken en marges maximaliseren",
       ],
-      gapLabel: "Wat ontbreekt",
+      gapLabel: "Huidige limitaties",
       gap: [
         "Waardevolle data verspreid over losse systemen",
         "Handmatige administratie kost te veel tijd",
@@ -110,6 +110,11 @@ export const nl: ThuishavenLocaleContent = {
       expectedValue: "Verwachte waarde",
       prerequisites: "Vereisten",
       unlocks: "Maakt mogelijk",
+      interconnectivity: "Interconnectiviteit",
+      interconnectivityHint:
+        "Dit project deelt data of bouwt voort op andere projecten in de roadmap — klik om het gekoppelde project te bekijken.",
+      feedsFrom: "Ontvangt van",
+      feedsInto: "Draagt bij aan",
       impactSuffix: "impact",
       exit: "Afsluiten",
       previous: "Vorige",
@@ -174,12 +179,17 @@ export const nl: ThuishavenLocaleContent = {
       kicker: "Roadmap",
       title: "**Nu, volgende, later** — gefaseerde oplevering",
       subtitle:
-        "Druk van de ketel en data op orde eerst. Fase 1 levert direct tijdwinst en inzicht. Projecten die data delen zijn visueel gekoppeld — hover om de interconnecties te zien.",
+        "Druk van de ketel en data op orde eerst. Fase 1 levert direct tijdwinst en inzicht. Projecten die data delen zijn visueel gekoppeld — klik op een pijl voor uitleg.",
       parallelLabel: "Strategische sessie",
       parallelBody:
-        "Sessie om de Loyalty Experience te verkennen: scope, doelgroep en pricing bepalen. Loopt parallel aan fase 1, zonder de overige projecten te blokkeren.",
+        "Sessie om de Loyalty Experience te verkennen: scope, doelgroep en pricing bepalen. Maakt nog geen deel uit van fase 1 — planning volgt later.",
       backlogLabel: "Strategische sessie",
       backlogBody: "",
+      connectionHint:
+        "Klik op een pijl om te zien hoe projecten met elkaar verbonden zijn.",
+      connectionTitle: "Datakoppeling",
+      connectionFallback:
+        "Deze projecten delen data of bouwen voort op elkaars resultaten.",
     },
     workflows: {
       kicker: "Overzicht",
@@ -196,10 +206,10 @@ export const nl: ThuishavenLocaleContent = {
       phaseOne: "Fase 1",
       riceNote: "roadmap-volgorde boven kale score",
       phaseOneRationale:
-        "Fase 1 richt zich op de hoogste directe impact: het Marketing Dashboard en Kaartverkoop Dashboard geven direct inzicht in campagneprestaties en ticketverkoop. Het Personeelsformulier haalt de druk van HR. Bedrijvenpost opent een nieuwe omzetstroom. Samen leggen ze de databasis voor alles wat volgt.",
+        "Fase 1 richt zich op de hoogste directe impact: het Marketing Dashboard en Kaartverkoop Dashboard geven direct inzicht in campagneprestaties en ticketverkoop. Het Personeelsformulier haalt de druk van HR. Bedrijfsevent Outreach opent een nieuwe omzetstroom. Samen leggen ze de databasis voor alles wat volgt.",
       phaseRationales: {
         now:
-          "Fase 1 richt zich op de hoogste directe impact: het Marketing Dashboard en Kaartverkoop Dashboard geven direct inzicht in campagneprestaties en ticketverkoop. Het Personeelsformulier haalt de druk van HR. Bedrijvenpost opent een nieuwe omzetstroom. Samen leggen ze de databasis voor alles wat volgt.",
+          "Fase 1 richt zich op de hoogste directe impact: het Marketing Dashboard en Kaartverkoop Dashboard geven direct inzicht in campagneprestaties en ticketverkoop. Het Personeelsformulier haalt de druk van HR. Bedrijfsevent Outreach opent een nieuwe omzetstroom. Samen leggen ze de databasis voor alles wat volgt.",
         next:
           "De Content Studio bouwt voort op de marketingdata uit fase 1. Zodra dashboards live zijn, kan AI content genereren op basis van echte campagneprestaties en tone of voice.",
         near:
@@ -209,13 +219,13 @@ export const nl: ThuishavenLocaleContent = {
         "01":
           "Hoogste Prio-score: laagste inspanning met directe tijdwinst op HR. Standalone project zonder afhankelijkheden, ideaal als eerste live oplevering.",
         "02":
-          "Brengt alle marketingdata samen op één scherm met AI-vragen. Directe koppeling met het Kaartverkoop Dashboard en basis voor de Content Studio.",
+          "Brengt alle marketingdata samen op één scherm met AI-vragen. Visual recognition laat zien welke assets presteren — kleur, beeld, timing, toon per doelgroep — gekoppeld aan ticketverkoop. Basis voor de Content Studio.",
         "03":
-          "Live inzicht in ticketverkoop per platform. Essentieel voor marketingbeslissingen en direct gekoppeld aan het Marketing Dashboard.",
+          "Live inzicht in ticketverkoop per platform, inclusief alert wanneer externe kanalen nog tickets aanbieden terwijl de officiële verkoop uitverkocht is. Essentieel voor marketingbeslissingen en direct gekoppeld aan het Marketing Dashboard.",
         "05":
           "Automatische outbound naar zakelijke prospects. Relatief snelle oplevering met directe omzetpotentie, los te zien van de dashboards.",
         "06":
-          "AI-gedreven contentcreatie op basis van bewezen campagnedata. Wacht op dashboards uit fase 1 voor optimale training en segmentatie.",
+          "Vier onderdelen in één studio: captions, fotoselectie, beeldgeneratie en nieuwsbrieven. Wacht op dashboards uit fase 1 voor optimale training en segmentatie.",
         "04":
           "Objectieve DJ-scoring op basis van verkoop- en marketingdata. Vereist stabiele datafeeds uit fase 1 en 2.",
         "07":
@@ -274,13 +284,13 @@ export const nl: ThuishavenLocaleContent = {
     },
     phaseBacklog: {
       note:
-        "De strategische sessie voor de Loyalty Experience loopt parallel aan fase 1. Doel: de vorm, pricing en voordelen bepalen, zodat we daarna kunnen beslissen wanneer en hoe het loyaliteitsprogramma wordt gebouwd.",
+        "De strategische sessie voor de Loyalty Experience maakt nog geen deel uit van fase 1. Doel: de vorm, pricing en voordelen verkennen, zodat we daarna kunnen beslissen wanneer en hoe het loyaliteitsprogramma wordt gebouwd.",
     },
   },
   wayOfWorking: [
     {
       title: "Partner, geen bureau",
-      body: "We denken mee als sparringpartner — pragmatisch, niet vanuit een standaard playbook. De verkenning is gedaan, nu bouwen we.",
+      body: "We denken mee als sparringpartner — pragmatisch. De verkenning is gedaan, nu tijd om te bouwen.",
     },
     {
       title: "Bouwen met AI",
@@ -316,16 +326,15 @@ export const nl: ThuishavenLocaleContent = {
       id: "now",
       label: "Fase 1, NU",
       period: "Maand 0 tot 2",
-      headline: "**Directe realisatie** — inzicht en efficiency",
+      headline: "**Direct impact** — inzicht en efficiency",
       workflows: ["01", "02", "03", "05"],
       outcomes: [
         "Digitaal personeelsformulier live met automatische XPS-koppeling",
-        "Marketing Dashboard met alle kanalen en AI-vragen",
-        "Kaartverkoop Dashboard met live verkoopcijfers per platform",
-        "Bedrijvenpost met automatische outbound naar zakelijke prospects",
+        "Marketing Dashboard met alle kanalen, asset-performance via visual recognition en AI-vragen",
+        "Kaartverkoop Dashboard met live verkoopcijfers per platform en signalering van secundaire aanbod na uitverkocht",
+        "Bedrijfsevent Outreach met automatische outbound naar zakelijke prospects",
         "Databasis voor datagedreven besluitvorming in fase 2 en 3",
       ],
-      companions: [{ phaseId: "backlog", style: "highlight" }],
     },
     {
       id: "next",
@@ -354,7 +363,7 @@ export const nl: ThuishavenLocaleContent = {
     {
       id: "backlog",
       label: "Strategische sessie",
-      period: "Parallel aan fase 1",
+      period: "Nog niet in fase 1",
       headline: "**Loyalty Experience** verkennen",
       workflows: ["08"],
       outcomes: [
@@ -413,11 +422,13 @@ export const nl: ThuishavenLocaleContent = {
     "02": {
       title: "Het Marketing Dashboard",
       summary:
-        "Eén overzichtelijk scherm met alle marketingdata, gekoppeld aan ticketverkoop, met een slimme chatfunctie voor directe vragen.",
-      why: "Beslissingen over marketing worden nu op onderbuikgevoel genomen. Belangrijke data uit Instagram, TikTok, YouTube, Brevo, Weeztix en TicketSwap staat overal verspreid. Hierdoor is het lastig te zien waarom de ene editie sneller uitverkoopt dan de andere, of welke campagne het meeste oplevert.",
+        "Eén overzichtelijk scherm met alle marketingdata, gekoppeld aan ticketverkoop — inclusief inzicht in welke creatieve assets het best presteren via visual recognition en performance-data.",
+      why: "Beslissingen over marketing worden nu op onderbuikgevoel genomen. Belangrijke data uit Instagram, TikTok, YouTube, Brevo, Weeztix en TicketSwap staat overal verspreid. Hierdoor is het lastig te zien waarom de ene editie sneller uitverkoopt dan de andere, welke campagne het meeste oplevert, of welk beeld, welke kleur, welk tijdstip of welke toon het beste werkt voor welke doelgroep.",
       benefits: [
         "Alle marketingdata op één scherm",
         "Direct zien welke campagne de meeste tickets verkoopt",
+        "Visual recognition: welke assets presteren — kleur, beeld, timing, format",
+        "Inzicht per doelgroep: welke grap, toon of boodschap converteert het best",
         "AI-chatfunctie voor vragen in gewone taal",
         "Inzicht in campagneprestaties per editie",
         "Betere kwaliteit van campagnes en gerichte groei",
@@ -428,10 +439,12 @@ export const nl: ThuishavenLocaleContent = {
       ],
       timeSaved: "Direct inzicht in marketinguitgaven",
       expectedValue:
-        "Direct inzicht in je marketinguitgaven, wat zorgt voor een betere kwaliteit van je campagnes en gerichte groei in kaartverkoop.",
+        "Direct inzicht in je marketinguitgaven én in welke creatieve keuzes daadwerkelijk tickets opleveren — van kleur en beeld tot timing en toon per doelgroep.",
       deliverables: [
         "Dashboard met koppelingen naar Instagram, TikTok, YouTube, Brevo, Weeztix, TicketSwap",
         "Directe koppeling met ticketverkoop",
+        "Asset-performance analyse: visual recognition gekoppeld aan conversiedata",
+        "Inzicht in wat werkt — welke kleur, welk beeld, welk moment, welke boodschap voor welke doelgroep",
         "AI-chatfunctie voor vragen als: waarom verkoopt deze editie beter?",
         "Campagneprestatie-overzichten per editie",
       ],
@@ -439,11 +452,12 @@ export const nl: ThuishavenLocaleContent = {
     "03": {
       title: "Het Kaartverkoop Dashboard",
       summary:
-        "Live dashboard dat verkoopcijfers rechtstreeks ophaalt uit Weeztix, Resident Advisor, Appic en TicketSwap.",
-      why: "Er wordt nu handmatig in spreadsheets bijgehouden hoeveel kaarten er worden verkocht. Het totale aantal is wel bekend, maar de verdeling per platform en het exacte moment van aankoop ontbreekt. Dit kost uren spreadsheet-werk.",
+        "Live dashboard dat verkoopcijfers rechtstreeks ophaalt uit Weeztix, Resident Advisor, Appic en TicketSwap — inclusief signalering wanneer kaarten op externe platforms nog te koop staan terwijl de officiële verkoop uitverkocht is.",
+      why: "Er wordt nu handmatig in spreadsheets bijgehouden hoeveel kaarten er worden verkocht. Het totale aantal is wel bekend, maar de verdeling per platform en het exacte moment van aankoop ontbreekt. Ook valt niet direct op wanneer tickets op TicketSwap of andere secundaire kanalen nog worden aangeboden terwijl de primaire verkoop al sold out is. Dit kost uren spreadsheet-werk en levert gemiste omzet op.",
       benefits: [
         "Geen handmatige spreadsheets meer",
         "Live inzicht per platform, tijdstip en prijs",
+        "Alert wanneer externe platforms nog tickets aanbieden terwijl de officiële verkoop uitverkocht is",
         "Historische data voor slim prijsadvies",
         "Directe koppeling met marketingcampagnes",
         "Strategisch inzicht om ticketprijzen datagedreven te verhogen",
@@ -457,10 +471,11 @@ export const nl: ThuishavenLocaleContent = {
       ],
       timeSaved: "Uren per week aan handmatig spreadsheet-werk",
       expectedValue:
-        "Directe tijdsbesparing op de administratie én strategisch inzicht om ticketprijzen datagedreven te verhogen voor meer omzet.",
+        "Minder handmatig werk en slimmere ticketprijzen op basis van echte data — én meteen zicht wanneer tickets op TicketSwap en andere kanalen nog te koop staan terwijl de officiële verkoop al uitverkocht is.",
       deliverables: [
         "Live dashboard gekoppeld aan Weeztix, Resident Advisor, Appic en TicketSwap",
         "Verkoop per platform, tijdstip en prijs",
+        "Detectie van tickets op externe platforms terwijl de officiële verkoop uitverkocht is",
         "Historische dataopslag voor prijsadvies",
         "Export en rapportage voor management",
       ],
@@ -491,7 +506,7 @@ export const nl: ThuishavenLocaleContent = {
       ],
     },
     "05": {
-      title: "Bedrijvenpost & Verkoop Automatisering",
+      title: "Bedrijfsevent Outreach",
       summary:
         "Automatisch interessante bedrijven identificeren voor zakelijke evenementen en op het juiste moment een persoonlijke e-mail sturen.",
       why: "Thuishaven draait in de weekenden een topomzet, maar de doordeweekse dagen zijn vaak nog vrij. Er wordt momenteel weinig actieve verkoop richting bedrijven gedaan. Hier ligt een grote kans op extra omzet.",
@@ -515,13 +530,14 @@ export const nl: ThuishavenLocaleContent = {
     "06": {
       title: "De Thuishaven Content Studio",
       summary:
-        "Centrale creatieve studio met AI Caption Generator, slimme fotoselectie, beeldgeneratie en gesegmenteerde nieuwsbrieven — vier onderdelen, één platform.",
-      why: "Het handmatig schrijven van teksten voor Instagram, TikTok en nieuwsbrieven kost wekelijks veel tijd. Daarnaast ontvangt Thuishaven wekelijks mappen met 400 tot 500 foto's waarvan het uitzoeken 2 tot 3 uur kost. Door een slim systeem te trainen op de Thuishaven-stijl versnellen we dit drastisch.",
+        "Centrale creatieve studio opgedeeld in vier onderdelen: captions, fotoselectie, beeldgeneratie en gesegmenteerde nieuwsbrieven — één platform, modulair of gecombineerd af te nemen.",
+      why: "Het handmatig schrijven van teksten voor Instagram, TikTok en nieuwsbrieven kost wekelijks veel tijd. Daarnaast ontvangt Thuishaven wekelijks mappen met 400 tot 500 foto's van evenementen — het uitzoeken van de juiste beelden kost nu al snel 2 tot 3 uur per week. Door een slim systeem te trainen op de unieke Thuishaven-stijl versnellen we dit drastisch.",
       benefits: [
-        "AI Caption Generator getraind op jullie exacte tone of voice",
+        "Vier onderdelen, één studio — modulair of gecombineerd",
+        "Getrainde Caption Generator op jullie exacte tone of voice",
         "Fotoselectie van uren naar minuten met visual recognition",
         "Statische beeldgeneratie in de huisstijl",
-        "Gesegmenteerde nieuwsbrieven voor gerichte doelgroepen",
+        "Gesegmenteerde nieuwsbrieven per doelgroep en evenement",
         "Self-learning: het systeem wordt continu beter",
       ],
       prerequisites: [
@@ -530,6 +546,65 @@ export const nl: ThuishavenLocaleContent = {
       timeSaved: "Enorme wekelijkse besparing op contentcreatie en fotoselectie",
       expectedValue:
         "Enorme wekelijkse tijdsbesparing op contentcreatie en fotoselectie, gecombineerd met een hogere marketingkwaliteit door persoonlijke nieuwsbrieven.",
+      investmentNote:
+        "Onderdelen afzonderlijk: €16.000 – €20.500. Gecombineerd als één project profiteren jullie van synergie.",
+      epicsSectionTitle: "Vier onderdelen, één studio",
+      epicsCombinedNote:
+        "Alle onderdelen los afnemen kost €16.000 – €20.500. Als één gecombineerd project leveren we efficiënter door gedeelde infrastructuur, training en design — ballpark €14.000 – €18.500.",
+      epics: [
+        {
+          id: "06-1",
+          title: "Getrainde Caption Generator",
+          summary:
+            "We trekken historische social posts en mailings binnen om een AI-agent te trainen op jullie exacte tone of voice. De marketeer kiest evenement, doelgroep en kanaal — de generator stelt direct tekstvarianten voor. Elke keuze voedt het model opnieuw voor een self-learning proces.",
+          deliverables: [
+            "Training op historische Thuishaven-posts en mailings",
+            "Interface: evenement, doelgroep en kanaal selecteren",
+            "Meerdere tekstvarianten per uiting",
+            "Self-learning op basis van definitieve marketeerkeuzes",
+          ],
+          cost: { min: 4000, max: 5000 },
+        },
+        {
+          id: "06-2",
+          title: "AI Visual Selection & Curation",
+          summary:
+            "Bulk-analyse van binnenkomende fotomappen. De marketeer uploadt reference images en geeft een begeleidende prompt mee. Visual recognition serveert binnen seconden de beste subset — van uren handmatig werk naar minuten.",
+          deliverables: [
+            "Bulk-upload en analyse van fotomappen",
+            "Reference images + prompt als stuurinstructie",
+            "Visual recognition voor stijl en compositie",
+            "Geselecteerde subset binnen enkele seconden",
+          ],
+          cost: { min: 3500, max: 4500 },
+        },
+        {
+          id: "06-3",
+          title: "Statische Beelden Generator",
+          summary:
+            "Uitbreiding naar beeldcreatie zodra de tekstuele basis staat. Upload een reference image — op basis van evenement, doelgroep en kanaal genereert de AI een nieuw beeld in de huisstijl, inclusief teksten op de image, direct downloadbaar.",
+          deliverables: [
+            "Beeldgeneratie op basis van reference image",
+            "Variabelen: evenement, doelgroep, kanaal",
+            "Output in Thuishaven-huisstijl met optionele on-image tekst",
+            "Direct downloaden voor social en campagnes",
+          ],
+          cost: { min: 5000, max: 6500 },
+        },
+        {
+          id: "06-4",
+          title: "Segmented Newsletter Generator",
+          summary:
+            "Combineert de tekstuele toon (onderdeel 1) en visuele assets (onderdeel 2 & 3) in een geautomatiseerde nieuwsbrief-module. Bouw direct gesegmenteerde e-mails op basis van gegenereerde content — verschillende gepersonaliseerde versies per doelgroep en evenement.",
+          deliverables: [
+            "Nieuwsbrief-module gekoppeld aan captions en beelden",
+            "Segmentatie per doelgroep en evenement",
+            "Meerdere gepersonaliseerde versies per campagne",
+            "Gerichte targeting van specifieke fansegmenten",
+          ],
+          cost: { min: 3500, max: 4500 },
+        },
+      ],
       deliverables: [
         "Getrainde Caption Generator voor alle kanalen",
         "AI Visual Selection & Curation module",

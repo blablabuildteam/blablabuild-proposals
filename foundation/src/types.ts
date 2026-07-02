@@ -57,6 +57,15 @@ export type WorkflowRelation = {
   qualifier?: string;
 };
 
+/** Sub-component of a workflow (e.g. Content Studio epics) — priced and described separately */
+export type WorkflowEpicSource = {
+  id: string;
+  title: string;
+  summary: string;
+  deliverables: readonly string[];
+  cost: EurRange;
+};
+
 /** Source definition for a workflow — narrative + scoring + cost */
 export type WorkflowSource = {
   id: string;
@@ -87,6 +96,12 @@ export type WorkflowSource = {
   investmentNote?: string;
   /** Optional later-phase estimate (e.g. WF10 build after discovery) */
   implementationEstimate?: ImplementationEstimate;
+  /** Optional sub-components with individual ballparks (e.g. Content Studio epics) */
+  epics?: readonly WorkflowEpicSource[];
+  /** Section heading when epics are shown on the detail view */
+  epicsSectionTitle?: string;
+  /** Footnote under combined epic pricing (e.g. synergy when bought together) */
+  epicsCombinedNote?: string;
   /** Shared platform bundle id when workflow is cheaper on combined build */
   platformId?: string;
   /** Operations, marketing or sales focus — shown on detail views */

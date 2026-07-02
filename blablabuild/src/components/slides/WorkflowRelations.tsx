@@ -6,65 +6,54 @@ import { useDeckNavigation } from "@/components/DeckNavigation";
 import { useProposalUi } from "@/lib/proposals/use-proposal-ui";
 import { Badge } from "./shared";
 
-function RelationSection({
-  title,
-  items,
-  variant,
+type Connection = WorkflowRelation & {
+  direction: "in" | "out";
+};
+
+function ConnectionRow({
+  connection,
+  directionLabel,
   onOpen,
   resolveTitle,
 }: {
-  title: string;
-  items: WorkflowRelation[];
-  variant: "prerequisite" | "unlock";
+  connection: Connection;
+  directionLabel: string;
   onOpen: (id: string) => void;
   resolveTitle: (id: string) => string | undefined;
 }) {
-  const isPrereq = variant === "prerequisite";
+  const linkedTitle = resolveTitle(connection.workflowId);
+  const label = linkedTitle ?? connection.workflowId;
+  const arrow = connection.direction === "in" ? "←" : "→";
 
   return (
-    <section
-      className={`rounded-xl border p-5 sm:p-6 ${
-        isPrereq
-          ? "border-[var(--brand-border)] bg-[var(--brand-bg)]"
-          : "border-[var(--brand-primary)]/20 bg-[var(--brand-primary)]/5"
-      }`}
-    >
-      <p
-        className={`text-[10px] font-bold tracking-wide uppercase ${
-          isPrereq ? "text-[var(--brand-muted)]" : "text-[var(--brand-primary)]"
-        }`}
+    <li>
+      <button
+        type="button"
+        onClick={() => onOpen(connection.workflowId)}
+        className="group w-full rounded-xl border border-[var(--brand-border)]/70 bg-white px-3 py-3 text-left transition hover:border-[var(--brand-primary)]/35 hover:shadow-sm sm:px-4"
       >
-        {title}
-      </p>
-      <ul className="mt-3 space-y-2">
-        {items.map((item) => {
-          const linkedTitle = resolveTitle(item.workflowId);
-          const label = linkedTitle ?? item.workflowId;
-
-          return (
-            <li key={`${item.workflowId}-${item.qualifier ?? ""}`}>
-              <button
-                type="button"
-                onClick={() => onOpen(item.workflowId)}
-                className="group w-full rounded-lg border border-transparent px-2 py-1.5 text-left transition hover:border-[var(--brand-primary)]/25 hover:bg-white/80"
-              >
-                <span className="flex flex-wrap items-center gap-2">
-                  <Badge variant="black">{item.workflowId}</Badge>
-                  <span className="text-sm font-medium text-[var(--brand-fg)] group-hover:text-[var(--brand-primary)]">
-                    {label}
-                  </span>
-                </span>
-                {item.qualifier && (
-                  <span className="mt-1 block pl-0.5 text-xs leading-snug text-[var(--brand-muted)]">
-                    {item.qualifier}
-                  </span>
-                )}
-              </button>
-            </li>
-          );
-        })}
-      </ul>
-    </section>
+        <div className="flex flex-wrap items-center gap-2">
+          <span
+            className="font-mono text-sm font-bold text-[var(--brand-primary)]"
+            aria-hidden
+          >
+            {arrow}
+          </span>
+          <Badge variant="black">{connection.workflowId}</Badge>
+          <span className="text-sm font-semibold text-[var(--brand-fg)] group-hover:text-[var(--brand-primary)]">
+            {label}
+          </span>
+          <span className="text-[10px] font-bold tracking-wide text-[var(--brand-muted)] uppercase">
+            {directionLabel}
+          </span>
+        </div>
+        {connection.qualifier ? (
+          <p className="mt-2 pl-6 text-xs leading-relaxed text-[var(--brand-fg-secondary)] sm:pl-7 sm:text-sm">
+            {connection.qualifier}
+          </p>
+        ) : null}
+      </button>
+    </li>
   );
 }
 
@@ -73,35 +62,44 @@ export function WorkflowRelations({ wf }: { wf: Workflow }) {
   const { openWorkflow } = useDeckNavigation();
   const ui = useProposalUi();
 
-  const prerequisites = wf.prerequisites ?? [];
-  const unlocks = wf.unlocks ?? [];
+  const connections: Connection[] = [
+    ...(wf.prerequisites ?? []).map((item) => ({
+      ...item,
+      direction: "in" as const,
+    })),
+    ...(wf.unlocks ?? []).map((item) => ({
+      ...item,
+      direction: "out" as const,
+    })),
+  ];
 
-  if (prerequisites.length === 0 && unlocks.length === 0) {
+  if (connections.length === 0) {
     return null;
   }
 
   const resolveTitle = (id: string) => getWorkflow(id)?.title;
 
   return (
-    <div className="flex min-w-[220px] flex-col gap-4">
-      {prerequisites.length > 0 && (
-        <RelationSection
-          title={ui.prerequisites}
-          items={prerequisites}
-          variant="prerequisite"
-          onOpen={openWorkflow}
-          resolveTitle={resolveTitle}
-        />
-      )}
-      {unlocks.length > 0 && (
-        <RelationSection
-          title={ui.unlocks}
-          items={unlocks}
-          variant="unlock"
-          onOpen={openWorkflow}
-          resolveTitle={resolveTitle}
-        />
-      )}
-    </div>
+    <section className="rounded-xl border border-[var(--brand-primary)]/25 bg-[var(--brand-primary)]/5 p-5 sm:p-6">
+      <p className="text-[10px] font-bold tracking-wide text-[var(--brand-primary)] uppercase">
+        {ui.interconnectivity}
+      </p>
+      <p className="mt-1 max-w-2xl text-sm leading-relaxed text-[var(--brand-fg-secondary)]">
+        {ui.interconnectivityHint}
+      </p>
+      <ul className="mt-4 space-y-2.5">
+        {connections.map((connection) => (
+          <ConnectionRow
+            key={`${connection.direction}-${connection.workflowId}-${connection.qualifier ?? ""}`}
+            connection={connection}
+            directionLabel={
+              connection.direction === "in" ? ui.feedsFrom : ui.feedsInto
+            }
+            onOpen={openWorkflow}
+            resolveTitle={resolveTitle}
+          />
+        ))}
+      </ul>
+    </section>
   );
 }

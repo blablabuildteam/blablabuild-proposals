@@ -28,6 +28,11 @@ export const defaultProposalUi: ProposalUiCopy = {
   expectedValue: "Expected value",
   prerequisites: "Prerequisites",
   unlocks: "Unlocks",
+  interconnectivity: "Interconnectivity",
+  interconnectivityHint:
+    "These projects share data or build on each other's outputs.",
+  feedsFrom: "Receives from",
+  feedsInto: "Contributes to",
   impactSuffix: "impact",
   exit: "Exit",
   previous: "Previous",

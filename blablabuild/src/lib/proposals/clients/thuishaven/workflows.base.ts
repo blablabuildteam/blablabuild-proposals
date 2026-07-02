@@ -32,7 +32,10 @@ export type WorkflowLocaleText = Pick<
   | "investmentLabel"
   | "expectedValue"
   | "investmentNote"
+  | "epicsSectionTitle"
+  | "epicsCombinedNote"
 > & {
+  epics?: readonly import("@foundation/types").WorkflowEpicSource[];
   implementationEstimate?: { label: string; investmentLabel?: string };
   hideTimeline?: boolean;
 };
@@ -46,7 +49,7 @@ export const workflowBases: readonly WorkflowBase[] = [
     phaseOriginal: "NOW",
     phaseRevised: "NOW",
     effort: { daysMin: 5, daysMax: 7, weeks: "1–1½", daysLabel: "5–7 dagen" },
-    cost: { min: 4500, max: 6500 },
+    cost: { min: 3000, max: 5000 },
     domainLabels: ["Operations"],
   },
   {
@@ -57,7 +60,7 @@ export const workflowBases: readonly WorkflowBase[] = [
     phaseOriginal: "NOW",
     phaseRevised: "NOW",
     effort: { daysMin: 6, daysMax: 8, weeks: "1½–2", daysLabel: "6–8 dagen" },
-    cost: { min: 5500, max: 7500 },
+    cost: { min: 6500, max: 8500 },
     domainLabels: ["Marketing"],
   },
   {
@@ -68,7 +71,7 @@ export const workflowBases: readonly WorkflowBase[] = [
     phaseOriginal: "NOW",
     phaseRevised: "NOW",
     effort: { daysMin: 7, daysMax: 9, weeks: "1½–2", daysLabel: "7–9 dagen" },
-    cost: { min: 6500, max: 8500 },
+    cost: { min: 4000, max: 6000 },
     domainLabels: ["Marketing"],
   },
   {
@@ -120,8 +123,8 @@ export const workflowBases: readonly WorkflowBase[] = [
     bucket: "Quick Win",
     rice: { reach: 200, impact: 3, confidencePct: 90, effort: 1 },
     impactLabel: "High",
-    phaseOriginal: "NOW",
-    phaseRevised: "NOW",
+    phaseOriginal: "BACKLOG",
+    phaseRevised: "BACKLOG",
     effort: { daysMin: 3, daysMax: 4, weeks: "1", daysLabel: "3–4 dagen" },
     cost: { min: 3500, max: 3500 },
     excludeFromTotals: true,

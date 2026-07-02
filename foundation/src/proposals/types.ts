@@ -119,6 +119,10 @@ export type ProposalUiCopy = {
   expectedValue: string;
   prerequisites: string;
   unlocks: string;
+  interconnectivity: string;
+  interconnectivityHint: string;
+  feedsFrom: string;
+  feedsInto: string;
   impactSuffix: string;
   exit: string;
   previous: string;
@@ -171,6 +175,9 @@ export type ProposalSlideCopy = {
     parallelBody: string;
     backlogLabel?: string;
     backlogBody?: string;
+    connectionHint?: string;
+    connectionTitle?: string;
+    connectionFallback?: string;
   };
   workflows?: { kicker: string; title: string; subtitle: string };
   prioritization?: {

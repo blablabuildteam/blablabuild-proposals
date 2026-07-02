@@ -7,6 +7,7 @@ import { Badge, HighlightedTitle, BulletList } from "./shared";
 import { WorkflowWeekLabel } from "./WorkflowDetailCard";
 import { PlatformBundleCard } from "./PlatformBundleCard";
 import { WorkflowRelations } from "./WorkflowRelations";
+import { WorkflowEpicsPanel } from "./WorkflowEpicsPanel";
 
 export function SlideWorkflowUseCase({
   wf,
@@ -107,8 +108,10 @@ export function SlideWorkflowUseCase({
         </section>
       </div>
 
-      <div className="mt-4 grid gap-4 lg:grid-cols-[1fr_auto]">
-        <section className="rounded-xl border border-[var(--brand-border)] bg-white p-5 sm:p-6">
+      {wf.epics?.length ? (
+        <WorkflowEpicsPanel wf={wf} />
+      ) : (
+        <section className="mt-4 rounded-xl border border-[var(--brand-border)] bg-white p-5 sm:p-6">
           <p className="text-[10px] font-bold tracking-wide text-[var(--brand-muted)] uppercase">
             {ui.whatWeDeliver}
           </p>
@@ -116,7 +119,9 @@ export function SlideWorkflowUseCase({
             <BulletList items={wf.deliverables} />
           </div>
         </section>
+      )}
 
+      <div className="mt-4">
         <WorkflowRelations wf={wf} />
       </div>
 

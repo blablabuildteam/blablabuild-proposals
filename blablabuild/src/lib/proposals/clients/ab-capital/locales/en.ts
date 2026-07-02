@@ -113,6 +113,11 @@ export const en: AbCapitalLocaleContent = {
       whatWeDeliver: "What we deliver",
       prerequisites: "Prerequisites",
       unlocks: "Unlocks",
+      interconnectivity: "Interconnectivity",
+      interconnectivityHint:
+        "This workflow shares data or builds on other workflows in the roadmap — click to view the linked workflow.",
+      feedsFrom: "Receives from",
+      feedsInto: "Contributes to",
       impactSuffix: "impact",
       exit: "Exit",
       previous: "Previous",

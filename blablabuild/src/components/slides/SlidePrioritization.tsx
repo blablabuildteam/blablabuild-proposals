@@ -286,6 +286,14 @@ export function SlidePrioritization() {
               </div>
 
               <div className={`divide-y ${style.rowDivide}`}>
+                {rationale ? (
+                  <div className="px-4 py-3 sm:px-5">
+                    <p className="text-xs leading-relaxed text-[var(--brand-fg)]/85 sm:text-sm">
+                      {rationale}
+                    </p>
+                  </div>
+                ) : null}
+
                 {phaseWorkflows.map((wf) => {
                   if (!wf) return null;
                   const width = (wf.riceReported / maxRice) * 100;
@@ -319,18 +327,6 @@ export function SlidePrioritization() {
                   );
                 })}
               </div>
-
-              {rationale && (
-                <p
-                  className={`border-t px-4 py-3 text-xs leading-relaxed sm:px-5 sm:text-sm ${style.headerBorder} ${
-                    phase.id === "near"
-                      ? "text-[var(--brand-fg)]/85"
-                      : "text-[var(--brand-fg)]/85"
-                  }`}
-                >
-                  {rationale}
-                </p>
-              )}
             </div>
           );
         })}

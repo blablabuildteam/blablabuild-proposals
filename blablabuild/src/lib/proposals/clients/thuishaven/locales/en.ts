@@ -30,7 +30,7 @@ export const en: ThuishavenLocaleContent = {
       { id: "01", label: "Staff Form", x: 12, y: 72, rotation: -3 },
       { id: "02", label: "Marketing Dashboard", x: 30, y: 82, rotation: 2 },
       { id: "03", label: "Ticket Sales Dashboard", x: 32, y: 76, rotation: -2 },
-      { id: "05", label: "Corporate Sales", x: 34, y: 70, rotation: 4 },
+      { id: "05", label: "Corporate Event Outreach", x: 34, y: 70, rotation: 4 },
       { id: "08", label: "Loyalty Session", x: 14, y: 58, rotation: -1 },
       { id: "06", label: "Content Studio", x: 56, y: 78, rotation: 3 },
       { id: "04", label: "DJ Talent Radar", x: 52, y: 64, rotation: -4 },
@@ -50,13 +50,13 @@ export const en: ThuishavenLocaleContent = {
         "Maximally loyal community and recognisable brand identity",
         "Successful marketing team selling out events fast",
       ],
-      ambitionLabel: "Where you're headed",
+      ambitionLabel: "Where the opportunities are",
       ambition: [
         "Relieve pressure on operations and content",
         "Back decisions with hard data",
         "Reach more people at lower cost and maximise margins",
       ],
-      gapLabel: "What's missing",
+      gapLabel: "Current limitations",
       gap: [
         "Valuable data scattered across separate systems",
         "Manual admin consuming too much time",
@@ -110,6 +110,11 @@ export const en: ThuishavenLocaleContent = {
       expectedValue: "Expected value",
       prerequisites: "Prerequisites",
       unlocks: "Unlocks",
+      interconnectivity: "Interconnectivity",
+      interconnectivityHint:
+        "This project shares data or builds on other projects in the roadmap — click to view the linked project.",
+      feedsFrom: "Receives from",
+      feedsInto: "Contributes to",
       impactSuffix: "impact",
       exit: "Exit",
       previous: "Previous",
@@ -174,12 +179,17 @@ export const en: ThuishavenLocaleContent = {
       kicker: "Roadmap",
       title: "**Now, next, later** — phased delivery",
       subtitle:
-        "Relieve pressure and get data in order first. Phase 1 delivers immediate time savings and insight. Projects that share data are visually connected — hover to explore interconnectivity.",
+        "Relieve pressure and get data in order first. Phase 1 delivers immediate time savings and insight. Projects that share data are connected — click an arrow for details.",
       parallelLabel: "Strategic session",
       parallelBody:
-        "Session to explore the Loyalty Experience: define scope, audience and pricing. Runs parallel to phase 1 without blocking other projects.",
+        "Session to explore the Loyalty Experience: define scope, audience and pricing. Not part of phase 1 yet — scheduling to follow.",
       backlogLabel: "Strategic session",
       backlogBody: "",
+      connectionHint:
+        "Click an arrow to see how projects connect to each other.",
+      connectionTitle: "Data connection",
+      connectionFallback:
+        "These projects share data or build on each other's outputs.",
     },
     workflows: {
       kicker: "Overview",
@@ -196,10 +206,10 @@ export const en: ThuishavenLocaleContent = {
       phaseOne: "Phase 1",
       riceNote: "roadmap order over raw score",
       phaseOneRationale:
-        "Phase 1 focuses on the highest direct impact: the Marketing Dashboard and Ticket Sales Dashboard provide immediate insight into campaign performance and ticket sales. The Staff Form relieves HR pressure. Corporate Sales opens a new revenue stream. Together they lay the data foundation for everything that follows.",
+        "Phase 1 focuses on the highest direct impact: the Marketing Dashboard and Ticket Sales Dashboard provide immediate insight into campaign performance and ticket sales. The Staff Form relieves HR pressure. Corporate Event Outreach opens a new revenue stream. Together they lay the data foundation for everything that follows.",
       phaseRationales: {
         now:
-          "Phase 1 focuses on the highest direct impact: the Marketing Dashboard and Ticket Sales Dashboard provide immediate insight into campaign performance and ticket sales. The Staff Form relieves HR pressure. Corporate Sales opens a new revenue stream. Together they lay the data foundation for everything that follows.",
+          "Phase 1 focuses on the highest direct impact: the Marketing Dashboard and Ticket Sales Dashboard provide immediate insight into campaign performance and ticket sales. The Staff Form relieves HR pressure. Corporate Event Outreach opens a new revenue stream. Together they lay the data foundation for everything that follows.",
         next:
           "The Content Studio builds on marketing data from phase 1. Once dashboards are live, AI can generate content based on real campaign performance and tone of voice.",
         near:
@@ -209,13 +219,13 @@ export const en: ThuishavenLocaleContent = {
         "01":
           "Highest Priority score: lowest effort with immediate time savings on HR. Standalone project with no dependencies, ideal as the first live delivery.",
         "02":
-          "Brings all marketing data together on one screen with AI questions. Direct link to the Ticket Sales Dashboard and basis for the Content Studio.",
+          "Brings all marketing data together on one screen with AI questions. Visual recognition shows which assets perform — colour, image, timing, tone per audience — linked to ticket sales. Foundation for the Content Studio.",
         "03":
-          "Live insight into ticket sales per platform. Essential for marketing decisions and directly linked to the Marketing Dashboard.",
+          "Live insight into ticket sales per platform, including alerts when external channels still list tickets while official sales are sold out. Essential for marketing decisions and directly linked to the Marketing Dashboard.",
         "05":
           "Automatic outbound to business prospects. Relatively fast delivery with direct revenue potential, independent of the dashboards.",
         "06":
-          "AI-driven content creation based on proven campaign data. Waits for phase 1 dashboards for optimal training and segmentation.",
+          "Four epics in one studio: captions, photo selection, image generation and newsletters. Waits for phase 1 dashboards for optimal training and segmentation.",
         "04":
           "Objective DJ scoring based on sales and marketing data. Requires stable data feeds from phases 1 and 2.",
         "07":
@@ -274,13 +284,13 @@ export const en: ThuishavenLocaleContent = {
     },
     phaseBacklog: {
       note:
-        "The strategic session for the Loyalty Experience runs parallel to phase 1. Goal: determine the format, pricing and benefits, so we can then decide when and how the loyalty programme will be built.",
+        "The strategic session for the Loyalty Experience is not part of phase 1 yet. Goal: explore the format, pricing and benefits, so we can then decide when and how the loyalty programme will be built.",
     },
   },
   wayOfWorking: [
     {
       title: "Partner, not an agency",
-      body: "We think along as a sparring partner — pragmatic, not from a standard playbook. The exploration is done, now we build.",
+      body: "We think along as a sparring partner — pragmatic. The exploration is done, now it's time to build.",
     },
     {
       title: "Build with AI",
@@ -316,16 +326,15 @@ export const en: ThuishavenLocaleContent = {
       id: "now",
       label: "Phase 1, NOW",
       period: "Month 0 to 2",
-      headline: "**Direct realisation** — insight and efficiency",
+      headline: "**Direct impact** — insight and efficiency",
       workflows: ["01", "02", "03", "05"],
       outcomes: [
         "Digital staff form live with automatic XPS integration",
-        "Marketing Dashboard with all channels and AI questions",
-        "Ticket Sales Dashboard with live sales figures per platform",
-        "Corporate Sales with automatic outbound to business prospects",
+        "Marketing Dashboard with all channels, asset performance via visual recognition and AI questions",
+        "Ticket Sales Dashboard with live sales per platform and alerts for secondary listings after sell-out",
+        "Corporate Event Outreach with automatic outbound to business prospects",
         "Data foundation for data-driven decision-making in phase 2 and 3",
       ],
-      companions: [{ phaseId: "backlog", style: "highlight" }],
     },
     {
       id: "next",
@@ -354,7 +363,7 @@ export const en: ThuishavenLocaleContent = {
     {
       id: "backlog",
       label: "Strategic session",
-      period: "Parallel to phase 1",
+      period: "Not part of phase 1 yet",
       headline: "**Explore** the Loyalty Experience",
       workflows: ["08"],
       outcomes: [
@@ -413,11 +422,13 @@ export const en: ThuishavenLocaleContent = {
     "02": {
       title: "The Marketing Dashboard",
       summary:
-        "One clear screen with all marketing data, linked to ticket sales, with a smart chat function for direct questions.",
-      why: "Marketing decisions are currently made on gut feeling. Important data from Instagram, TikTok, YouTube, Brevo, Weeztix and TicketSwap is scattered everywhere. This makes it hard to see why one edition sells out faster than another, or which campaign generates the most revenue.",
+        "One clear screen with all marketing data, linked to ticket sales — including insight into which creative assets perform best via visual recognition and performance data.",
+      why: "Marketing decisions are currently made on gut feeling. Important data from Instagram, TikTok, YouTube, Brevo, Weeztix and TicketSwap is scattered everywhere. This makes it hard to see why one edition sells out faster than another, which campaign generates the most revenue, or which image, colour, timing or tone works best for which audience.",
       benefits: [
         "All marketing data on one screen",
         "See directly which campaign sells the most tickets",
+        "Visual recognition: which assets perform — colour, image, timing, format",
+        "Audience insight: which joke, tone or message converts best",
         "AI chat function for questions in plain language",
         "Insight into campaign performance per edition",
         "Better campaign quality and targeted growth",
@@ -428,10 +439,12 @@ export const en: ThuishavenLocaleContent = {
       ],
       timeSaved: "Direct insight into marketing spend",
       expectedValue:
-        "Direct insight into marketing spend, leading to better campaign quality and targeted growth in ticket sales.",
+        "Direct insight into marketing spend and into which creative choices actually drive tickets — from colour and image to timing and tone per audience.",
       deliverables: [
         "Dashboard with integrations for Instagram, TikTok, YouTube, Brevo, Weeztix, TicketSwap",
         "Direct link with ticket sales",
+        "Asset performance analysis: visual recognition linked to conversion data",
+        "Insight into what works — which colour, image, moment and message for which audience",
         "AI chat function for questions like: why does this edition sell better?",
         "Campaign performance overviews per edition",
       ],
@@ -439,11 +452,12 @@ export const en: ThuishavenLocaleContent = {
     "03": {
       title: "The Ticket Sales Dashboard",
       summary:
-        "Live dashboard pulling sales figures directly from Weeztix, Resident Advisor, Appic and TicketSwap.",
-      why: "Ticket sales are currently tracked manually in spreadsheets. The total number is known, but the breakdown per platform and exact time of purchase is missing. This costs hours of spreadsheet work.",
+        "Live dashboard pulling sales figures directly from Weeztix, Resident Advisor, Appic and TicketSwap — including alerts when tickets are still listed on external platforms while official sales are sold out.",
+      why: "Ticket sales are currently tracked manually in spreadsheets. The total number is known, but the breakdown per platform and exact time of purchase is missing. It is also not immediately visible when tickets on TicketSwap or other secondary channels are still on offer while primary sales are already sold out. This costs hours of spreadsheet work and leaves revenue on the table.",
       benefits: [
         "No more manual spreadsheets",
         "Live insight per platform, time and price",
+        "Alert when external platforms still list tickets while official sales are sold out",
         "Historical data for smart pricing advice",
         "Direct link with marketing campaigns",
         "Strategic insight to increase ticket prices data-driven",
@@ -457,10 +471,11 @@ export const en: ThuishavenLocaleContent = {
       ],
       timeSaved: "Hours per week on manual spreadsheet work",
       expectedValue:
-        "Immediate time savings on administration and strategic insight to increase ticket prices data-driven for more revenue.",
+        "Less manual admin work and smarter ticket pricing based on real data — plus immediate visibility when tickets still appear on TicketSwap and other channels while official sales are already sold out.",
       deliverables: [
         "Live dashboard connected to Weeztix, Resident Advisor, Appic and TicketSwap",
         "Sales per platform, time and price",
+        "Detection of tickets on external platforms while official sales are sold out",
         "Historical data storage for pricing advice",
         "Export and reporting for management",
       ],
@@ -491,7 +506,7 @@ export const en: ThuishavenLocaleContent = {
       ],
     },
     "05": {
-      title: "Corporate Sales Automation",
+      title: "Corporate Event Outreach",
       summary:
         "Automatically identify interesting companies for business events and send a personal email at the right moment.",
       why: "Thuishaven generates top revenue on weekends, but weekdays are often still quiet. There is currently little active sales outreach to companies. This represents a major revenue opportunity.",
@@ -515,13 +530,14 @@ export const en: ThuishavenLocaleContent = {
     "06": {
       title: "The Thuishaven Content Studio",
       summary:
-        "Central creative studio with AI Caption Generator, smart photo selection, image generation and segmented newsletters — four components, one platform.",
-      why: "Manually writing copy for Instagram, TikTok and newsletters takes a lot of time every week. Additionally, Thuishaven receives folders with 400 to 500 photos weekly, and selecting the right ones takes 2 to 3 hours. By training a smart system on the Thuishaven style, we speed this up drastically.",
+        "Central creative studio split into four epics: captions, photo selection, image generation and segmented newsletters — one platform, modular or combined.",
+      why: "Manually writing copy for Instagram, TikTok and newsletters takes a lot of time every week. Thuishaven also receives folders with 400 to 500 event photos weekly — selecting the right images now takes 2 to 3 hours per week. By training a smart system on the unique Thuishaven style, we drastically speed this up.",
       benefits: [
-        "AI Caption Generator trained on your exact tone of voice",
+        "Four epics, one studio — modular or combined",
+        "Trained Caption Generator on your exact tone of voice",
         "Photo selection from hours to minutes with visual recognition",
         "Static image generation in brand style",
-        "Segmented newsletters for targeted audiences",
+        "Segmented newsletters per audience and event",
         "Self-learning: the system continuously improves",
       ],
       prerequisites: [
@@ -530,6 +546,65 @@ export const en: ThuishavenLocaleContent = {
       timeSaved: "Enormous weekly savings on content creation and photo selection",
       expectedValue:
         "Enormous weekly time savings on content creation and photo selection, combined with higher marketing quality through personalised newsletters.",
+      investmentNote:
+        "Epics separately: €16,000 – €20,500. Combined as one project benefits from synergy.",
+      epicsSectionTitle: "Four epics, one studio",
+      epicsCombinedNote:
+        "Buying all epics separately costs €16,000 – €20,500. As one combined project we deliver more efficiently through shared infrastructure, training and design — ballpark €14,000 – €18,500.",
+      epics: [
+        {
+          id: "06-1",
+          title: "Trained Caption Generator",
+          summary:
+            "We ingest historical social posts and mailings to train an AI agent on your exact tone of voice. The marketer selects event, audience and channel — the generator proposes text variants instantly. Every final choice feeds the model for continuous self-learning.",
+          deliverables: [
+            "Training on historical Thuishaven posts and mailings",
+            "Interface: select event, audience and channel",
+            "Multiple text variants per asset",
+            "Self-learning based on final marketer choices",
+          ],
+          cost: { min: 4000, max: 5000 },
+        },
+        {
+          id: "06-2",
+          title: "AI Visual Selection & Curation",
+          summary:
+            "Bulk analysis of incoming photo folders. The marketer uploads reference images and adds a guiding prompt. Visual recognition serves the best subset within seconds — from hours of manual work to minutes.",
+          deliverables: [
+            "Bulk upload and analysis of photo folders",
+            "Reference images + prompt as steering input",
+            "Visual recognition for style and composition",
+            "Curated subset within seconds",
+          ],
+          cost: { min: 3500, max: 4500 },
+        },
+        {
+          id: "06-3",
+          title: "Static Image Generator",
+          summary:
+            "Extension into image creation once the textual foundation is in place. Upload a reference image — based on event, audience and channel the AI generates a new on-brand asset, including on-image copy, ready to download.",
+          deliverables: [
+            "Image generation from reference image",
+            "Variables: event, audience, channel",
+            "Output in Thuishaven brand style with optional on-image text",
+            "Direct download for social and campaigns",
+          ],
+          cost: { min: 5000, max: 6500 },
+        },
+        {
+          id: "06-4",
+          title: "Segmented Newsletter Generator",
+          summary:
+            "Combines textual tone (epic 1) and visual assets (epics 2 & 3) in an automated newsletter module. Build segmented emails directly from generated content — multiple personalised versions per audience and event.",
+          deliverables: [
+            "Newsletter module linked to captions and visuals",
+            "Segmentation by audience and event",
+            "Multiple personalised versions per campaign",
+            "Targeted outreach to specific fan segments",
+          ],
+          cost: { min: 3500, max: 4500 },
+        },
+      ],
       deliverables: [
         "Trained Caption Generator for all channels",
         "AI Visual Selection & Curation module",

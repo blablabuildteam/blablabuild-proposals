@@ -113,6 +113,11 @@ export const nl: AbCapitalLocaleContent = {
       whatWeDeliver: "Wat we opleveren",
       prerequisites: "Vereisten",
       unlocks: "Maakt mogelijk",
+      interconnectivity: "Interconnectiviteit",
+      interconnectivityHint:
+        "Dit project deelt data of bouwt voort op andere projecten in de roadmap — klik om het gekoppelde project te bekijken.",
+      feedsFrom: "Ontvangt van",
+      feedsInto: "Draagt bij aan",
       impactSuffix: "impact",
       exit: "Afsluiten",
       previous: "Vorige",

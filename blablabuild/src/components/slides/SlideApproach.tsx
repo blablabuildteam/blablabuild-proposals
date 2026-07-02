@@ -8,12 +8,16 @@ const defaultCopy = {
   kicker: "Roadmap",
   title: "Three phases, one programme",
   subtitle:
-    "Each phase delivers usable value before the next starts. Projects that share data are connected — hover to explore.",
+    "Each phase delivers usable value before the next starts. Projects that share data are connected — click an arrow for details.",
   parallelLabel: "Parallel",
   parallelBody: "Marketingupdates zonder ops-automatisering te blokkeren.",
   backlogLabel: "Backlog",
   backlogBody:
     "Bunch-vervanging start met discovery; implementatie volgt pas na een onderbouwde beslissing.",
+  connectionHint: "Click an arrow to see how projects connect to each other.",
+  connectionTitle: "Data connection",
+  connectionFallback:
+    "These projects share data or build on each other's outputs.",
 };
 
 const timelineAccents = ["lime", "blue", "neutral"] as const;
@@ -22,6 +26,8 @@ export function SlideApproach() {
   const { phases, getWorkflow, slideCopy } = useProposal();
   const { locale } = useProposalLocale();
   const copy = slideCopy?.approach ?? defaultCopy;
+  const phaseRationales = slideCopy?.prioritization?.phaseRationales;
+  const phaseOneRationale = slideCopy?.prioritization?.phaseOneRationale;
 
   const timeline = ["now", "next", "near"]
     .map((id) => phases.find((p) => p.id === id))
@@ -52,9 +58,10 @@ export function SlideApproach() {
   ];
 
   const connectionHint =
-    locale === "nl"
-      ? "Hover over een project om de datakoppelingen te zien."
-      : "Hover a project to see data connections.";
+    copy.connectionHint ??
+    (locale === "nl"
+      ? "Klik op een pijl om te zien hoe projecten met elkaar verbonden zijn."
+      : "Click an arrow to see how projects connect to each other.");
 
   return (
     <div>
@@ -64,6 +71,10 @@ export function SlideApproach() {
         phases={allTimelinePhases}
         getWorkflow={getWorkflow}
         connectionHint={connectionHint}
+        connectionTitle={copy.connectionTitle}
+        connectionFallback={copy.connectionFallback}
+        phaseRationales={phaseRationales}
+        phaseOneRationale={phaseOneRationale}
       />
     </div>
   );
