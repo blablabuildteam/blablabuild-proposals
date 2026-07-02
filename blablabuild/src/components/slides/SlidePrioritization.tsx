@@ -11,6 +11,7 @@ import {
 import { createPortal } from "react-dom";
 import { computeRiceFromInput } from "@foundation/rice";
 import { useProposal } from "@/components/ProposalProvider";
+import { useProposalUi } from "@/lib/proposals/use-proposal-ui";
 import type { Workflow } from "@/lib/types";
 import { Badge, SlideTitle } from "./shared";
 
@@ -61,6 +62,9 @@ const PHASE_STYLES = {
     badge: "black" as const,
   },
 } as const;
+
+const PRIO_SCORE_COL =
+  "border-l border-[var(--brand-primary)]/40 pl-3 text-right sm:pl-4";
 
 function phaseRationale(
   phaseId: string,
@@ -217,10 +221,13 @@ function PrioScore({
 
 export function SlidePrioritization() {
   const { riceSorted, phases, getWorkflow, slideCopy } = useProposal();
+  const ui = useProposalUi();
+  const prioScoreLabel = ui.prioScoreLabel ?? ui.tableRice;
   const copy = slideCopy?.prioritization ?? {
     kicker: "Prioritisation",
     title: "Why this order?",
-    subtitle: "Scored on reach, impact, confidence and effort, not gut feel.",
+    subtitle:
+      "The order reflects what delivers the most value and what you need in place first.",
     startHere: "Start here",
     phaseOne: "Phase 1",
     riceNote: "roadmap priority over raw rank",
@@ -286,13 +293,22 @@ export function SlidePrioritization() {
               </div>
 
               <div className={`divide-y ${style.rowDivide}`}>
-                {rationale ? (
-                  <div className="px-4 py-3 sm:px-5">
-                    <p className="text-xs leading-relaxed text-[var(--brand-fg)]/85 sm:text-sm">
+                <div className="flex items-start gap-2 px-4 py-3 sm:px-5">
+                  {rationale ? (
+                    <p className="min-w-0 flex-1 text-left text-xs leading-relaxed text-[var(--brand-fg)]/85 sm:text-sm">
                       {rationale}
                     </p>
-                  </div>
-                ) : null}
+                  ) : (
+                    <span className="flex-1" aria-hidden />
+                  )}
+                  <span
+                    className={`${PRIO_SCORE_COL} w-12 shrink-0 sm:w-16`}
+                  >
+                    <span className="block text-[10px] font-bold tracking-wide text-[var(--brand-primary)] uppercase">
+                      {prioScoreLabel}
+                    </span>
+                  </span>
+                </div>
 
                 {phaseWorkflows.map((wf) => {
                   if (!wf) return null;
@@ -310,7 +326,9 @@ export function SlidePrioritization() {
                             {wf.title}
                           </p>
                         </div>
-                        <PrioScore wf={wf} breakdown={riceBreakdown} />
+                        <div className={PRIO_SCORE_COL}>
+                          <PrioScore wf={wf} breakdown={riceBreakdown} />
+                        </div>
                       </div>
                       {workflowRationale && (
                         <p className="mt-2 text-xs leading-relaxed text-[var(--brand-fg)]/80 sm:pl-[4.5rem]">

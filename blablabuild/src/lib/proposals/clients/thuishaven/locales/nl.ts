@@ -132,16 +132,16 @@ export const nl: ThuishavenLocaleContent = {
       filterByPhase: "Filter op fase",
       phaseFilters: {
         ALL: "Alles",
-        NOW: "Nu",
-        NEXT: "Volgend",
-        NEAR: "Later",
+        NOW: "NOW",
+        NEXT: "NEXT",
+        NEAR: "NEAR",
         PARALLEL: "Parallel",
         BACKLOG: "Backlog",
       },
       phaseLabels: {
-        NOW: "Nu",
-        NEXT: "Volgend",
-        NEAR: "Later",
+        NOW: "NOW",
+        NEXT: "NEXT",
+        NEAR: "NEAR",
         PARALLEL: "Parallel",
         BACKLOG: "Backlog",
       },
@@ -177,7 +177,7 @@ export const nl: ThuishavenLocaleContent = {
     },
     approach: {
       kicker: "Roadmap",
-      title: "**Nu, volgende, later** — gefaseerde oplevering",
+      title: "**NOW, NEXT, NEAR** — gefaseerde oplevering",
       subtitle:
         "Druk van de ketel en data op orde eerst. Fase 1 levert direct tijdwinst en inzicht. Projecten die data delen zijn visueel gekoppeld — klik op een pijl voor uitleg.",
       parallelLabel: "Strategische sessie",
@@ -201,7 +201,7 @@ export const nl: ThuishavenLocaleContent = {
       kicker: "Prioritering",
       title: "Waarom **deze volgorde**?",
       subtitle:
-        "Gescoord op bereik, impact, zekerheid en inspanning. Projecten zijn ingedeeld in drie fases op basis van wat je eerst nodig hebt om de rest te kunnen bouwen.",
+        "De volgorde is gebaseerd op wat het meeste oplevert en wat jullie eerst nodig hebben om de rest te kunnen bouwen. Drie fases — van snelle resultaten naar grotere trajecten.",
       startHere: "Start hier",
       phaseOne: "Fase 1",
       riceNote: "roadmap-volgorde boven kale score",
@@ -324,7 +324,7 @@ export const nl: ThuishavenLocaleContent = {
   phases: [
     {
       id: "now",
-      label: "Fase 1, NU",
+      label: "Fase 1, NOW",
       period: "Maand 0 tot 2",
       headline: "**Direct impact** — inzicht en efficiency",
       workflows: ["01", "02", "03", "05"],
@@ -338,7 +338,7 @@ export const nl: ThuishavenLocaleContent = {
     },
     {
       id: "next",
-      label: "Fase 2, VOLGENDE",
+      label: "Fase 2, NEXT",
       period: "Maand 2 tot 5",
       headline: "**Content innovatie** — slimmer maken wat werkt",
       workflows: ["06"],
@@ -351,7 +351,7 @@ export const nl: ThuishavenLocaleContent = {
     },
     {
       id: "near",
-      label: "Fase 3, LATER",
+      label: "Fase 3, NEAR",
       period: "Maand 5+",
       headline: "**Schaalbaarheid** — data en sales uitbreiden",
       workflows: ["04", "07"],
@@ -481,7 +481,7 @@ export const nl: ThuishavenLocaleContent = {
       ],
     },
     "04": {
-      title: "Het DJ Talenten Radar",
+      title: "DJ Talenten Radar",
       summary:
         "Dashboard dat automatisch social media, streaming en festivaldata scant en opkomende DJ's signaleert met een objectieve Groeiscore.",
       why: "Voor Thuishaven is het essentieel om opkomende DJ's vroegtijdig te ontdekken. Hoe eerder een talent op de radar staat, hoe gunstiger de gage en hoe groter de kans op een goede langetermijndeal. Nu is dit nog een handmatig zoekproces.",

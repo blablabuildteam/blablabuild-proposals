@@ -1,8 +1,7 @@
 "use client";
 
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   DeckNavigationProvider,
@@ -31,7 +30,6 @@ function SlideDeckInner() {
   const { locale, setLocale } = useProposalLocale();
   const ui = useProposalUi();
   const { workflowDetailId, closeWorkflow } = useDeckNavigation();
-  const router = useRouter();
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState<1 | -1>(1);
   const touchStart = useRef<{ x: number; y: number } | null>(null);
@@ -196,22 +194,6 @@ function SlideDeckInner() {
           >
             {String(index + 1).padStart(2, "0")}/{String(total).padStart(2, "0")}
           </span>
-          <button
-            type="button"
-            onClick={async () => {
-              await fetch("/api/logout", { method: "POST" });
-              router.push("/");
-              router.refresh();
-            }}
-            aria-label={ui.exit}
-            className={`flex shrink-0 items-center justify-center rounded-md p-1 transition-colors ${
-              isBlue
-                ? "text-white/60 hover:bg-white/10 hover:text-white"
-                : "text-[var(--brand-muted)] hover:bg-[var(--brand-bg)] hover:text-[var(--brand-fg)]"
-            }`}
-          >
-            <X className="size-6" strokeWidth={1.75} />
-          </button>
         </div>
       </header>
 

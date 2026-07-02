@@ -132,16 +132,16 @@ export const en: ThuishavenLocaleContent = {
       filterByPhase: "Filter by phase",
       phaseFilters: {
         ALL: "All",
-        NOW: "Now",
-        NEXT: "Next",
-        NEAR: "Later",
+        NOW: "NOW",
+        NEXT: "NEXT",
+        NEAR: "NEAR",
         PARALLEL: "Parallel",
         BACKLOG: "Backlog",
       },
       phaseLabels: {
-        NOW: "Now",
-        NEXT: "Next",
-        NEAR: "Later",
+        NOW: "NOW",
+        NEXT: "NEXT",
+        NEAR: "NEAR",
         PARALLEL: "Parallel",
         BACKLOG: "Backlog",
       },
@@ -177,7 +177,7 @@ export const en: ThuishavenLocaleContent = {
     },
     approach: {
       kicker: "Roadmap",
-      title: "**Now, next, later** — phased delivery",
+      title: "**NOW, NEXT, NEAR** — phased delivery",
       subtitle:
         "Relieve pressure and get data in order first. Phase 1 delivers immediate time savings and insight. Projects that share data are connected — click an arrow for details.",
       parallelLabel: "Strategic session",
@@ -201,7 +201,7 @@ export const en: ThuishavenLocaleContent = {
       kicker: "Prioritisation",
       title: "Why **this order**?",
       subtitle:
-        "Scored on reach, impact, confidence and effort. Projects are grouped into three phases based on what you need first to build the rest.",
+        "The order reflects what delivers the most value and what you need in place first. Three phases — from quick wins to bigger initiatives.",
       startHere: "Start here",
       phaseOne: "Phase 1",
       riceNote: "roadmap order over raw score",
@@ -351,7 +351,7 @@ export const en: ThuishavenLocaleContent = {
     },
     {
       id: "near",
-      label: "Phase 3, LATER",
+      label: "Phase 3, NEAR",
       period: "Month 5+",
       headline: "**Scalability** — expand data and sales",
       workflows: ["04", "07"],
@@ -481,7 +481,7 @@ export const en: ThuishavenLocaleContent = {
       ],
     },
     "04": {
-      title: "The DJ Talent Radar",
+      title: "DJ Talent Radar",
       summary:
         "Dashboard that automatically scans social media, streaming and festival data and flags emerging DJs with an objective Growth Score.",
       why: "For Thuishaven it is essential to discover emerging DJs early. The earlier a talent is on the radar, the more favourable the fee and the greater the chance of a good long-term deal. Currently this is still a manual search process.",
