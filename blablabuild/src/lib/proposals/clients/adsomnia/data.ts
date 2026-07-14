@@ -35,7 +35,6 @@ export const wayOfWorking = [
 
 const ADSOMNIA_SECTIONS = [
   "debrief",
-  "way-of-working",
   "phase-now",
   "phase-next",
   "phase-near",

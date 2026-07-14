@@ -146,7 +146,8 @@ export function SlideDebrief() {
 
   return (
     <div className="flex min-h-[min(70vh,640px)] flex-col justify-between py-2 sm:py-4">
-      <div>
+      {/* Header bar: blablabuild logo left, client logo right */}
+      <div className="flex items-center justify-between">
         <Image
           src={brand.logo}
           alt={brand.name}
@@ -155,21 +156,33 @@ export function SlideDebrief() {
           priority
           className="h-7 w-auto sm:h-8"
         />
-
-        <div className="mt-10 sm:mt-12">
-          <KickerPill>{kicker}</KickerPill>
-        </div>
-
-        <h1 className="mt-4 text-3xl tracking-tight text-[var(--brand-fg)] sm:mt-5 sm:text-4xl md:text-5xl">
-          {meta.clientName}
-        </h1>
-        <p className="mt-2 max-w-xl text-xl text-[var(--brand-fg)] sm:text-2xl">
-          <HighlightedTitle text={meta.title} variant="light" />
-        </p>
-        <p className="mt-2 text-sm text-[var(--brand-muted)] sm:text-base">{meta.subtitle}</p>
+        {meta.clientLogo && (
+          <Image
+            src={meta.clientLogo}
+            alt={meta.clientName}
+            width={160}
+            height={40}
+            className="h-7 w-auto sm:h-9"
+          />
+        )}
       </div>
 
-      <div className="mt-8 space-y-4 sm:mt-10">
+      {/* Hero block */}
+      <div className="mt-8 sm:mt-10">
+        <KickerPill>{kicker}</KickerPill>
+
+        <div className="mt-5 overflow-hidden rounded-2xl bg-[var(--brand-primary)] px-6 py-7 sm:px-8 sm:py-8">
+          <p className="text-xs font-bold tracking-widest text-[var(--brand-accent)] uppercase">
+            {meta.clientName}
+          </p>
+          <h1 className="mt-3 text-3xl leading-tight text-white sm:text-4xl md:text-5xl">
+            <HighlightedTitle text={meta.title} variant="on-dark" />
+          </h1>
+          <p className="mt-3 text-sm text-white/70 sm:text-base">{meta.subtitle}</p>
+        </div>
+      </div>
+
+      <div className="mt-6 space-y-4">
         <QuoteBlock quote={debrief.quote} quoteSource={debrief.quoteSource} />
 
         {debrief.summary && (
