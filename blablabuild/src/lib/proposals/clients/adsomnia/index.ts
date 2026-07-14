@@ -5,6 +5,7 @@ import * as data from "./data";
 export const meta = {
   slug: "adsomnia",
   clientName: "Adsomnia",
+  clientLogo: "/adsomnia-logo.png",
   title: "**AI-transformatie** voorstel",
   subtitle: "Workshop · Enablement · Samenwerking · juli 2026",
 } as const;
