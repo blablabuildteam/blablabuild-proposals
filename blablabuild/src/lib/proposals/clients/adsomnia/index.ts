@@ -52,11 +52,12 @@ export const slideCopy = {
   },
   approach: {
     kicker: "Aanpak",
-    title: "**Drie projecten**, één samenhangend traject",
+    title: "**Drie losse projecten**, parallel uitvoerbaar",
     subtitle:
-      "Workshop en fundament vormen de kickoff. De retainer zorgt voor continuïteit. Elk project levert zelfstandig waarde.",
+      "Elk project staat op zichzelf en levert direct waarde. Volgorde en timing bepalen jullie — ze kunnen naast elkaar lopen.",
     parallelLabel: "Parallel",
-    parallelBody: "Workshop en fundament lopen grotendeels gelijktijdig.",
+    parallelBody:
+      "Workshop, fundament en retainer zijn onafhankelijk van elkaar. Ze versterken elkaar, maar wachten niet op elkaar.",
     backlogLabel: undefined,
     backlogBody: undefined,
   },

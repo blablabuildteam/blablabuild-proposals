@@ -37,8 +37,6 @@ const ADSOMNIA_SECTIONS = [
   "debrief",
   "way-of-working",
   "approach",
-  "phase-now",
-  "phase-next",
   "workflows",
   "investment",
   "next-steps",

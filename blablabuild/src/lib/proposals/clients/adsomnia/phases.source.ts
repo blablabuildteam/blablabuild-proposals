@@ -1,31 +1,29 @@
 import type { PackageSource, PhaseSource } from "@foundation/types";
 
+/**
+ * Phases hier alleen voor investment rollup — geen fase-slides in de deck.
+ * De 3 projecten zijn los en kunnen parallel lopen.
+ */
 export const phaseSources: readonly PhaseSource[] = [
   {
     id: "now",
-    label: "Fase 1 · Kickoff",
-    period: "Week 1–10",
-    headline: "**Workshop** en **fundament** gelijktijdig",
+    label: "Projecten",
+    period: "Flexibel, parallel uitvoerbaar",
+    headline: "Drie losse projecten",
     workflows: ["WF1", "WF2"],
     outcomes: [
-      "Alle teams geactiveerd en spreken dezelfde AI-taal",
-      "Concrete use cases gevalideerd en geprioriteerd",
-      "Strategische AI-roadmap vastgelegd in NOW / NEXT / NEAR",
-      "Organisatiestructuur en werkwijze ingericht voor AI-projecten",
-      "Business cases voor de kansrijkste initiatieven klaar",
+      "AI Workshop & Roadmap afgerond",
+      "Organisatiefundament ingericht",
     ],
   },
   {
     id: "next",
     label: "Doorlopend",
-    period: "Vanaf maand 2",
-    headline: "Beschikbaarheid, **support** en doorgroei",
+    period: "Vanaf start",
+    headline: "AI Retainer",
     workflows: ["WF3"],
     outcomes: [
-      "Vaste blablabuild-capaciteit voor strategie en uitvoering",
-      "AI-visie maandelijks aangescherpt op basis van learnings",
-      "Technische en project support direct beschikbaar",
-      "Nieuwe AI-initiatieven snel opgepakt vanuit bestaande context",
+      "Vaste blablabuild-capaciteit beschikbaar",
     ],
   },
 ];
@@ -47,7 +45,7 @@ export const packageSources: readonly PackageSource[] = [
     workflowIds: ["WF1", "WF2"],
     weeks: "6–10",
     description:
-      "Workshop plus inrichting van het organisatiefundament. Klaar om te bouwen.",
+      "Workshop plus organisatiefundament. Kunnen parallel lopen — klaar om te bouwen.",
     recommended: true,
   },
   {
