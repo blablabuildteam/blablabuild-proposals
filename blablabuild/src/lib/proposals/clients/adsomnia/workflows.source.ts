@@ -12,6 +12,8 @@ export const workflowSources: WorkflowSource[] = [
     effort: { daysMin: 3, daysMax: 4, weeks: "3–4 weken", daysLabel: "26–28 uur" },
     cost: { min: 4500, max: 4500 },
     investmentLabel: "€4.500",
+    hideTimeline: true,
+    excludeFromPrio: true,
     summary: "Vier milestones van bewustwording naar een concrete, gedragen AI-roadmap.",
     why: "Adsomnia staat aan het begin van een AI-transitie. Zonder gedeeld begrip, gecheckte use cases en een heldere roadmap doet iedereen iets met AI maar bouwt niemand op hetzelfde fundament. Deze workshop brengt de teams samen, activeert ze direct en geeft Adsomnia een concreet pad vooruit.",
     benefits: [
@@ -39,6 +41,8 @@ export const workflowSources: WorkflowSource[] = [
     phaseRevised: "NEXT",
     effort: { daysMin: 3, daysMax: 5, weeks: "4–6 weken", daysLabel: "20–30 uur" },
     cost: { min: 3500, max: 4500 },
+    hideTimeline: true,
+    excludeFromPrio: true,
     summary: "Fundament, werkwijze en tooling ingericht — zodat teams daadwerkelijk kunnen samenwerken en leveren.",
     why: "AI-initiatieven slagen of falen op uitvoering. Zonder heldere projectstructuur, een afgestemde manier van werken en de juiste tooling-setup stranden de mooiste plannen in de dagelijkse waan van de dag. Dit project legt het fundament waarop alles daarna gebouwd wordt.",
     benefits: [
@@ -69,6 +73,7 @@ export const workflowSources: WorkflowSource[] = [
     cost: { min: 0, max: 0 },
     investmentLabel: "Nader te bepalen",
     excludeFromTotals: true,
+    excludeFromPrio: true,
     hideTimeline: true,
     summary: "Structurele samenwerking: AI-implementatie, technische begeleiding en projectmanagement als vliegende keep.",
     why: "Na de workshop liggen er concrete initiatieven op tafel. Die moeten ook echt landen. En tegelijk groeit de behoefte aan strakker projectmanagement over de hele organisatie. Met een dedicated samenwerking is blablabuild beschikbaar als verlengstuk van het team — niet als extern bureau dat je telkens opnieuw moet briefen.",

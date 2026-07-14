@@ -3,7 +3,7 @@
 import { useProposal } from "@/components/ProposalProvider";
 import { useProposalUi } from "@/lib/proposals/use-proposal-ui";
 import { BulletList, HighlightedTitle } from "./shared";
-import { WorkflowCompact } from "./WorkflowDetailCard";
+import { WorkflowCompact, WorkflowInlinePanel } from "./WorkflowDetailCard";
 
 export function SlidePhaseNear() {
   const { phases, getWorkflow } = useProposal();
@@ -48,9 +48,13 @@ export function SlidePhaseNear() {
         <BulletList items={[...phase.outcomes]} />
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        {items.map((wf) => wf && <WorkflowCompact key={wf.id} wf={wf} />)}
-      </div>
+      {items.length === 1 && items[0] ? (
+        <WorkflowInlinePanel wf={items[0]} />
+      ) : (
+        <div className="grid gap-4 sm:grid-cols-2">
+          {items.map((wf) => wf && <WorkflowCompact key={wf.id} wf={wf} />)}
+        </div>
+      )}
     </div>
   );
 }

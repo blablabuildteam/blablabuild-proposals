@@ -5,7 +5,7 @@ import { useProposal } from "@/components/ProposalProvider";
 import { useProposalUi } from "@/lib/proposals/use-proposal-ui";
 import type { Workflow } from "@/lib/types";
 import { BulletList, HighlightedTitle } from "./shared";
-import { WorkflowCompactCard } from "./WorkflowDetailCard";
+import { WorkflowCompactCard, WorkflowInlinePanel } from "./WorkflowDetailCard";
 
 export function SlidePhaseNow() {
   const { phases, getWorkflow } = useProposal();
@@ -65,11 +65,15 @@ export function SlidePhaseNow() {
         <BulletList items={[...phase.outcomes]} />
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        {items.map((wf) => (
-          <WorkflowCompactCard key={wf.id} wf={wf} />
-        ))}
-      </div>
+      {items.length === 1 ? (
+        <WorkflowInlinePanel wf={items[0]} />
+      ) : (
+        <div className="grid gap-4 sm:grid-cols-2">
+          {items.map((wf) => (
+            <WorkflowCompactCard key={wf.id} wf={wf} />
+          ))}
+        </div>
+      )}
 
       {outlinedCompanionSections.map((section) => {
         if (!section) return null;

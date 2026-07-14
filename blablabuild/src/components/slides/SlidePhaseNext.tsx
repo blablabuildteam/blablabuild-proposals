@@ -3,7 +3,7 @@
 import { useProposal } from "@/components/ProposalProvider";
 import { useProposalUi } from "@/lib/proposals/use-proposal-ui";
 import { BulletList, HighlightedTitle } from "./shared";
-import { WorkflowCompact } from "./WorkflowDetailCard";
+import { WorkflowCompact, WorkflowInlinePanel } from "./WorkflowDetailCard";
 
 export function SlidePhaseNext() {
   const { phases, getWorkflow } = useProposal();
@@ -42,9 +42,13 @@ export function SlidePhaseNext() {
         <BulletList items={[...phase.outcomes]} />
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-3">
-        {items.map((wf) => wf && <WorkflowCompact key={wf.id} wf={wf} />)}
-      </div>
+      {items.length === 1 && items[0] ? (
+        <WorkflowInlinePanel wf={items[0]} />
+      ) : (
+        <div className="grid gap-4 sm:grid-cols-3">
+          {items.map((wf) => wf && <WorkflowCompact key={wf.id} wf={wf} />)}
+        </div>
+      )}
 
       {parallel && parallelWf && (
         <div className="mt-5 rounded-xl border border-dashed border-[var(--brand-primary)]/30 bg-white p-4 sm:p-5">

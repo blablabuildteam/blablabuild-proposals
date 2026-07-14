@@ -121,17 +121,8 @@ function PhaseInvestBlock({
                 }`}
               >
                 <div className="min-w-0 flex-1">
-                  <div className="flex items-start gap-3">
-                    <Badge
-                      variant={
-                        row.wf.cardVariant === "highlight" ? "glass" : "black"
-                      }
-                    >
-                      {row.wf.id}
-                    </Badge>
-                  </div>
                   <p
-                    className={`mt-1.5 text-sm font-semibold ${
+                    className={`text-sm font-semibold ${
                       row.wf.cardVariant === "highlight"
                         ? "text-white"
                         : "text-[var(--brand-fg)]"

@@ -5,6 +5,46 @@ import { useDeckNavigation } from "@/components/DeckNavigation";
 import { labelFor, useProposalUi } from "@/lib/proposals/use-proposal-ui";
 import { Badge, BulletList } from "./shared";
 
+/** Full inline project detail — used when a phase has exactly one workflow. */
+export function WorkflowInlinePanel({ wf }: { wf: Workflow }) {
+  const ui = useProposalUi();
+  return (
+    <div className="space-y-3">
+      <div className="flex items-start justify-between gap-4 rounded-xl bg-[var(--brand-primary)] p-5 text-white sm:p-6">
+        <div className="min-w-0 flex-1">
+          <h2 className="text-xl leading-snug sm:text-2xl">{wf.title}</h2>
+          <p className="mt-1.5 text-sm leading-relaxed text-white/80">{wf.summary}</p>
+        </div>
+        <div className="shrink-0 rounded-xl bg-white/10 px-4 py-3 text-right">
+          <p className="font-mono text-xl font-bold sm:text-2xl">{wf.investment}</p>
+        </div>
+      </div>
+
+      <div className="grid gap-3 sm:grid-cols-2">
+        <div className="rounded-xl bg-[var(--brand-bg)] p-4">
+          <p className="mb-2 text-[10px] font-bold tracking-wide text-[var(--brand-primary)] uppercase">
+            {ui.whyThisMatters}
+          </p>
+          <p className="text-sm leading-relaxed text-[var(--brand-fg)]">{wf.why}</p>
+        </div>
+        <div className="rounded-xl bg-[var(--brand-accent)]/30 p-4">
+          <p className="mb-2 text-[10px] font-bold tracking-wide text-[var(--brand-fg)] uppercase">
+            {ui.whatYouGet}
+          </p>
+          <BulletList items={wf.benefits} />
+        </div>
+      </div>
+
+      <div className="rounded-xl border border-[var(--brand-border)] bg-white p-4">
+        <p className="mb-2 text-[10px] font-bold tracking-wide text-[var(--brand-muted)] uppercase">
+          {ui.whatWeDeliver}
+        </p>
+        <BulletList items={wf.deliverables} />
+      </div>
+    </div>
+  );
+}
+
 function phaseBadgeVariant(
   phase: string,
 ): "lime" | "blue" | "black" | "neutral" {
