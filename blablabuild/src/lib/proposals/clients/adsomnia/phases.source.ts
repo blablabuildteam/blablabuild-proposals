@@ -1,29 +1,43 @@
 import type { PackageSource, PhaseSource } from "@foundation/types";
 
-/**
- * Phases hier alleen voor investment rollup — geen fase-slides in de deck.
- * De 3 projecten zijn los en kunnen parallel lopen.
- */
 export const phaseSources: readonly PhaseSource[] = [
   {
     id: "now",
-    label: "Projecten",
-    period: "Flexibel, parallel uitvoerbaar",
-    headline: "Drie losse projecten",
-    workflows: ["WF1", "WF2"],
+    label: "AI Workshop",
+    period: "29 juli · start zo snel mogelijk",
+    headline: "Bewustwording, use cases en **AI-roadmap**",
+    workflows: ["WF1"],
     outcomes: [
-      "AI Workshop & Roadmap afgerond",
-      "Organisatiefundament ingericht",
+      "Alle teams geactiveerd en spreken dezelfde AI-taal",
+      "Use cases per afdeling gevalideerd en geprioriteerd",
+      "Strategische AI-roadmap NOW / NEXT / NEAR klaar",
+      "Business cases voor de kansrijkste initiatieven",
     ],
   },
   {
     id: "next",
-    label: "Doorlopend",
-    period: "Vanaf start",
-    headline: "AI Retainer",
+    label: "Project Enablement",
+    period: "Parallel of aansluitend",
+    headline: "Fundament, werkwijze en **tooling ingericht**",
+    workflows: ["WF2"],
+    outcomes: [
+      "Jira of bestaande tooling ingericht op maat",
+      "Gedeelde werkwijze en stramien voor projecten",
+      "Teams weten hoe ze samenwerken en wie wat beslist",
+      "Klaar om AI-initiatieven uit de workshop op te pakken",
+    ],
+  },
+  {
+    id: "near",
+    label: "Samenwerking",
+    period: "Doorlopend",
+    headline: "AI-implementatie, technische begeleiding en **projectmanagement**",
     workflows: ["WF3"],
     outcomes: [
-      "Vaste blablabuild-capaciteit beschikbaar",
+      "AI-initiatieven landen daadwerkelijk in de organisatie",
+      "Technical guidance bij architectuur- en toolkeuzes",
+      "PM/PO als vliegende keep over de hele organisatie",
+      "Maandelijks overzicht van voortgang en prioriteiten",
     ],
   },
 ];
@@ -39,13 +53,13 @@ export const packageSources: readonly PackageSource[] = [
       "AI Workshop met vier milestones: van bewustwording tot strategische roadmap en business cases.",
   },
   {
-    name: "Kickoff",
+    name: "Workshop + Enablement",
     tag: "Aanbevolen",
     workflows: "WF1 + WF2",
     workflowIds: ["WF1", "WF2"],
     weeks: "6–10",
     description:
-      "Workshop plus organisatiefundament. Kunnen parallel lopen — klaar om te bouwen.",
+      "Workshop én organisatiefundament. Kunnen parallel lopen — klaar om te bouwen na afloop.",
     recommended: true,
   },
   {
@@ -55,6 +69,6 @@ export const packageSources: readonly PackageSource[] = [
     workflowIds: ["WF1", "WF2", "WF3"],
     weeks: "Doorlopend",
     description:
-      "Volledige samenwerking: kickoff, fundament én vaste blablabuild-capaciteit per maand.",
+      "Volledige samenwerking: workshop, fundament én doorlopende blablabuild-capaciteit.",
   },
 ];

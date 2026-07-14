@@ -6,14 +6,14 @@ export const meta = {
   slug: "adsomnia",
   clientName: "Adsomnia",
   title: "**AI-transformatie** voorstel",
-  subtitle: "Workshop, fundament & doorlopende samenwerking · juli 2026",
+  subtitle: "Workshop · Enablement · Samenwerking · juli 2026",
 } as const;
 
 export const debrief = {
   quote:
     "Traffic never sleeps — en AI ook niet. Adsomnia wil AI niet zijdelings adopteren maar er echt mee bouwen: bewust, geactiveerd en met een concreet pad vooruit.",
   quoteSource: "Intake gesprek",
-  focusAreas: "3 projecten: AI Workshop & Roadmap, Organisatiefundament, AI Retainer",
+  focusAreas: "3 projecten: AI Workshop & Roadmap · Project Enablement · Samenwerking & Retainer",
   date: "juli 2026",
 } as const;
 
@@ -45,32 +45,16 @@ export const slideCopy = {
       "Vier principes die bepalen hoe we met Adsomnia werken. Geen standaard bureautraject.",
     aiTitle: "Wekelijkse afstemming",
     aiBody:
-      "Elke week een vast moment voor voortgang, open punten en prioriteiten. Jullie weten altijd waar we staan.",
+      "Elk project heeft een vast ritme: voortgang, open punten en wat er deze sprint wordt opgeleverd. Geen verrassingen.",
     controlTitle: "Jullie houden de regie",
     controlBody:
-      "Scope leggen we vast vóór we bouwen. Per fase heldere opleveringen. Jullie bepalen het tempo.",
-  },
-  approach: {
-    kicker: "Aanpak",
-    title: "**Drie losse projecten**, parallel uitvoerbaar",
-    subtitle:
-      "Elk project staat op zichzelf en levert direct waarde. Volgorde en timing bepalen jullie — ze kunnen naast elkaar lopen.",
-    parallelLabel: "Parallel",
-    parallelBody:
-      "Workshop, fundament en retainer zijn onafhankelijk van elkaar. Ze versterken elkaar, maar wachten niet op elkaar.",
-    backlogLabel: undefined,
-    backlogBody: undefined,
-  },
-  workflows: {
-    kicker: "Projectoverzicht",
-    title: "Alle **drie projecten**",
-    subtitle: "Van workshop tot doorlopende samenwerking — volledig overzicht.",
+      "Scope per project leggen we vast vóór we starten. Jullie bepalen de volgorde en het tempo van de drie projecten.",
   },
   investment: {
     kicker: "Investering",
     title: "Investering **per project**",
     subtitle:
-      "Workshop en fundament zijn vaste projecten. De retainer is een doorlopende afspraak.",
+      "Twee vaste projecten en een doorlopende samenwerking op basis van beschikbaarheid.",
   },
   nextSteps: {
     kicker: "Volgende stappen",
@@ -80,26 +64,36 @@ export const slideCopy = {
       {
         n: "01",
         title: "Voorstel doorlezen",
-        body: "Doorloop de drie projecten, aanpak en investering in je eigen tempo. Noteer vragen en prioriteiten.",
+        body: "Doorloop de drie projecten, aanpak en investering in je eigen tempo. Noteer vragen en wat je anders wil.",
       },
       {
         n: "02",
         title: "Bespreken",
-        body: "Korte sessie om samen door het voorstel te lopen. Open vragen, scope aanpassen en startdatum bepalen.",
+        body: "Korte sessie om samen door het voorstel te lopen. Open vragen, scope aanpassen en bepalen welke projecten wanneer starten.",
       },
       {
         n: "03",
-        title: "Scope vastleggen",
-        body: "We sluiten de scope voor de kickoff: welke projecten, wanneer, wat zijn de concrete opleveringen.",
+        title: "Scope per project vastleggen",
+        body: "Per project sluiten we de scope: wat leveren we op, wanneer, wie is waarvoor verantwoordelijk.",
       },
       {
         n: "04",
         title: "Kickoff plannen",
-        body: "Milestone #1 inplannen — 29 juli staat al in de agenda. Contract ondertekenen en starten.",
+        body: "Milestone #1 van de workshop staat al op 29 juli. Contract ondertekenen en starten.",
       },
     ],
   },
 } as const;
+
+const slideLabels: Record<string, string> = {
+  debrief: "Intro",
+  "way-of-working": "Werkwijze",
+  "phase-now": "AI Workshop",
+  "phase-next": "Project Enablement",
+  "phase-near": "Samenwerking",
+  investment: "Investering",
+  "next-steps": "Volgende stappen",
+};
 
 const bundle: ProposalBundle = {
   meta,
@@ -111,8 +105,13 @@ const bundle: ProposalBundle = {
   phases: data.phases,
   packages: data.packages,
   wayOfWorking: data.wayOfWorking,
-  slideConfigs: data.slideConfigs,
-  slideLabels: data.slideLabels,
+  slideConfigs: data.slideConfigs.map((c) => ({
+    ...c,
+    label: slideLabels[c.sectionId] ?? c.label,
+  })),
+  slideLabels: data.slideConfigs.map(
+    (c) => slideLabels[c.sectionId] ?? c.label,
+  ),
   AI_BUILD_NOTE: data.AI_BUILD_NOTE,
 };
 
