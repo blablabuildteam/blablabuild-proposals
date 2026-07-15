@@ -92,17 +92,23 @@ export function WorkflowInlinePanel({ wf }: { wf: Workflow }) {
       </div>
 
       {remainingBenefits && remainingBenefits.length > 0 && (
-        <div className="rounded-xl bg-[var(--brand-accent)]/10 p-4">
-          <BulletList items={remainingBenefits} />
+        <div className="rounded-xl border border-[var(--brand-border)] bg-white px-4 py-3">
+          {remainingBenefits.map((b) => (
+            <p key={b} className="text-sm font-medium text-[var(--brand-fg)]">
+              {b}
+            </p>
+          ))}
         </div>
       )}
 
-      <div className="rounded-xl border border-[var(--brand-border)] bg-white p-4">
-        <p className="mb-2 text-[10px] font-bold tracking-wide text-[var(--brand-muted)] uppercase">
-          {ui.whatWeDeliver}
-        </p>
-        <BulletList items={wf.deliverables} />
-      </div>
+      {!hasFocusAreas && (
+        <div className="rounded-xl border border-[var(--brand-border)] bg-white p-4">
+          <p className="mb-2 text-[10px] font-bold tracking-wide text-[var(--brand-muted)] uppercase">
+            {ui.whatWeDeliver}
+          </p>
+          <BulletList items={wf.deliverables} />
+        </div>
+      )}
     </div>
   );
 }

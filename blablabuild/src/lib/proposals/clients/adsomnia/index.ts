@@ -72,27 +72,27 @@ const slideCopyEn = {
   nextSteps: {
     kicker: "Next steps",
     title: "Ready when **you** are",
-    subtitle: "From proposal to execution in four steps.",
+    subtitle: "From proposal to kick-off in four steps.",
     steps: [
       {
         n: "01",
-        title: "Review the proposal",
-        body: "Walk through the three projects, approach, and investment at your own pace. Note questions and anything you'd like to change.",
+        title: "Review & align",
+        body: "Walk through the three projects at your own pace. Note questions and anything you'd like to adjust. We'll schedule a short session to go through it together.",
       },
       {
         n: "02",
-        title: "Discuss together",
-        body: "A short session to go through the proposal together. Open questions, adjust scope, and decide which projects start when.",
+        title: "AI Workshop — confirm 29 July",
+        body: "Milestone #1 is already in the calendar. Confirm attendance per team and any context we should know going in.",
       },
       {
         n: "03",
-        title: "Lock scope per project",
-        body: "Per project we align on deliverables, timeline, and responsibilities.",
+        title: "Project Enablement — pre-exploration",
+        body: "Before we scope and price this project, we do a short pre-exploration: map your team, current workflow, project landscape, and future scenarios. This determines the exact setup and investment.",
       },
       {
         n: "04",
-        title: "Plan kick-off",
-        body: "Milestone #1 of the workshop is already set for 29 July. Sign and start.",
+        title: "Always-On Retainer — agree on terms",
+        body: "Align on hours per week, rough focus area split, and start date. Can run from day one alongside the workshop.",
       },
     ],
   },
@@ -166,27 +166,27 @@ const slideCopyNl = {
   nextSteps: {
     kicker: "Volgende stappen",
     title: "Klaar wanneer **jullie** willen",
-    subtitle: "Van voorstel naar uitvoering in vier stappen.",
+    subtitle: "Van voorstel naar kickoff in vier stappen.",
     steps: [
       {
         n: "01",
-        title: "Voorstel doorlezen",
-        body: "Doorloop de drie projecten, aanpak en investering in je eigen tempo. Noteer vragen en wat je anders wil.",
+        title: "Doorlezen & afstemmen",
+        body: "Doorloop de drie projecten in je eigen tempo. Noteer vragen en wat je wil aanpassen. We plannen een korte sessie om samen door het voorstel te lopen.",
       },
       {
         n: "02",
-        title: "Bespreken",
-        body: "Korte sessie om samen door het voorstel te lopen. Open vragen, scope aanpassen en bepalen welke projecten wanneer starten.",
+        title: "AI Workshop — 29 juli bevestigen",
+        body: "Milestone #1 staat al in de agenda. Bevestig de aanwezigheid per team en deel context die we mee moeten nemen.",
       },
       {
         n: "03",
-        title: "Scope per project vastleggen",
-        body: "Per project sluiten we de scope: wat leveren we op, wanneer, wie is waarvoor verantwoordelijk.",
+        title: "Project Enablement — voorverkenning",
+        body: "Voordat we dit project scoperen en beprijzen, doen we een korte voorverkenning: team, huidige werkwijze, projectlandschap en toekomstscenario's in kaart brengen. Dit bepaalt de exacte inrichting en investering.",
       },
       {
         n: "04",
-        title: "Kickoff plannen",
-        body: "Milestone #1 van de workshop staat al op 29 juli. Contract ondertekenen en starten.",
+        title: "Always-On Retainer — afspraken vastleggen",
+        body: "Afstemmen over uren per week, grove verdeling over de drie gebieden en startdatum. Kan direct naast de workshop lopen vanaf dag één.",
       },
     ],
   },

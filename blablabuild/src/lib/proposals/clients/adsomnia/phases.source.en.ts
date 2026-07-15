@@ -35,11 +35,10 @@ export const phaseSources: readonly PhaseSource[] = [
     headline: "Always available — **Innovation · Production · Business**",
     workflows: ["WF3"],
     outcomes: [
-      "Your safety net on production: direct availability when things go wrong, no waiting",
-      "Rhythm on innovation: AI initiatives stay alive and actually get implemented",
-      "Strategic sparring partner: decision support for roadmap and priorities",
-      "Flexible hours: you decide each week where effort goes",
-      "Always in context — no briefing cost, no ramp-up time",
+      "Production: safety net and direct support for the head of delivery — escalations handled before they become problems",
+      "Innovation: monthly 'AI 30 Minutes of Now' sessions + new AI ideas that surface over time get structure and ownership",
+      "Business: strategic sparring on roadmap, priorities, and decisions",
+      "You decide how hours are split across the three areas — based on what matters most that week",
     ],
   },
 ];

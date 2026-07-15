@@ -35,11 +35,10 @@ export const phaseSourcesNl: readonly PhaseSource[] = [
     headline: "Altijd beschikbaar — **Innovatie · Productie · Business**",
     workflows: ["WF3"],
     outcomes: [
-      "Jouw vangnet op productie: directe beschikbaarheid bij problemen, geen wachttijd",
-      "Ritme op innovatie: AI-initiatieven blijven leven en worden daadwerkelijk geïmplementeerd",
-      "Strategisch sparringpartner: beslissingsondersteuning bij roadmap en prioriteiten",
-      "Flexibele inzet: jij bepaalt elke week waar de uren naartoe gaan",
-      "Altijd in context — geen briefingkosten, geen opstarttijd",
+      "Productie: vangnet én directe support voor de head of delivery — escalaties worden opgepakt voordat het problemen worden",
+      "Innovatie: maandelijkse 'AI 30 Minutes of Now' sessies + nieuwe AI-ideeën die ontstaan krijgen eigenaarschap en structuur",
+      "Business: strategisch sparring op roadmap, prioriteiten en beslissingen",
+      "Jij bepaalt hoe de uren verdeeld worden over de drie gebieden — op basis van wat die week het hardst nodig is",
     ],
   },
 ];
