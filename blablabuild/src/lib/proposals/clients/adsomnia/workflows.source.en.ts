@@ -41,15 +41,9 @@ export const workflowSources: WorkflowSource[] = [
     excludeFromPrio: true,
     excludeFromTotals: true,
     hideDeliverables: true,
-    summary: "A centralised overview of all active projects, a working toolstack, and the foundation for a PM / PO role.",
+    summary: "Starts with a pre-exploration — then a centralised overview of all active projects, the right toolstack, and the foundation for a PM / PO role.",
     why: "Adsomnia is growing — and so is the complexity of projects, people, and tools. Right now there is no central overview of what is running, who owns what, and how that scales as the organisation grows. This project starts with a pre-exploration: we look at the team, how they currently work, what projects exist, who picks them up (internal, external, or within the broader organisation), and how this evolves over time. Only then do we decide on the best setup — so the structure genuinely fits Adsomnia, now and later.",
-    benefits: [
-      "One central overview of all active projects — always up to date, visible to everyone",
-      "The foundation is ready for a Project / Product Manager — internal or new hire — to work from day one",
-      "Toolstack decided and configured: Jira, Google Drive, and whatever else is needed",
-      "A way of working that scales — whether Adsomnia grows internally, works externally, or gets a dedicated team",
-      "Foundation for future AI initiatives coming out of the workshop",
-    ],
+    benefits: [],
     timeSaved: "From ad-hoc coordination to structured oversight and ownership",
     deliverables: [
       "Pre-exploration: analysis of the team, current way of working, project landscape, and future scenarios (internal, external, within Bending the Rules)",

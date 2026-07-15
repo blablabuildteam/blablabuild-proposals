@@ -72,12 +72,12 @@ const slideCopyEn = {
   nextSteps: {
     kicker: "Next steps",
     title: "Ready when **you** are",
-    subtitle: "The Workshop is already in the calendar. Three things left to align on.",
+    subtitle: "Three things to align on before we start.",
     steps: [
       {
         n: "01",
-        title: "Review the proposal",
-        body: "Walk through the three projects at your own pace. Note questions and anything you'd like to adjust.",
+        title: "Read the proposal & schedule a call",
+        body: "Read through the proposal at your own pace first. Then we'll quickly plan a call to walk through it together and answer any questions.",
       },
       {
         n: "02",
@@ -161,12 +161,12 @@ const slideCopyNl = {
   nextSteps: {
     kicker: "Volgende stappen",
     title: "Klaar wanneer **jullie** willen",
-    subtitle: "De Workshop staat al in de agenda. Drie dingen nog af te stemmen.",
+    subtitle: "Drie dingen om af te stemmen voor we starten.",
     steps: [
       {
         n: "01",
-        title: "Voorstel doorlezen",
-        body: "Doorloop de drie projecten in je eigen tempo. Noteer vragen en wat je wil aanpassen.",
+        title: "Voorstel doorlezen & afspreken",
+        body: "Lees eerst in alle rust zelf het voorstel door. Daarna plannen we snel wat in om er samen doorheen te gaan en eventuele vragen te beantwoorden.",
       },
       {
         n: "02",
