@@ -20,10 +20,10 @@ export const workflowSources: WorkflowSource[] = [
     benefits: [],
     timeSaved: "From grunt work to strategic focus — structurally more time for what truly matters",
     deliverables: [
-      "Milestone #1 – Inspire, Awareness & Enable (29 July, 14:00–17:00): AI vision kick-off, capabilities showcase, live Claude demos, No-Regret Use Case Framework, breakout sessions per department, presentation and selection per team",
-      "Milestone #2 – Analysis, Review & Validation: review of all use cases and Claude prototypes per department, technical and business validation",
-      "Milestone #3 – Deep-dive & Prioritisation: use case presentations, feedback, prioritising quick wins and strategic initiatives, joint selection of promising projects",
-      "Milestone #4 – Strategic Roadmap & Business Cases: NOW / NEXT / NEAR AI roadmap developed, business cases for the selected initiatives",
+      "Milestone #1 — Workshop: Inspire, Awareness & Enable (Wednesday 29 July, 14:00–17:00): blablabuild intro and examples from our own work · the Adsomnia AI vision translated into concrete per-department objectives · AI agent deep-dive (what is already possible, when do you need one?) + Agentic Enterprise demo (Talk-To-Data) · live Claude environment demo including one fully built agent shown from the inside · introduction of the No-Regret Use Case Framework · breakout sessions per department: each team works out at least 3 potential use cases · collective presentation and selection of a Claude Code Case per team (fully autonomous in Claude) · homework: Use Case Framework completed within 7 days, Claude prototype built within 14 days",
+      "Milestone #2 — Analysis, Review & Validation: blablabuild receives all submitted use cases and Claude prototypes · assessment of technical feasibility within the existing tech suite · preparation of targeted questions and optimisations ahead of the next session",
+      "Milestone #3 — Workshop: Deep-dive & Prioritisation (mid-August): teams present their Claude prototype — knowledge sharing and inspiration · Q&A on all submitted use cases · collective visual prioritisation: immediately clear which cases are quick wins and which carry strategic weight",
+      "Milestone #4 — Strategic Roadmap & Business Cases: blablabuild translates the selected top cases into concrete project plans · resulting in a NOW / NEXT / NEAR AI roadmap — exactly which 2–3 cases to build first, which follow next, and which are longer-term",
     ],
   },
   {

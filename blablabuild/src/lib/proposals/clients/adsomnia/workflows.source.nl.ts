@@ -20,10 +20,10 @@ export const workflowSourcesNl: WorkflowSource[] = [
     benefits: [],
     timeSaved: "Van grunt work naar strategische focus — structureel meer tijd voor wat er echt toe doet",
     deliverables: [
-      "Milestone #1 – Inspire, Awareness & Enable (29 juli, 14:00–17:00): AI-visie kick-off, capabilities showcase, live Claude demo's, No-Regret Use Case Framework, breakout sessies per afdeling, presentatie en selectie per team",
-      "Milestone #2 – Analyse, Review & Validatie: review van alle use cases en Claude-prototypes per afdeling, technische en business-validatie",
-      "Milestone #3 – Deep-dive & Prioritering: presentatie use cases, feedback, prioriteren van quick wins en strategische initiatieven, gezamenlijke selectie van kansrijke projecten",
-      "Milestone #4 – Strategische Roadmap & Business Cases: NOW / NEXT / NEAR AI-roadmap uitgewerkt, business cases voor de geselecteerde initiatieven",
+      "Milestone #1 — Workshop: Inspire, Awareness & Enable (woensdag 29 juli, 14:00–17:00): intro blablabuild en voorbeelden uit eigen werk · de Adsomnia AI-visie vertaald naar concrete doelstellingen per afdeling · deep-dive in AI agents (wat is er nu al mogelijk, wanneer heb je een agent nodig?) + Agentic Enterprise demo (Talk-To-Data) · live Claude omgeving demo inclusief één volledig gebouwde agent die van de achterkant wordt getoond · introductie van het No-Regret Use Case Framework · breakout sessies per afdeling: elk team werkt minimaal 3 potentiële use cases uit · gezamenlijke presentatie en selectie van een Claude Code Case per team (volledig autonoom te maken in Claude) · huiswerk: Use Case Framework volledig gemaakt binnen 7 dagen, Claude prototype uitgewerkt binnen 14 dagen",
+      "Milestone #2 — Analyse, Review & Validatie: blablabuild ontvangt alle uitgewerkte use cases en Claude-prototypes · beoordeling technische haalbaarheid binnen de bestaande tech-suite · voorbereiding van gerichte vragen en optimalisaties voor de volgende sessie",
+      "Milestone #3 — Workshop: Deep-dive & Prioritering (midden augustus): teams presenteren hun Claude-prototype — kennisdeling en inspiratie · Q&A over alle ingediende use cases · collectieve visuele prioritering: direct inzichtelijk welke cases quick wins zijn en welke meer strategisch gewicht hebben",
+      "Milestone #4 — Strategische Roadmap & Business Cases: blablabuild vertaalt de geselecteerde top-cases naar concrete projectplannen · resulteert in een NOW / NEXT / NEAR AI-roadmap — exact welke 2–3 cases als eerste gebouwd worden, welke daarna volgen en welke op de lange termijn staan",
     ],
   },
   {
