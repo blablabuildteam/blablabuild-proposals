@@ -16,6 +16,8 @@ export type ProposalMeta = {
   clientLogo?: string;
   title: string;
   subtitle: string;
+  /** Override the locale shown on first visit (before localStorage is set). */
+  defaultLocale?: "en" | "nl";
 };
 
 export type ProposalAccessLanding = {

@@ -6,81 +6,82 @@ export const meta = {
   slug: "adsomnia",
   clientName: "Adsomnia",
   clientLogo: "/adsomnia-logo.png",
-  title: "Samen bouwen aan **Adsomnia**",
-  subtitle: "Workshop · Enablement · Always-On Retainer · juli 2026",
+  title: "Building **Adsomnia** together",
+  subtitle: "Workshop · Enablement · Always-On Retainer · July 2026",
+  defaultLocale: "en",
 } as const;
 
 export const debrief = {
   quote:
     "Human-First, AI-Empowered: Shifting from Grunt Work to Strategic Impact. AI is not here to lead — it is here to empower. The human remains in the driver's seat.",
-  quoteSource: "Adsomnia AI-visie",
-  focusAreas: "2 projecten + doorlopende samenwerking: AI Enablement Workshop · Project Enablement · Retainer",
-  date: "juli 2026",
+  quoteSource: "Adsomnia AI vision",
+  focusAreas: "2 projects + ongoing partnership: AI Enablement Workshop · Project Enablement · Always-On Retainer",
+  date: "July 2026",
 } as const;
 
 export const access = {
   landing: {
-    kicker: "Voorstel voor",
-    greetingTemplate: "Hoi {name},",
-    clientLabel: "Klant",
-    passwordLabel: "Wachtwoord",
-    passwordHint: "Gebruik het wachtwoord uit je uitnodiging.",
-    submit: "Open voorstel",
-    submitting: "Controleren…",
-    opening: "Voorstel openen…",
-    sessionExpired: "Je sessie is verlopen. Log opnieuw in.",
+    kicker: "Proposal for",
+    greetingTemplate: "Hi {name},",
+    clientLabel: "Client",
+    passwordLabel: "Password",
+    passwordHint: "Use the password from your invitation.",
+    submit: "Open proposal",
+    submitting: "Checking…",
+    opening: "Opening proposal…",
+    sessionExpired: "Your session has expired. Please sign in again.",
     invalidAccessLink:
-      "Deze link is ongeldig of verlopen. Vul het wachtwoord uit je uitnodiging in.",
-    accessDenied: "Onjuiste klant of wachtwoord",
-    genericError: "Er ging iets mis. Probeer het opnieuw.",
-    confidentialNote: "Vertrouwelijk, opgesteld door blablabuild",
+      "This link is invalid or has expired. Enter the password from your invitation.",
+    accessDenied: "Invalid client or password",
+    genericError: "Something went wrong. Please try again.",
+    confidentialNote: "Confidential, prepared by blablabuild",
   },
 } as const;
 
 export const slideCopy = {
-  debriefKicker: "Intake samengevat",
+  debriefKicker: "Intake summary",
   wayOfWorking: {
-    kicker: "Werkwijze",
-    title: "**Activeren**, niet alleen inspireren.",
+    kicker: "Way of working",
+    title: "**Activate**, not just inspire.",
     subtitle:
-      "Vier principes die bepalen hoe we met Adsomnia werken. Geen standaard bureautraject.",
-    aiTitle: "Wekelijkse afstemming",
+      "Four principles that shape how we work with Adsomnia. Not a standard agency playbook.",
+    aiTitle: "Weekly alignment",
     aiBody:
-      "Elk project heeft een vast ritme: voortgang, open punten en wat er deze sprint wordt opgeleverd. Geen verrassingen.",
-    controlTitle: "Jullie houden de regie",
+      "Each project has a fixed rhythm: progress, open items, and what gets delivered this sprint. No surprises.",
+    controlTitle: "You stay in control",
     controlBody:
-      "Scope per project leggen we vast vóór we starten. Jullie bepalen de volgorde en het tempo van de drie projecten.",
+      "Scope per project is locked before we start. You decide the order and pace of the three projects.",
   },
   investment: {
-    kicker: "Investering",
-    title: "Investering **per project**",
+    kicker: "Investment",
+    title: "Investment **per project**",
     subtitle:
-      "Twee vaste projecten en een doorlopende samenwerking op basis van beschikbaarheid.",
+      "Two fixed projects and an ongoing partnership based on availability.",
   },
   nextSteps: {
-    kicker: "Volgende stappen",
-    title: "Klaar wanneer **jullie** willen",
-    subtitle: "Van voorstel naar uitvoering in vier stappen.",
+    kicker: "Next steps",
+    title: "Ready when **you** are",
+    subtitle: "From proposal to execution in four steps.",
     steps: [
       {
         n: "01",
-        title: "Voorstel doorlezen",
-        body: "Doorloop de drie projecten, aanpak en investering in je eigen tempo. Noteer vragen en wat je anders wil.",
+        title: "Review the proposal",
+        body: "Walk through the three projects, approach, and investment at your own pace. Note questions and anything you'd like to change.",
       },
       {
         n: "02",
-        title: "Bespreken",
-        body: "Korte sessie om samen door het voorstel te lopen. Open vragen, scope aanpassen en bepalen welke projecten wanneer starten.",
+        title: "Discuss together",
+        body: "A short session to go through the proposal together. Open questions, adjust scope, and decide which projects start when.",
       },
       {
         n: "03",
-        title: "Scope per project vastleggen",
-        body: "Per project sluiten we de scope: wat leveren we op, wanneer, wie is waarvoor verantwoordelijk.",
+        title: "Lock scope per project",
+        body: "Per project we align on deliverables, timeline, and responsibilities.",
       },
       {
         n: "04",
-        title: "Kickoff plannen",
-        body: "Milestone #1 van de workshop staat al op 29 juli. Contract ondertekenen en starten.",
+        title: "Plan kick-off",
+        body: "Milestone #1 of the workshop is already set for 29 July. Sign and start.",
       },
     ],
   },
@@ -88,12 +89,12 @@ export const slideCopy = {
 
 const slideLabels: Record<string, string> = {
   debrief: "Intro",
-  "way-of-working": "Werkwijze",
+  "way-of-working": "Way of working",
   "phase-now": "AI Workshop",
   "phase-next": "Project Enablement",
   "phase-near": "Always-On Retainer",
-  investment: "Investering",
-  "next-steps": "Volgende stappen",
+  investment: "Investment",
+  "next-steps": "Next steps",
 };
 
 const bundle: ProposalBundle = {

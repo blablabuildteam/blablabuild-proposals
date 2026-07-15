@@ -42,9 +42,12 @@ export function ProposalProvider({
   );
 
   useEffect(() => {
-    const stored = resolveProposalLocale(localStorage.getItem(LOCALE_STORAGE_KEY));
-    setLocaleState(stored);
-  }, []);
+    const raw = localStorage.getItem(LOCALE_STORAGE_KEY);
+    const resolved = raw
+      ? resolveProposalLocale(raw)
+      : (initialLocale ?? DEFAULT_PROPOSAL_LOCALE);
+    setLocaleState(resolved);
+  }, [initialLocale]);
 
   useEffect(() => {
     document.documentElement.lang = locale;

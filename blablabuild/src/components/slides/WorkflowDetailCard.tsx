@@ -6,7 +6,9 @@ import { labelFor, useProposalUi } from "@/lib/proposals/use-proposal-ui";
 import { Badge, BulletList } from "./shared";
 
 const FOCUS_AREA_BAR: Record<string, string> = {
+  Innovation: "bg-[var(--brand-accent)]",
   Innovatie: "bg-[var(--brand-accent)]",
+  Production: "bg-[var(--brand-primary)]",
   Productie: "bg-[var(--brand-primary)]",
   Business: "bg-[#3B82F6]",
 };

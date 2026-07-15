@@ -28,12 +28,15 @@ export default async function ProposalPage({ params }: Props) {
 
   if (!bundles) notFound();
 
+  const defaultLocale = bundles.en?.meta.defaultLocale ?? bundles.nl?.meta.defaultLocale;
+
   return (
     <ProposalProvider
       bundles={{
         en: prepareBundleForClient(bundles.en),
         nl: prepareBundleForClient(bundles.nl),
       }}
+      initialLocale={defaultLocale}
     >
       <SlideDeck />
     </ProposalProvider>

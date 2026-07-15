@@ -22,20 +22,20 @@ export const { workflows, riceSorted, phases, packages, AI_BUILD_NOTE } = built;
 
 export const wayOfWorking = [
   {
-    title: "Activeren, niet alleen inspireren",
-    body: "We werken vanuit jullie context en teams. Elke stap leidt direct naar concrete acties en eigenaarschap binnen Adsomnia — geen generiek AI-verhaal.",
+    title: "Activate, not just inspire",
+    body: "We work from your context and teams. Every step leads directly to concrete actions and ownership within Adsomnia — no generic AI narrative.",
   },
   {
-    title: "Parallel is prima",
-    body: "De drie projecten kunnen naast elkaar lopen. Ze versterken elkaar maar wachten niet op elkaar. Jullie bepalen de volgorde en het tempo.",
+    title: "Parallel is fine",
+    body: "The three projects can run alongside each other. They reinforce each other but do not wait for each other. You decide the order and the pace.",
   },
   {
-    title: "Structuur als fundament",
-    body: "AI-initiatieven slagen of falen op uitvoering. Daarom bouwen we eerst de werkwijze en tooling voordat we schalen.",
+    title: "Structure as a foundation",
+    body: "AI initiatives succeed or fail on execution. That is why we build the way of working and tooling before we scale.",
   },
   {
-    title: "Doorlopende samenwerking",
-    body: "Met de retainer blijft blablabuild beschikbaar als verlengstuk van het team. Geen briefingkosten, geen opstarttijd — gewoon doorbouwen.",
+    title: "Ongoing partnership",
+    body: "With the retainer, blablabuild stays available as an extension of your team. No briefing cost, no ramp-up — just keep building.",
   },
 ] as const;
 
