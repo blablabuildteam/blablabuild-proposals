@@ -2,7 +2,7 @@
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   DeckNavigationProvider,
   useDeckNavigation,
@@ -29,7 +29,7 @@ function SlideDeckInner() {
   const { slideLabels, meta, getWorkflow, slideConfigs } = useProposal();
   const { locale, setLocale } = useProposalLocale();
   const ui = useProposalUi();
-  const { workflowDetailId, closeWorkflow } = useDeckNavigation();
+  const { workflowDetailId, closeWorkflow, registerGoToSlide } = useDeckNavigation();
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState<1 | -1>(1);
   const touchStart = useRef<{ x: number; y: number } | null>(null);
@@ -72,6 +72,10 @@ function SlideDeckInner() {
     },
     [closeWorkflow, index],
   );
+
+  useLayoutEffect(() => {
+    registerGoToSlide(goToSlide);
+  }, [registerGoToSlide, goToSlide]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {

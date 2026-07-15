@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useProposal } from "@/components/ProposalProvider";
+import { useDeckNavigation } from "@/components/DeckNavigation";
 import type { ProposalUnderstandingGrowth } from "@/lib/proposals/types";
 import { brand } from "@/lib/brand";
 import { ImpactMatrix } from "./ImpactMatrix";
@@ -24,27 +25,50 @@ function QuoteBlock({ quote, quoteSource }: { quote: string; quoteSource: string
 function ProjectCards({
   projects,
 }: {
-  projects: readonly { title: string; description: string; investment: string }[];
+  projects: readonly { title: string; description: string; investment: string; slideIndex?: number }[];
 }) {
+  const { goToSlide } = useDeckNavigation();
+
   return (
     <div className="grid gap-3 sm:grid-cols-3">
-      {projects.map((p, i) => (
-        <div
-          key={i}
-          className="flex flex-col gap-2 rounded-xl border border-[var(--brand-border)] bg-white p-4"
-        >
-          <p className="text-[10px] font-bold tracking-widest text-[var(--brand-primary)] uppercase">
-            {String(i + 1).padStart(2, "0")}
-          </p>
-          <p className="text-sm font-semibold leading-snug text-[var(--brand-fg)]">{p.title}</p>
-          <p className="flex-1 text-xs leading-relaxed text-[var(--brand-muted)]">
-            {p.description}
-          </p>
-          <p className="mt-1 font-mono text-xs font-bold text-[var(--brand-primary)]">
-            {p.investment}
-          </p>
-        </div>
-      ))}
+      {projects.map((p, i) => {
+        const isClickable = p.slideIndex !== undefined;
+        const Wrapper = isClickable ? "button" : "div";
+        return (
+          <Wrapper
+            key={i}
+            {...(isClickable
+              ? {
+                  type: "button" as const,
+                  onClick: () => goToSlide(p.slideIndex!),
+                }
+              : {})}
+            className={`flex flex-col gap-2 rounded-xl border border-[var(--brand-border)] bg-white p-4 text-left transition ${
+              isClickable
+                ? "cursor-pointer hover:border-[var(--brand-primary)]/50 hover:shadow-sm"
+                : ""
+            }`}
+          >
+            <p className="text-[10px] font-bold tracking-widest text-[var(--brand-primary)] uppercase">
+              {String(i + 1).padStart(2, "0")}
+            </p>
+            <p className="text-sm font-semibold leading-snug text-[var(--brand-fg)]">{p.title}</p>
+            <p className="flex-1 text-xs leading-relaxed text-[var(--brand-muted)]">
+              {p.description}
+            </p>
+            <div className="mt-1 flex items-center justify-between gap-2">
+              <p className="font-mono text-xs font-bold text-[var(--brand-primary)]">
+                {p.investment}
+              </p>
+              {isClickable && (
+                <span className="text-[10px] font-medium text-[var(--brand-muted)] group-hover:text-[var(--brand-primary)]">
+                  Open →
+                </span>
+              )}
+            </div>
+          </Wrapper>
+        );
+      })}
     </div>
   );
 }

@@ -69,6 +69,8 @@ export type ProposalDebriefProject = {
   title: string;
   description: string;
   investment: string;
+  /** Slide index to navigate to when the card is clicked */
+  slideIndex?: number;
 };
 
 export type ProposalDebrief = {

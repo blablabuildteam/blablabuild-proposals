@@ -48,17 +48,17 @@ export function SlidePhaseNext() {
         </div>
       )}
 
+      <div className="mb-5 rounded-xl border border-[var(--brand-border)] bg-white p-4 sm:p-5">
+        <p className="mb-2 text-xs font-bold text-[var(--brand-muted)] uppercase">{ui.outcomes}</p>
+        <BulletList items={[...phase.outcomes]} />
+      </div>
+
       {items.length === 1 && items[0] && (
         <div className="mb-5 rounded-xl bg-[var(--brand-primary)] p-5 text-white sm:p-6">
           <h2 className="text-xl leading-snug sm:text-2xl">{items[0].title}</h2>
           <p className="mt-1.5 text-sm leading-relaxed text-white/80">{items[0].summary}</p>
         </div>
       )}
-
-      <div className="mb-5 rounded-xl border border-[var(--brand-border)] bg-white p-4 sm:p-5">
-        <p className="mb-2 text-xs font-bold text-[var(--brand-muted)] uppercase">{ui.outcomes}</p>
-        <BulletList items={[...phase.outcomes]} />
-      </div>
 
       {items.length === 1 && items[0] ? (
         <WorkflowInlinePanel wf={items[0]} showHeader={false} />

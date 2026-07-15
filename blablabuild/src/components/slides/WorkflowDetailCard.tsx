@@ -92,13 +92,6 @@ export function WorkflowInlinePanel({
         />
       )}
 
-      <div className="rounded-xl bg-[var(--brand-bg)] p-4">
-        <p className="mb-2 text-[10px] font-bold tracking-wide text-[var(--brand-primary)] uppercase">
-          {ui.whyThisMatters}
-        </p>
-        <p className="text-sm leading-relaxed text-[var(--brand-fg)]">{wf.why}</p>
-      </div>
-
       {remainingBenefits && remainingBenefits.length > 0 && (
         <div className="rounded-xl border border-[var(--brand-border)] bg-white px-4 py-3">
           {remainingBenefits.map((b) => (
@@ -108,6 +101,13 @@ export function WorkflowInlinePanel({
           ))}
         </div>
       )}
+
+      <div className="rounded-xl bg-[var(--brand-bg)] p-4">
+        <p className="mb-2 text-[10px] font-bold tracking-wide text-[var(--brand-primary)] uppercase">
+          {ui.whyThisMatters}
+        </p>
+        <p className="text-sm leading-relaxed text-[var(--brand-fg)]">{wf.why}</p>
+      </div>
 
       {!hasFocusAreas && !wf.hideDeliverables && (
         <div className="rounded-xl border border-[var(--brand-border)] bg-white p-4">
