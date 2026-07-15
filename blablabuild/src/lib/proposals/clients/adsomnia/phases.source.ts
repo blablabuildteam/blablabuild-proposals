@@ -18,7 +18,7 @@ export const phaseSources: readonly PhaseSource[] = [
   {
     id: "next",
     label: "Project Enablement",
-    period: "",
+    period: "Pending pre-exploration",
     headline: "Central overview, **the right toolstack**, and a foundation for the PM role",
     workflows: ["WF2"],
     outcomes: [
@@ -31,7 +31,7 @@ export const phaseSources: readonly PhaseSource[] = [
   {
     id: "near",
     label: "Always-On Retainer",
-    period: "",
+    period: "To be confirmed",
     headline: "Always available — **Innovation · Production · Business**",
     workflows: ["WF3"],
     outcomes: [

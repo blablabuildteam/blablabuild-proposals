@@ -20,7 +20,7 @@ export const workflowSources: WorkflowSource[] = [
     benefits: [
       "Every team understands what AI means for their work — not abstract, but concrete and actionable",
       "Shared AI roadmap: what now, what next, what together — owned by the whole team",
-      "Foundation for a sustainable way of working with AI across Adsomnia",
+      "Foundation to keep innovating rhythmically — building on the workshop, every sprint",
     ],
     timeSaved: "From grunt work to strategic focus — structurally more time for what truly matters",
     deliverables: [
@@ -44,7 +44,7 @@ export const workflowSources: WorkflowSource[] = [
     hideTimeline: true,
     excludeFromPrio: true,
     excludeFromTotals: true,
-    summary: "A centralised overview of all active projects, a working toolstack, and the foundation for a Head of Production role.",
+    summary: "A centralised overview of all active projects, a working toolstack, and the foundation for a PM / PO role.",
     why: "Adsomnia is growing — and so is the complexity of projects, people, and tools. Right now there is no central overview of what is running, who owns what, and how that scales as the organisation grows. This project starts with a pre-exploration: we look at the team, how they currently work, what projects exist, who picks them up (internal, external, or within the broader organisation), and how this evolves over time. Only then do we decide on the best setup — so the structure genuinely fits Adsomnia, now and later.",
     benefits: [
       "One central overview of all active projects — always up to date, visible to everyone",
@@ -59,7 +59,7 @@ export const workflowSources: WorkflowSource[] = [
       "Toolstack recommendation based on the exploration: Project Management (Jira), Storage (Google Drive), Resource Planning, and Central Production Dashboard (Jira or bespoke)",
       "Configuration of the chosen toolstack with workflows, statuses, and a rhythm that fits Adsomnia",
       "Central production dashboard: overview of all active projects, ownership, and status",
-      "Fully documented foundation ready for a Project / Product Manager — whether that person is already in place or still being sourced",
+      "Fully documented foundation ready for a PM / PO — whether that person is already in place or still being sourced",
     ],
   },
   {
@@ -72,13 +72,13 @@ export const workflowSources: WorkflowSource[] = [
     phaseRevised: "NEAR",
     effort: { daysMin: 0, daysMax: 0, weeks: "Ongoing", daysLabel: "Ongoing" },
     cost: { min: 0, max: 0 },
-    investmentLabel: "X hrs/week · to be confirmed",
+    investmentLabel: "X hrs/week",
     excludeFromTotals: true,
     excludeFromPrio: true,
     hideTimeline: true,
     domainLabels: ["Innovation", "Production", "Business"],
-    summary: "Call us in whenever you need. We are your safety net on production, the driver of innovation, and your strategic sparring partner in business.",
-    why: "Growth brings complexity. New AI initiatives that need to land. Production issues you cannot afford to leave unresolved. Strategic choices you do not want to face alone. With the Always-On Retainer, blablabuild is always within reach — no ramp-up time, no briefing cost. We agree on a fixed number of hours per week that you can distribute flexibly across the three areas where the need is greatest.",
+    summary: "A fixed block of hours per week — flexibly deployable across Innovation, Production, and Business. Your safety net, always in context.",
+    why: "Growth brings complexity. New AI initiatives that need to land. Production issues you cannot afford to leave unresolved. Strategic choices you do not want to face alone. We agree on a fixed number of hours per week — likely structured around fixed days. Those hours are yours to direct: this week mostly production, next week strategy, the week after a deep-dive on a new AI initiative. No briefing cost, no ramp-up, always in context.",
     benefits: [
       "Production: we are your safety net — issues are picked up immediately, no waiting",
       "Innovation: we keep the rhythm — AI initiatives from the workshop stay alive and actually land",

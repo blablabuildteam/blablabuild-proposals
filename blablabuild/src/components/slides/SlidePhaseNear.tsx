@@ -27,16 +27,16 @@ export function SlidePhaseNear() {
             <HighlightedTitle text={phase.headline} variant="light" />
           </h1>
         </div>
-        <div className="rounded-xl bg-[var(--brand-accent)] px-5 py-3 text-right">
+        <div className="shrink-0 rounded-xl bg-[var(--brand-accent)] px-5 py-3 text-right">
           {phase.investStandalone && (
-            <p className="font-mono text-sm text-[var(--brand-fg)]/50 line-through">
+            <p className="whitespace-nowrap font-mono text-sm text-[var(--brand-fg)]/50 line-through">
               {phase.investStandalone}
             </p>
           )}
-          <p className="font-mono text-xl font-bold text-[var(--brand-fg)] sm:text-2xl">
+          <p className="whitespace-nowrap font-mono text-xl font-bold text-[var(--brand-fg)] sm:text-2xl">
             {phase.invest}
           </p>
-          <p className="text-xs font-medium text-[var(--brand-fg)]/70">
+          <p className="whitespace-nowrap text-xs font-medium text-[var(--brand-fg)]/70">
             {phase.investStandalone ? "incl. combinatievoordeel · " : ""}
             {phase.period}
           </p>

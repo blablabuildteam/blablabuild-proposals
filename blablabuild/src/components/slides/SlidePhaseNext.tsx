@@ -29,11 +29,11 @@ export function SlidePhaseNext() {
             <HighlightedTitle text={phase.headline} variant="light" />
           </h1>
         </div>
-        <div className="rounded-xl bg-[var(--brand-accent)] px-5 py-3 text-right">
-          <p className="font-mono text-xl font-bold text-[var(--brand-fg)] sm:text-2xl">
+        <div className="shrink-0 rounded-xl bg-[var(--brand-accent)] px-5 py-3 text-right">
+          <p className="whitespace-nowrap font-mono text-xl font-bold text-[var(--brand-fg)] sm:text-2xl">
             {phase.invest}
           </p>
-          <p className="text-xs font-medium text-[var(--brand-fg)]/70">{phase.period}</p>
+          <p className="whitespace-nowrap text-xs font-medium text-[var(--brand-fg)]/70">{phase.period}</p>
         </div>
       </div>
 
