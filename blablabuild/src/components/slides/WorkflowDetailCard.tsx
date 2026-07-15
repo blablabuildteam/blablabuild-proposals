@@ -5,7 +5,7 @@ import { useDeckNavigation } from "@/components/DeckNavigation";
 import { labelFor, useProposalUi } from "@/lib/proposals/use-proposal-ui";
 import { Badge, BulletList } from "./shared";
 
-const MILESTONE_RE = /^(Milestone\s+#\d+\s*[—–-]\s*)(.+?)(\([^)]+\))?:\s*(.*)$/s;
+const MILESTONE_RE = /^(Milestone\s+#\d+\s*[—–-]\s*)(.+?)(\([^)]+\))?:\s*([\s\S]*)$/;
 
 function isMilestoneDeliverable(s: string) {
   return /^Milestone\s+#\d+/i.test(s);
