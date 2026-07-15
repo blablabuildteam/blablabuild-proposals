@@ -5,6 +5,86 @@ import { useDeckNavigation } from "@/components/DeckNavigation";
 import { labelFor, useProposalUi } from "@/lib/proposals/use-proposal-ui";
 import { Badge, BulletList } from "./shared";
 
+const MILESTONE_RE = /^(Milestone\s+#\d+\s*[—–-]\s*)(.+?)(\([^)]+\))?:\s*(.*)$/s;
+
+function isMilestoneDeliverable(s: string) {
+  return /^Milestone\s+#\d+/i.test(s);
+}
+
+function MilestoneCard({ text }: { text: string }) {
+  const match = text.match(MILESTONE_RE);
+  if (!match) return <p className="text-sm text-[var(--brand-fg)]">{text}</p>;
+
+  const [, prefix, titleRaw, datePart, rest] = match;
+  const title = titleRaw.trim();
+  const date = datePart?.replace(/[()]/g, "").trim();
+  const items = rest
+    ? rest.split("·").map((s) => s.trim()).filter(Boolean)
+    : [];
+
+  return (
+    <div className="rounded-xl border border-[var(--brand-border)] bg-white overflow-hidden">
+      <div className="border-b border-[var(--brand-border)] bg-[var(--brand-bg)] px-4 py-3">
+        <p className="text-[10px] font-bold tracking-widest text-[var(--brand-primary)] uppercase">
+          {prefix.replace(/\s*[—–-]\s*$/, "").trim()}
+        </p>
+        <p className="mt-0.5 text-sm font-semibold text-[var(--brand-fg)]">{title}</p>
+        {date && (
+          <p className="mt-0.5 text-xs text-[var(--brand-muted)]">{date}</p>
+        )}
+      </div>
+      {items.length > 0 && (
+        <ul className="divide-y divide-[var(--brand-border)]">
+          {items.map((item, i) => (
+            <li key={i} className="flex items-start gap-2.5 px-4 py-2.5">
+              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--brand-accent)]" />
+              <span className="text-sm leading-relaxed text-[var(--brand-fg)]">{item}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+function DeliverablesSection({
+  label,
+  items,
+}: {
+  label: string;
+  items: readonly string[];
+}) {
+  const hasMilestones = items.some(isMilestoneDeliverable);
+
+  if (hasMilestones) {
+    return (
+      <div className="space-y-3">
+        <p className="text-[10px] font-bold tracking-wide text-[var(--brand-muted)] uppercase">
+          {label}
+        </p>
+        {items.map((item, i) =>
+          isMilestoneDeliverable(item) ? (
+            <MilestoneCard key={i} text={item} />
+          ) : (
+            <p key={i} className="text-sm text-[var(--brand-fg)]">
+              {item}
+            </p>
+          ),
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div className="rounded-xl border border-[var(--brand-border)] bg-white p-4">
+      <p className="mb-2 text-[10px] font-bold tracking-wide text-[var(--brand-muted)] uppercase">
+        {label}
+      </p>
+      <BulletList items={items} />
+    </div>
+  );
+}
+
 const FOCUS_AREA_BAR: Record<string, string> = {
   Innovation: "bg-[var(--brand-accent)]",
   Innovatie: "bg-[var(--brand-accent)]",
@@ -110,12 +190,7 @@ export function WorkflowInlinePanel({
       </div>
 
       {!hasFocusAreas && !wf.hideDeliverables && (
-        <div className="rounded-xl border border-[var(--brand-border)] bg-white p-4">
-          <p className="mb-2 text-[10px] font-bold tracking-wide text-[var(--brand-muted)] uppercase">
-            {ui.whatWeDeliver}
-          </p>
-          <BulletList items={wf.deliverables} />
-        </div>
+        <DeliverablesSection label={ui.whatWeDeliver} items={wf.deliverables} />
       )}
     </div>
   );
