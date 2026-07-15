@@ -56,7 +56,13 @@ function FocusAreasGrid({
 }
 
 /** Full inline project detail — used when a phase has exactly one workflow. */
-export function WorkflowInlinePanel({ wf }: { wf: Workflow }) {
+export function WorkflowInlinePanel({
+  wf,
+  showHeader = true,
+}: {
+  wf: Workflow;
+  showHeader?: boolean;
+}) {
   const ui = useProposalUi();
   const hasFocusAreas =
     wf.domainLabels && wf.domainLabels.length > 1;
@@ -72,10 +78,12 @@ export function WorkflowInlinePanel({ wf }: { wf: Workflow }) {
 
   return (
     <div className="space-y-3">
-      <div className="rounded-xl bg-[var(--brand-primary)] p-5 text-white sm:p-6">
-        <h2 className="text-xl leading-snug sm:text-2xl">{wf.title}</h2>
-        <p className="mt-1.5 text-sm leading-relaxed text-white/80">{wf.summary}</p>
-      </div>
+      {showHeader && (
+        <div className="rounded-xl bg-[var(--brand-primary)] p-5 text-white sm:p-6">
+          <h2 className="text-xl leading-snug sm:text-2xl">{wf.title}</h2>
+          <p className="mt-1.5 text-sm leading-relaxed text-white/80">{wf.summary}</p>
+        </div>
+      )}
 
       {hasFocusAreas && (
         <FocusAreasGrid

@@ -41,7 +41,7 @@ export const workflowSources: WorkflowSource[] = [
     excludeFromPrio: true,
     excludeFromTotals: true,
     hideDeliverables: true,
-    summary: "Starts with a pre-exploration — then a centralised overview of all active projects, the right toolstack, and the foundation for a PM / PO role.",
+    summary: "A centralised overview of all active projects, the right toolstack, and the foundation for a PM / PO role.",
     expectedValue: "Before we design the setup, we run a pre-exploration. We look at the team, how they currently work, what projects exist, and who picks them up — internal, external, or within the broader organisation. We also map how this evolves as Adsomnia grows: internal team, dedicated team, or staying external. Only then do we determine the approach and toolstack that genuinely fits.",
     why: "Adsomnia is growing — and so is the complexity of projects, people, and tools. Right now there is no central overview of what is running, who owns what, and how that scales. Without structure now, coordination becomes a problem later.",
     benefits: [],
