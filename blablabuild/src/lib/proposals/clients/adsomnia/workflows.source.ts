@@ -19,10 +19,8 @@ export const workflowSources: WorkflowSource[] = [
     why: "AI is niet hier om te leiden — het is hier om te ondersteunen. De mensen van Adsomnia zijn de motor: hun creativiteit, strategisch denken en ondernemersdrive zijn wat het verschil maakt. Te veel energie gaat nu verloren aan handmatig werk, data ophalen en repetitieve taken. Deze workshop geeft elk team de kennis, de tools en een concreet pad om AI in te zetten als co-piloot — zodat de tijd en mentale ruimte vrijkomt voor wat echt impact maakt.",
     benefits: [
       "Elk team snapt wat AI voor hun werk betekent — niet abstract, maar concreet en toepasbaar",
-      "Van 'data pullen' naar 'data die naar je toe komt': AI levert inzichten automatisch aan",
-      "Minder administratieve mini-taken, meer tijd voor campagnes, relaties en strategie",
-      "Een ritme van continue innovatie — geen eenmalige hype, maar een duurzame werkwijze",
       "Gedeelde AI-roadmap: wat nu, wat daarna, wat samen — gedragen door het hele team",
+      "Fundament voor een duurzame manier van werken met AI binnen Adsomnia",
     ],
     timeSaved: "Van grunt work naar strategische focus — structureel meer tijd voor wat er echt toe doet",
     deliverables: [
