@@ -78,7 +78,7 @@ export const workflowSourcesNl: WorkflowSource[] = [
     why: "Groei brengt complexiteit mee. Nieuwe AI-initiatieven die moeten landen. Productieproblemen die je niet kunt laten liggen. Strategische keuzes waarbij je niet alleen wil staan. We spreken een vast aantal uur per week af — waarschijnlijk op vaste dagen. Die uren zijn voor jou: deze week vooral productie, volgende week strategie, de week daarna een deep-dive op een nieuw AI-initiatief. Geen briefingkosten, geen opstarttijd, altijd in context.",
     benefits: [
       "Productie: jouw vangnet én directe support voor projectleads en de PM-to-be — beschikbaar bij blokkades, bugs en escalaties voordat ze problemen worden",
-      "Innovatie: maandelijkse 'AI 30 Minutes of Now' sessies — één uur per maand met een team: nieuwe use cases, live demo's en ophalen wat mensen zelf zijn gaan uitproberen in Claude. Nieuwe AI-ideeën die ontstaan krijgen eigenaarschap en een concreet pad",
+      "Innovatie: we helpen bij het uitdenken en realiseren van de AI use cases en initiatieven uit de workshop-roadmap — meedenken, mede-bouwen en zorgen dat de innovatie daadwerkelijk vooruit blijft gaan in plaats van stilstand na de workshop",
       "Business: wij zijn je strategisch partner — sparring bij keuzes, roadmap en prioriteiten",
       "Jij bepaalt waar de uren naartoe gaan — verdeeld over de drie gebieden op basis van wat er die week het hardst nodig is",
     ],
@@ -86,7 +86,7 @@ export const workflowSourcesNl: WorkflowSource[] = [
     deliverables: [
       "Wekelijkse of tweewekelijkse afstemming — altijd op de hoogte van wat er speelt",
       "Productie support: directe beschikbaarheid bij blokkades, bugs en escalaties",
-      "Innovatie: maandelijkse 'AI 30 Minutes of Now' sessie + begeleiding bij nieuwe AI-ideeën die ontstaan",
+      "Innovatie: uitdenken van use cases uit de AI-roadmap, mede-bouwen en realiseren van AI-initiatieven, ondersteunen van nieuwe ideeën die ontstaan",
       "Business sparring: strategie, roadmap, prioriteiten en beslissingssupport",
       "Maandelijks overzicht: waar zijn de uren gevallen, wat is opgeleverd, wat staat er voor volgende maand",
     ],

@@ -78,7 +78,7 @@ export const workflowSources: WorkflowSource[] = [
     why: "Growth brings complexity. New AI initiatives that need to land. Production issues you cannot afford to leave unresolved. Strategic choices you do not want to face alone. We agree on a fixed number of hours per week — likely structured around fixed days. Those hours are yours to direct: this week mostly production, next week strategy, the week after a deep-dive on a new AI initiative. No briefing cost, no ramp-up, always in context.",
     benefits: [
       "Production: your safety net and direct support for project leads and the PM-to-be — available for blockers, bugs, and escalations before they become problems",
-      "Innovation: monthly 'AI 30 Minutes of Now' sessions — one hour per month with a team, covering new use cases, live demos, and picking up on what people have been experimenting with in Claude. New AI ideas that surface get ownership and a path forward",
+      "Innovation: we help think through and execute the AI use cases and initiatives coming from the workshop roadmap — co-building, supporting new ideas as they emerge, and making sure innovation actually moves forward rather than stalling after the workshop",
       "Business: we are your strategic partner — sparring on choices, roadmap, and priorities",
       "You decide where the hours go — split across the three areas based on what is most pressing that week",
     ],
@@ -86,7 +86,7 @@ export const workflowSources: WorkflowSource[] = [
     deliverables: [
       "Weekly or bi-weekly alignment — always on top of what is happening",
       "Production support: direct availability for blockers, bugs, and escalations",
-      "Innovation: monthly 'AI 30 Minutes of Now' session + support for new AI ideas that emerge",
+      "Innovation: thinking through use cases from the AI roadmap, co-building and realising AI initiatives, supporting new ideas as they emerge",
       "Business sparring: strategy, roadmap, priorities, and decision support",
       "Monthly overview: where did the hours go, what was delivered, what is coming next",
     ],

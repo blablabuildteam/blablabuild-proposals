@@ -37,7 +37,7 @@ export const phaseSources: readonly PhaseSource[] = [
     workflows: ["WF3"],
     outcomes: [
       "Production: safety net and direct support for project leads and the PM-to-be — escalations handled before they become problems",
-      "Innovation: monthly 'AI 30 Minutes of Now' sessions — live demos, new use cases, and ideas people have been experimenting with in Claude get ownership and a path forward",
+      "Innovation: thinking through and executing AI use cases from the roadmap — co-building initiatives, supporting new ideas, keeping innovation moving",
       "Business: strategic sparring on roadmap, priorities, and decisions",
       "You decide how hours are split across the three areas — based on what matters most that week",
     ],
