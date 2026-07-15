@@ -162,11 +162,13 @@ function SlideDeckInner() {
           )}
         </div>
         <div className="flex shrink-0 items-center gap-2 sm:gap-4">
-          <LanguageToggle
-            locale={locale}
-            onChange={setLocale}
-            variant={isBlue ? "on-dark" : "light"}
-          />
+          {meta.showLocaleSwitcher !== false && (
+            <LanguageToggle
+              locale={locale}
+              onChange={setLocale}
+              variant={isBlue ? "on-dark" : "light"}
+            />
+          )}
           <span
             className={`max-w-[9rem] truncate text-xs sm:max-w-none sm:text-sm md:hidden ${
               isBlue ? "text-white/75" : "text-[var(--brand-muted)]"

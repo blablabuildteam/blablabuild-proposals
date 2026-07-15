@@ -18,6 +18,8 @@ export type ProposalMeta = {
   subtitle: string;
   /** Override the locale shown on first visit (before localStorage is set). */
   defaultLocale?: "en" | "nl";
+  /** Hide the language switcher (e.g. for single-language proposals). */
+  showLocaleSwitcher?: boolean;
 };
 
 export type ProposalAccessLanding = {
@@ -260,4 +262,5 @@ export type PublicProposal = {
   title: string;
   subtitle: string;
   access: ProposalAccess;
+  showLocaleSwitcher?: boolean;
 };

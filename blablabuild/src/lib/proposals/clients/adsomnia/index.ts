@@ -9,6 +9,7 @@ export const meta = {
   title: "Building **Adsomnia** together",
   subtitle: "Workshop · Enablement · Always-On Retainer · July 2026",
   defaultLocale: "en",
+  showLocaleSwitcher: false,
 } as const;
 
 export const debrief = {

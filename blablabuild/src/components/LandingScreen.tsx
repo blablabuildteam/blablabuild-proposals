@@ -146,7 +146,9 @@ export function LandingScreen({
               className="h-8 w-auto"
             />
           </div>
-          <LanguageToggle locale={locale} onChange={handleLocaleChange} />
+          {proposal?.showLocaleSwitcher !== false && (
+            <LanguageToggle locale={locale} onChange={handleLocaleChange} />
+          )}
         </div>
 
         {isPersonalized && proposal && (

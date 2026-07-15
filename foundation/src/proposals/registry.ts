@@ -61,6 +61,7 @@ export function createProposalRegistry({
       title: meta.title,
       subtitle: meta.subtitle,
       access: resolveAccess(bundle, defaultAccess),
+      showLocaleSwitcher: meta.showLocaleSwitcher,
     };
   }
 
