@@ -21,6 +21,34 @@ function QuoteBlock({ quote, quoteSource }: { quote: string; quoteSource: string
   );
 }
 
+function ProjectCards({
+  projects,
+}: {
+  projects: readonly { title: string; description: string; investment: string }[];
+}) {
+  return (
+    <div className="grid gap-3 sm:grid-cols-3">
+      {projects.map((p, i) => (
+        <div
+          key={i}
+          className="flex flex-col gap-2 rounded-xl border border-[var(--brand-border)] bg-white p-4"
+        >
+          <p className="text-[10px] font-bold tracking-widest text-[var(--brand-primary)] uppercase">
+            {String(i + 1).padStart(2, "0")}
+          </p>
+          <p className="text-sm font-semibold leading-snug text-[var(--brand-fg)]">{p.title}</p>
+          <p className="flex-1 text-xs leading-relaxed text-[var(--brand-muted)]">
+            {p.description}
+          </p>
+          <p className="mt-1 font-mono text-xs font-bold text-[var(--brand-primary)]">
+            {p.investment}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function CombinedDebriefSlide({
   kicker,
   clientName,
@@ -183,7 +211,11 @@ export function SlideDebrief() {
       </div>
 
       <div className="mt-6 space-y-4">
-        <QuoteBlock quote={debrief.quote} quoteSource={debrief.quoteSource} />
+        {debrief.projects ? (
+          <ProjectCards projects={debrief.projects} />
+        ) : (
+          <QuoteBlock quote={debrief.quote} quoteSource={debrief.quoteSource} />
+        )}
 
         {debrief.summary && (
           <p className="max-w-2xl text-sm leading-relaxed text-[var(--brand-fg-secondary)] sm:text-base">
@@ -191,7 +223,9 @@ export function SlideDebrief() {
           </p>
         )}
 
-        <p className="text-xs text-[var(--brand-muted)] sm:text-sm">{debrief.focusAreas}</p>
+        {!debrief.projects && (
+          <p className="text-xs text-[var(--brand-muted)] sm:text-sm">{debrief.focusAreas}</p>
+        )}
       </div>
 
       <p className="mt-8 text-xs text-[var(--brand-muted-light)]">

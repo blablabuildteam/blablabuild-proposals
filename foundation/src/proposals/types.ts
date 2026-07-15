@@ -65,6 +65,12 @@ export type ImpactMatrixData = {
   caption?: string;
 };
 
+export type ProposalDebriefProject = {
+  title: string;
+  description: string;
+  investment: string;
+};
+
 export type ProposalDebrief = {
   quote: string;
   quoteSource: string;
@@ -74,6 +80,8 @@ export type ProposalDebrief = {
   date: string;
   /** Optional GIF shown top-right on the debrief slide */
   heroGif?: string;
+  /** When provided, replaces the quote block with project overview cards */
+  projects?: readonly ProposalDebriefProject[];
 };
 
 export type ProposalGoal = {

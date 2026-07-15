@@ -29,6 +29,26 @@ const debriefEn = {
   focusAreas:
     "2 projects + ongoing partnership: AI Enablement Workshop · Project Enablement · Always-On Retainer",
   date: "July 2026",
+  projects: [
+    {
+      title: "AI Enablement Workshop",
+      description:
+        "One day with your team: map AI use cases, define the roadmap, and build the foundation for a human-first way of working with AI.",
+      investment: "€4.5K",
+    },
+    {
+      title: "Project & Production Enablement",
+      description:
+        "Pre-exploration first, then a central project overview, the right toolstack, and the foundation for a PM / PO role.",
+      investment: "€3.5K–€6K",
+    },
+    {
+      title: "Always-On Retainer",
+      description:
+        "A fixed block of hours per week — flexibly deployed across Innovation, Production, and Business. Your safety net and strategic partner.",
+      investment: "X hrs/week",
+    },
+  ],
 } as const;
 
 const accessEn = {
@@ -117,6 +137,26 @@ const debriefNl = {
   focusAreas:
     "2 projecten + doorlopende samenwerking: AI Enablement Workshop · Project Enablement · Always-On Retainer",
   date: "juli 2026",
+  projects: [
+    {
+      title: "AI Enablement Workshop",
+      description:
+        "Één dag met jullie team: AI-use cases in kaart brengen, de roadmap opstellen en het fundament leggen voor een mensgerichte manier van werken met AI.",
+      investment: "€4.5K",
+    },
+    {
+      title: "Project & Production Enablement",
+      description:
+        "Eerst een voorverkenning, daarna centraal projectoverzicht, de juiste toolstack en het fundament voor een PM / PO-rol.",
+      investment: "€3.5K–€6K",
+    },
+    {
+      title: "Always-On Retainer",
+      description:
+        "Een vast aantal uur per week — vrij inzetbaar over Innovatie, Productie en Business. Je vangnet én strategisch partner.",
+      investment: "X uur/week",
+    },
+  ],
 } as const;
 
 const accessNl = {
