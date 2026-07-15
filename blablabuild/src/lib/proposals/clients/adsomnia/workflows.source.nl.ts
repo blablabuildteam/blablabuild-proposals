@@ -42,7 +42,8 @@ export const workflowSourcesNl: WorkflowSource[] = [
     excludeFromTotals: true,
     hideDeliverables: true,
     summary: "Begint met een voorverkenning — daarna een gecentraliseerd overzicht van alle lopende projecten, de juiste toolstack en het fundament voor een PM / PO-rol.",
-    why: "Adsomnia groeit — en daarmee de complexiteit van projecten, mensen en tools. Op dit moment ontbreekt een centraal overzicht van wat er loopt, wie wat doet en hoe dat schaalt als de organisatie verder groeit. Dit project begint met een voorverkenning: we kijken naar het team, hoe ze nu werken, welke projecten er zijn, wie ze oppakt (intern, extern of binnen de bredere organisatie) en hoe dit evolueert. Pas dan bepalen we de beste inrichting — zodat de structuur écht past bij Adsomnia, nu en later.",
+    expectedValue: "Voordat we de inrichting bepalen, doen we een voorverkenning. We kijken naar het team, hoe ze nu werken, welke projecten er zijn en wie ze oppakt — intern, extern of binnen Bending the Rules. We brengen ook in kaart hoe dit evolueert als Adsomnia verder groeit: intern team, dedicated team, of blijft het extern. Pas dan bepalen we de aanpak en toolstack die écht past.",
+    why: "Adsomnia groeit — en daarmee de complexiteit van projecten, mensen en tools. Op dit moment ontbreekt een centraal overzicht van wat er loopt, wie wat doet en hoe dat schaalt. Zonder structuur nu, wordt coördinatie later een probleem.",
     benefits: [],
     timeSaved: "Van ad-hoc coördinatie naar gestructureerd overzicht en eigenaarschap",
     deliverables: [
