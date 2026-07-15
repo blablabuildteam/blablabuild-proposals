@@ -1,5 +1,11 @@
 import { BLABLABUILD_PROPOSAL_CONFIG } from "@foundation/config";
 import { buildProposalContent } from "@foundation/proposal";
+
+// Fixed-price projects — no scope buffer needed
+const ADSOMNIA_CONFIG = {
+  ...BLABLABUILD_PROPOSAL_CONFIG,
+  costScopeBuffer: undefined,
+} as const;
 import { getProposalSection } from "@/components/proposal-library";
 import type { SlideConfig } from "@/lib/types";
 import { packageSources, phaseSources } from "./phases.source";
@@ -9,7 +15,7 @@ const built = buildProposalContent(
   workflowSources,
   phaseSources,
   packageSources,
-  BLABLABUILD_PROPOSAL_CONFIG,
+  ADSOMNIA_CONFIG,
 );
 
 export const { workflows, riceSorted, phases, packages, AI_BUILD_NOTE } = built;
