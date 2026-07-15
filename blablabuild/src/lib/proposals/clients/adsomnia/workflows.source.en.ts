@@ -17,11 +17,7 @@ export const workflowSources: WorkflowSource[] = [
     excludeFromTotals: true,
     summary: "Human-First, AI-Empowered — from grunt work to strategic impact, for every team at Adsomnia.",
     why: "AI is not here to lead — it is here to support. The people at Adsomnia are the engine: their creativity, strategic thinking, and entrepreneurial drive are what make the difference. Too much energy is currently lost to manual work, data retrieval, and repetitive tasks. This workshop gives every team the knowledge, the tools, and a concrete path to deploy AI as a co-pilot — freeing up time and mental space for what truly matters.",
-    benefits: [
-      "Every team understands what AI means for their work — not abstract, but concrete and actionable",
-      "Shared AI roadmap: what now, what next, what together — owned by the whole team",
-      "Foundation to keep innovating rhythmically — building on the workshop, every sprint",
-    ],
+    benefits: [],
     timeSaved: "From grunt work to strategic focus — structurally more time for what truly matters",
     deliverables: [
       "Milestone #1 – Inspire, Awareness & Enable (29 July, 14:00–17:00): AI vision kick-off, capabilities showcase, live Claude demos, No-Regret Use Case Framework, breakout sessions per department, presentation and selection per team",
