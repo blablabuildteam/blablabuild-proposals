@@ -7,7 +7,7 @@ export const meta = {
   clientName: "Adsomnia",
   clientLogo: "/adsomnia-logo.png",
   title: "Samen bouwen aan **Adsomnia**",
-  subtitle: "Workshop · Enablement · Samenwerking · juli 2026",
+  subtitle: "Workshop · Enablement · Always-On Retainer · juli 2026",
 } as const;
 
 export const debrief = {
@@ -91,7 +91,7 @@ const slideLabels: Record<string, string> = {
   "way-of-working": "Werkwijze",
   "phase-now": "AI Workshop",
   "phase-next": "Project Enablement",
-  "phase-near": "Samenwerking",
+  "phase-near": "Always-On Retainer",
   investment: "Investering",
   "next-steps": "Volgende stappen",
 };

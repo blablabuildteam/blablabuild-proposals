@@ -30,15 +30,16 @@ export const phaseSources: readonly PhaseSource[] = [
   },
   {
     id: "near",
-    label: "Samenwerking",
-    period: "Doorlopend",
-    headline: "AI-implementatie, technische begeleiding en **projectmanagement**",
+    label: "Always-On Retainer",
+    period: "",
+    headline: "Altijd beschikbaar — **Innovatie · Productie · Business**",
     workflows: ["WF3"],
     outcomes: [
-      "AI-initiatieven landen daadwerkelijk in de organisatie",
-      "Technical guidance bij architectuur- en toolkeuzes",
-      "PM/PO als vliegende keep over de hele organisatie",
-      "Maandelijks overzicht van voortgang en prioriteiten",
+      "Jouw vangnet op productie: directe beschikbaarheid bij problemen, geen wachttijd",
+      "Ritme op innovatie: AI-initiatieven blijven leven en worden daadwerkelijk geïmplementeerd",
+      "Strategisch sparringpartner: beslissingsondersteuning bij roadmap en prioriteiten",
+      "Flexibel inzetbaar: jij bepaalt per week waar de uren naartoe gaan",
+      "Altijd in context — geen briefingkosten, geen opstarttijd",
     ],
   },
 ];

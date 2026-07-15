@@ -5,9 +5,94 @@ import { useDeckNavigation } from "@/components/DeckNavigation";
 import { labelFor, useProposalUi } from "@/lib/proposals/use-proposal-ui";
 import { Badge, BulletList } from "./shared";
 
+const FOCUS_AREA_STYLES: Record<
+  string,
+  { accent: string; bg: string; label: string }
+> = {
+  Innovatie: {
+    accent: "text-[var(--brand-accent)]",
+    bg: "bg-[var(--brand-accent)]/15",
+    label: "✦",
+  },
+  Productie: {
+    accent: "text-[var(--brand-primary)]",
+    bg: "bg-[var(--brand-primary)]/10",
+    label: "◈",
+  },
+  Business: {
+    accent: "text-[#3B82F6]",
+    bg: "bg-blue-50",
+    label: "◉",
+  },
+};
+
+function FocusAreasGrid({
+  domainLabels,
+  benefits,
+}: {
+  domainLabels: readonly string[];
+  benefits: readonly string[];
+}) {
+  const focusItems = domainLabels.map((area) => {
+    const match = benefits.find((b) =>
+      b.toLowerCase().startsWith(area.toLowerCase() + ":"),
+    );
+    const description = match
+      ? match.slice(area.length + 1).trim()
+      : "";
+    return { area, description };
+  });
+
+  return (
+    <div className="grid grid-cols-3 gap-2 sm:gap-3">
+      {focusItems.map(({ area, description }) => {
+        const style = FOCUS_AREA_STYLES[area] ?? {
+          accent: "text-[var(--brand-primary)]",
+          bg: "bg-[var(--brand-bg)]",
+          label: "○",
+        };
+        return (
+          <div
+            key={area}
+            className={`flex flex-col rounded-xl p-3 sm:p-4 ${style.bg}`}
+          >
+            <span
+              className={`text-base font-bold leading-none ${style.accent}`}
+            >
+              {style.label}
+            </span>
+            <p
+              className={`mt-2 text-xs font-bold tracking-wide uppercase ${style.accent}`}
+            >
+              {area}
+            </p>
+            {description && (
+              <p className="mt-1 text-[11px] leading-snug text-[var(--brand-fg)]/80 sm:text-xs">
+                {description}
+              </p>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 /** Full inline project detail — used when a phase has exactly one workflow. */
 export function WorkflowInlinePanel({ wf }: { wf: Workflow }) {
   const ui = useProposalUi();
+  const hasFocusAreas =
+    wf.domainLabels && wf.domainLabels.length > 1;
+
+  const remainingBenefits = hasFocusAreas
+    ? wf.benefits?.filter(
+        (b) =>
+          !wf.domainLabels!.some((area) =>
+            b.toLowerCase().startsWith(area.toLowerCase() + ":"),
+          ),
+      )
+    : wf.benefits;
+
   return (
     <div className="space-y-3">
       <div className="rounded-xl bg-[var(--brand-primary)] p-5 text-white sm:p-6">
@@ -15,12 +100,25 @@ export function WorkflowInlinePanel({ wf }: { wf: Workflow }) {
         <p className="mt-1.5 text-sm leading-relaxed text-white/80">{wf.summary}</p>
       </div>
 
+      {hasFocusAreas && (
+        <FocusAreasGrid
+          domainLabels={wf.domainLabels!}
+          benefits={wf.benefits ?? []}
+        />
+      )}
+
       <div className="rounded-xl bg-[var(--brand-bg)] p-4">
         <p className="mb-2 text-[10px] font-bold tracking-wide text-[var(--brand-primary)] uppercase">
           {ui.whyThisMatters}
         </p>
         <p className="text-sm leading-relaxed text-[var(--brand-fg)]">{wf.why}</p>
       </div>
+
+      {remainingBenefits && remainingBenefits.length > 0 && (
+        <div className="rounded-xl bg-[var(--brand-accent)]/10 p-4">
+          <BulletList items={remainingBenefits} />
+        </div>
+      )}
 
       <div className="rounded-xl border border-[var(--brand-border)] bg-white p-4">
         <p className="mb-2 text-[10px] font-bold tracking-wide text-[var(--brand-muted)] uppercase">

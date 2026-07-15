@@ -140,15 +140,17 @@ function PhaseInvestBlock({
                     {row.wf.summary}
                   </p>
                 </div>
-                <p
-                  className={`shrink-0 font-mono text-sm font-bold sm:pt-0.5 sm:text-base ${
-                    row.wf.cardVariant === "highlight"
-                      ? "text-[var(--brand-accent)]"
-                      : "text-[var(--brand-primary)]"
-                  }`}
-                >
-                  {row.wf.investment}
-                </p>
+                {!row.wf.excludeFromTotals && (
+                  <p
+                    className={`shrink-0 font-mono text-sm font-bold sm:pt-0.5 sm:text-base ${
+                      row.wf.cardVariant === "highlight"
+                        ? "text-[var(--brand-accent)]"
+                        : "text-[var(--brand-primary)]"
+                    }`}
+                  >
+                    {row.wf.investment}
+                  </p>
+                )}
               </div>
             ) : (
               <div
