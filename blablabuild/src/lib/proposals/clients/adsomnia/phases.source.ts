@@ -4,7 +4,7 @@ export const phaseSources: readonly PhaseSource[] = [
   {
     id: "now",
     label: "AI Enablement Workshop",
-    period: "29 juli · start zo snel mogelijk",
+    period: "Start zo snel mogelijk",
     headline: "**Human-First, AI-Empowered** — van grunt work naar strategische impact",
     workflows: ["WF1"],
     outcomes: [
@@ -19,13 +19,13 @@ export const phaseSources: readonly PhaseSource[] = [
     id: "next",
     label: "Project Enablement",
     period: "Parallel of aansluitend",
-    headline: "Fundament, werkwijze en **tooling ingericht**",
+    headline: "Centraal overzicht, **de juiste toolstack** en intern eigenaarschap",
     workflows: ["WF2"],
     outcomes: [
-      "Jira of bestaande tooling ingericht op maat",
-      "Gedeelde werkwijze en stramien voor projecten",
-      "Teams weten hoe ze samenwerken en wie wat beslist",
-      "Klaar om AI-initiatieven uit de workshop op te pakken",
+      "Eén centraal overzicht van alle lopende projecten — altijd actueel",
+      "Tool stack bepaald en ingericht op basis van hoe Adsomnia werkt en groeit",
+      "Iemand intern groeit door naar Head of Production; bovenste laag naar oversight",
+      "Structuur die schaalt — ongeacht of Adsomnia intern groeit of extern blijft werken",
     ],
   },
   {
