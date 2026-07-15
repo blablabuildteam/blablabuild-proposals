@@ -77,17 +77,6 @@ export function WorkflowInlinePanel({ wf }: { wf: Workflow }) {
         <p className="mt-1.5 text-sm leading-relaxed text-white/80">{wf.summary}</p>
       </div>
 
-      {wf.expectedValue && (
-        <div className="rounded-xl border-l-4 border-[var(--brand-primary)] bg-[var(--brand-bg)] p-4">
-          <p className="mb-1.5 text-[10px] font-bold tracking-wide text-[var(--brand-primary)] uppercase">
-            Pre-exploration
-          </p>
-          <p className="text-sm leading-relaxed text-[var(--brand-fg)]">
-            {wf.expectedValue}
-          </p>
-        </div>
-      )}
-
       {hasFocusAreas && (
         <FocusAreasGrid
           domainLabels={wf.domainLabels!}

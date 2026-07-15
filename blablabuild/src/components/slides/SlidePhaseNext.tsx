@@ -37,6 +37,17 @@ export function SlidePhaseNext() {
         </div>
       </div>
 
+      {items.length === 1 && items[0]?.expectedValue && (
+        <div className="mb-5 rounded-xl border-l-4 border-[var(--brand-primary)] bg-[var(--brand-bg)] p-4">
+          <p className="mb-1.5 text-[10px] font-bold tracking-wide text-[var(--brand-primary)] uppercase">
+            Pre-exploration
+          </p>
+          <p className="text-sm leading-relaxed text-[var(--brand-fg)]">
+            {items[0].expectedValue}
+          </p>
+        </div>
+      )}
+
       <div className="mb-5 rounded-xl border border-[var(--brand-border)] bg-white p-4 sm:p-5">
         <p className="mb-2 text-xs font-bold text-[var(--brand-muted)] uppercase">{ui.outcomes}</p>
         <BulletList items={[...phase.outcomes]} />
