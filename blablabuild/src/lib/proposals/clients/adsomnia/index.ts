@@ -6,7 +6,7 @@ export const meta = {
   slug: "adsomnia",
   clientName: "Adsomnia",
   clientLogo: "/adsomnia-logo.png",
-  title: "Drie projecten, **één traject**",
+  title: "Samen bouwen aan **Adsomnia**",
   subtitle: "Workshop · Enablement · Samenwerking · juli 2026",
 } as const;
 
