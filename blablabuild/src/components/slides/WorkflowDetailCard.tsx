@@ -80,7 +80,7 @@ function DeliverablesSection({
       <p className="mb-2 text-[10px] font-bold tracking-wide text-[var(--brand-muted)] uppercase">
         {label}
       </p>
-      <BulletList items={items} />
+      <BulletList items={[...items]} />
     </div>
   );
 }
