@@ -15,19 +15,11 @@ export function WorkflowInlinePanel({ wf }: { wf: Workflow }) {
         <p className="mt-1.5 text-sm leading-relaxed text-white/80">{wf.summary}</p>
       </div>
 
-      <div className="grid gap-3 sm:grid-cols-2">
-        <div className="rounded-xl bg-[var(--brand-bg)] p-4">
-          <p className="mb-2 text-[10px] font-bold tracking-wide text-[var(--brand-primary)] uppercase">
-            {ui.whyThisMatters}
-          </p>
-          <p className="text-sm leading-relaxed text-[var(--brand-fg)]">{wf.why}</p>
-        </div>
-        <div className="rounded-xl bg-[var(--brand-accent)]/30 p-4">
-          <p className="mb-2 text-[10px] font-bold tracking-wide text-[var(--brand-fg)] uppercase">
-            {ui.whatYouGet}
-          </p>
-          <BulletList items={wf.benefits} />
-        </div>
+      <div className="rounded-xl bg-[var(--brand-bg)] p-4">
+        <p className="mb-2 text-[10px] font-bold tracking-wide text-[var(--brand-primary)] uppercase">
+          {ui.whyThisMatters}
+        </p>
+        <p className="text-sm leading-relaxed text-[var(--brand-fg)]">{wf.why}</p>
       </div>
 
       <div className="rounded-xl border border-[var(--brand-border)] bg-white p-4">
