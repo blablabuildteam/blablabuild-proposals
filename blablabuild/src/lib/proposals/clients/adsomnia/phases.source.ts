@@ -4,7 +4,7 @@ export const phaseSources: readonly PhaseSource[] = [
   {
     id: "now",
     label: "AI Enablement Workshop",
-    period: "Start zo snel mogelijk",
+    period: "",
     headline: "**Human-First, AI-Empowered** — van grunt work naar strategische impact",
     workflows: ["WF1"],
     outcomes: [
@@ -18,7 +18,7 @@ export const phaseSources: readonly PhaseSource[] = [
   {
     id: "next",
     label: "Project Enablement",
-    period: "Parallel of aansluitend",
+    period: "",
     headline: "Centraal overzicht, **de juiste toolstack** en een fundament voor de PM-rol",
     workflows: ["WF2"],
     outcomes: [
