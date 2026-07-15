@@ -12,9 +12,9 @@ export const meta = {
 
 export const debrief = {
   quote:
-    "Traffic never sleeps — en AI ook niet. Adsomnia wil AI niet zijdelings adopteren maar er echt mee bouwen: bewust, geactiveerd en met een concreet pad vooruit.",
-  quoteSource: "Intake gesprek",
-  focusAreas: "3 projecten: AI Workshop & Roadmap · Project Enablement · Samenwerking & Retainer",
+    "Human-First, AI-Empowered: Shifting from Grunt Work to Strategic Impact. AI is not here to lead — it is here to empower. The human remains in the driver's seat.",
+  quoteSource: "Adsomnia AI-visie",
+  focusAreas: "2 projecten + doorlopende samenwerking: AI Enablement Workshop · Project Enablement · Retainer",
   date: "juli 2026",
 } as const;
 

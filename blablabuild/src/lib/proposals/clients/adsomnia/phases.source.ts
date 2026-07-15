@@ -3,15 +3,16 @@ import type { PackageSource, PhaseSource } from "@foundation/types";
 export const phaseSources: readonly PhaseSource[] = [
   {
     id: "now",
-    label: "AI Workshop",
+    label: "AI Enablement Workshop",
     period: "29 juli · start zo snel mogelijk",
-    headline: "Bewustwording, use cases en **AI-roadmap**",
+    headline: "**Human-First, AI-Empowered** — van grunt work naar strategische impact",
     workflows: ["WF1"],
     outcomes: [
-      "Alle teams geactiveerd en spreken dezelfde AI-taal",
-      "Use cases per afdeling gevalideerd en geprioriteerd",
-      "Strategische AI-roadmap NOW / NEXT / NEAR klaar",
-      "Business cases voor de kansrijkste initiatieven",
+      "Elk team begrijpt wat AI voor hun werk betekent — concreet en direct toepasbaar",
+      "Use cases per afdeling gevalideerd, geprioriteerd en klaar om op te pakken",
+      "Gedeelde AI-roadmap: NOW / NEXT / NEAR — gedragen door het hele team",
+      "Business cases voor de kansrijkste initiatieven uitgewerkt",
+      "Een ritme van innovatie neergezet — geen eenmalige hype",
     ],
   },
   {
