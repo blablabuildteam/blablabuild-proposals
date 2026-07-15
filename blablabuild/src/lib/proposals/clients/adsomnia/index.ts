@@ -1,26 +1,37 @@
 import type { ProposalLocale } from "@/lib/proposals/locale";
 import type { ProposalBundle } from "@/lib/proposals/types";
-import * as data from "./data";
+import {
+  buildAdsomniaData,
+  slideConfigs,
+  wayOfWorkingEn,
+  wayOfWorkingNl,
+} from "./data";
 
 export const meta = {
   slug: "adsomnia",
   clientName: "Adsomnia",
   clientLogo: "/adsomnia-logo.png",
-  title: "Building **Adsomnia** together",
-  subtitle: "Workshop · Enablement · Always-On Retainer · July 2026",
   defaultLocale: "en",
-  showLocaleSwitcher: false,
 } as const;
 
-export const debrief = {
+// ─── English ─────────────────────────────────────────────────────────────────
+
+const metaEn = {
+  ...meta,
+  title: "Building **Adsomnia** together",
+  subtitle: "Workshop · Enablement · Always-On Retainer · July 2026",
+} as const;
+
+const debriefEn = {
   quote:
     "Human-First, AI-Empowered: Shifting from Grunt Work to Strategic Impact. AI is not here to lead — it is here to empower. The human remains in the driver's seat.",
   quoteSource: "Adsomnia AI vision",
-  focusAreas: "2 projects + ongoing partnership: AI Enablement Workshop · Project Enablement · Always-On Retainer",
+  focusAreas:
+    "2 projects + ongoing partnership: AI Enablement Workshop · Project Enablement · Always-On Retainer",
   date: "July 2026",
 } as const;
 
-export const access = {
+const accessEn = {
   landing: {
     kicker: "Proposal for",
     greetingTemplate: "Hi {name},",
@@ -39,7 +50,7 @@ export const access = {
   },
 } as const;
 
-export const slideCopy = {
+const slideCopyEn = {
   debriefKicker: "Intake summary",
   wayOfWorking: {
     kicker: "Way of working",
@@ -56,8 +67,7 @@ export const slideCopy = {
   investment: {
     kicker: "Investment",
     title: "Investment **per project**",
-    subtitle:
-      "Two fixed projects and an ongoing partnership based on availability.",
+    subtitle: "Two fixed projects and an ongoing partnership based on availability.",
   },
   nextSteps: {
     kicker: "Next steps",
@@ -88,9 +98,8 @@ export const slideCopy = {
   },
 } as const;
 
-const slideLabels: Record<string, string> = {
+const slideLabelsEn: Record<string, string> = {
   debrief: "Intro",
-  "way-of-working": "Way of working",
   "phase-now": "AI Workshop",
   "phase-next": "Project Enablement",
   "phase-near": "Always-On Retainer",
@@ -98,30 +107,133 @@ const slideLabels: Record<string, string> = {
   "next-steps": "Next steps",
 };
 
-const bundle: ProposalBundle = {
-  meta,
-  access,
-  debrief,
-  slideCopy,
-  workflows: data.workflows,
-  riceSorted: data.riceSorted,
-  phases: data.phases,
-  packages: data.packages,
-  wayOfWorking: data.wayOfWorking,
-  slideConfigs: data.slideConfigs.map((c) => ({
-    ...c,
-    label: slideLabels[c.sectionId] ?? c.label,
-  })),
-  slideLabels: data.slideConfigs.map(
-    (c) => slideLabels[c.sectionId] ?? c.label,
-  ),
-  AI_BUILD_NOTE: data.AI_BUILD_NOTE,
+// ─── Dutch ───────────────────────────────────────────────────────────────────
+
+const metaNl = {
+  ...meta,
+  title: "Samen bouwen aan **Adsomnia**",
+  subtitle: "Workshop · Enablement · Always-On Retainer · juli 2026",
+} as const;
+
+const debriefNl = {
+  quote:
+    "Human-First, AI-Empowered: Shifting from Grunt Work to Strategic Impact. AI is not here to lead — it is here to empower. The human remains in the driver's seat.",
+  quoteSource: "Adsomnia AI-visie",
+  focusAreas:
+    "2 projecten + doorlopende samenwerking: AI Enablement Workshop · Project Enablement · Always-On Retainer",
+  date: "juli 2026",
+} as const;
+
+const accessNl = {
+  landing: {
+    kicker: "Voorstel voor",
+    greetingTemplate: "Hoi {name},",
+    clientLabel: "Klant",
+    passwordLabel: "Wachtwoord",
+    passwordHint: "Gebruik het wachtwoord uit je uitnodiging.",
+    submit: "Open voorstel",
+    submitting: "Controleren…",
+    opening: "Voorstel openen…",
+    sessionExpired: "Je sessie is verlopen. Log opnieuw in.",
+    invalidAccessLink:
+      "Deze link is ongeldig of verlopen. Vul het wachtwoord uit je uitnodiging in.",
+    accessDenied: "Onjuiste klant of wachtwoord",
+    genericError: "Er ging iets mis. Probeer het opnieuw.",
+    confidentialNote: "Vertrouwelijk, opgesteld door blablabuild",
+  },
+} as const;
+
+const slideCopyNl = {
+  debriefKicker: "Intake samengevat",
+  wayOfWorking: {
+    kicker: "Werkwijze",
+    title: "**Activeren**, niet alleen inspireren.",
+    subtitle:
+      "Vier principes die bepalen hoe we met Adsomnia werken. Geen standaard bureautraject.",
+    aiTitle: "Wekelijkse afstemming",
+    aiBody:
+      "Elk project heeft een vast ritme: voortgang, open punten en wat er deze sprint wordt opgeleverd. Geen verrassingen.",
+    controlTitle: "Jullie houden de regie",
+    controlBody:
+      "Scope per project leggen we vast vóór we starten. Jullie bepalen de volgorde en het tempo van de drie projecten.",
+  },
+  investment: {
+    kicker: "Investering",
+    title: "Investering **per project**",
+    subtitle:
+      "Twee vaste projecten en een doorlopende samenwerking op basis van beschikbaarheid.",
+  },
+  nextSteps: {
+    kicker: "Volgende stappen",
+    title: "Klaar wanneer **jullie** willen",
+    subtitle: "Van voorstel naar uitvoering in vier stappen.",
+    steps: [
+      {
+        n: "01",
+        title: "Voorstel doorlezen",
+        body: "Doorloop de drie projecten, aanpak en investering in je eigen tempo. Noteer vragen en wat je anders wil.",
+      },
+      {
+        n: "02",
+        title: "Bespreken",
+        body: "Korte sessie om samen door het voorstel te lopen. Open vragen, scope aanpassen en bepalen welke projecten wanneer starten.",
+      },
+      {
+        n: "03",
+        title: "Scope per project vastleggen",
+        body: "Per project sluiten we de scope: wat leveren we op, wanneer, wie is waarvoor verantwoordelijk.",
+      },
+      {
+        n: "04",
+        title: "Kickoff plannen",
+        body: "Milestone #1 van de workshop staat al op 29 juli. Contract ondertekenen en starten.",
+      },
+    ],
+  },
+} as const;
+
+const slideLabelNl: Record<string, string> = {
+  debrief: "Intro",
+  "phase-now": "AI Workshop",
+  "phase-next": "Project Enablement",
+  "phase-near": "Always-On Retainer",
+  investment: "Investering",
+  "next-steps": "Volgende stappen",
 };
 
-export function buildAdsomniaBundle(_locale: ProposalLocale = "nl"): ProposalBundle {
-  return bundle;
+// ─── Bundle factory ───────────────────────────────────────────────────────────
+
+function buildBundle(locale: ProposalLocale): ProposalBundle {
+  const isNl = locale === "nl";
+  const data = buildAdsomniaData(locale);
+  const labels = isNl ? slideLabelNl : slideLabelsEn;
+
+  return {
+    meta: isNl ? metaNl : metaEn,
+    access: isNl ? accessNl : accessEn,
+    debrief: isNl ? debriefNl : debriefEn,
+    slideCopy: isNl ? slideCopyNl : slideCopyEn,
+    workflows: data.workflows,
+    riceSorted: data.riceSorted,
+    phases: data.phases,
+    packages: data.packages,
+    wayOfWorking: isNl ? wayOfWorkingNl : wayOfWorkingEn,
+    slideConfigs: slideConfigs.map((c) => ({
+      ...c,
+      label: labels[c.sectionId] ?? c.label,
+    })),
+    slideLabels: slideConfigs.map((c) => labels[c.sectionId] ?? c.label),
+    AI_BUILD_NOTE: data.AI_BUILD_NOTE,
+  };
+}
+
+export function buildAdsomniaBundle(locale: ProposalLocale = "en"): ProposalBundle {
+  return buildBundle(locale);
 }
 
 export function buildAdsomniaBundles(): Record<ProposalLocale, ProposalBundle> {
-  return { nl: bundle, en: bundle };
+  return {
+    en: buildBundle("en"),
+    nl: buildBundle("nl"),
+  };
 }
