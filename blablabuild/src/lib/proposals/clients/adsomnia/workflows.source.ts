@@ -48,7 +48,7 @@ export const workflowSources: WorkflowSource[] = [
     why: "Adsomnia groeit — en daarmee de complexiteit van projecten, mensen en tools. Op dit moment ontbreekt een centraal overzicht van wat er loopt, wie wat doet en hoe dat schaalt als de organisatie verder groeit. Dit project begint met een voorverkenning: we kijken naar het team, hoe ze nu werken, welke projecten er zijn, wie ze oppakt (intern, extern of binnen de bredere organisatie) en hoe dit evolueert. Pas dan bepalen we de beste inrichting — zodat de structuur écht past bij Adsomnia, nu en later.",
     benefits: [
       "Eén centraal overzicht van alle lopende projecten — altijd actueel, voor iedereen zichtbaar",
-      "Iemand binnen Adsomnia groeit door naar een Head of Production rol; de bovenste laag gaat naar oversight",
+      "Het fundament staat klaar voor een Project / Product Manager — intern of te werven — om direct vanuit te werken",
       "Tool stack bepaald en ingericht: Jira, Google Drive en wat er verder nodig is",
       "Werkwijze die schaalt — of Adsomnia nu extern werkt, intern groeit of een dedicated team krijgt",
       "Fundament voor toekomstige AI-initiatieven uit de workshop",
@@ -59,7 +59,7 @@ export const workflowSources: WorkflowSource[] = [
       "Advies toolstack op basis van de verkenning: Project Management (Jira), Storage (Google Drive), Resource Planning, Planning en Central Production Dashboard (Jira of bespoke)",
       "Inrichting van de gekozen toolstack met workflows, statussen en ritme passend bij Adsomnia",
       "Centraal productie-dashboard: overzicht van alle lopende projecten, eigenaarschap en status",
-      "Handvatten en onboarding voor de interne Head of Production — zodat Adsomnia zelfstandig verder kan",
+      "Volledig gedocumenteerd fundament klaar voor een Project / Product Manager — ongeacht of die er al is of nog wordt gezocht",
     ],
   },
   {
