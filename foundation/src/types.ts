@@ -1,7 +1,7 @@
 export type Bucket = "Quick Win" | "Incremental" | "Big Bet";
 export type Phase = "NOW" | "NEXT" | "NEAR" | "BACKLOG" | "PARALLEL";
 export type ImpactLevel = "Massive" | "High" | "Medium" | "Low";
-export type WorkflowDomain = "Operations" | "Marketing" | "Sales";
+export type WorkflowDomain = "Operations" | "Marketing" | "Sales" | "Innovatie" | "Productie" | "Business";
 
 /** RICE inputs — Reach × Impact × Confidence ÷ Effort */
 export type RiceInput = {
