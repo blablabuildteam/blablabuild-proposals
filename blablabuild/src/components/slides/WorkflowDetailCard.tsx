@@ -5,25 +5,10 @@ import { useDeckNavigation } from "@/components/DeckNavigation";
 import { labelFor, useProposalUi } from "@/lib/proposals/use-proposal-ui";
 import { Badge, BulletList } from "./shared";
 
-const FOCUS_AREA_STYLES: Record<
-  string,
-  { accent: string; bg: string; label: string }
-> = {
-  Innovatie: {
-    accent: "text-[var(--brand-accent)]",
-    bg: "bg-[var(--brand-accent)]/15",
-    label: "✦",
-  },
-  Productie: {
-    accent: "text-[var(--brand-primary)]",
-    bg: "bg-[var(--brand-primary)]/10",
-    label: "◈",
-  },
-  Business: {
-    accent: "text-[#3B82F6]",
-    bg: "bg-blue-50",
-    label: "◉",
-  },
+const FOCUS_AREA_BAR: Record<string, string> = {
+  Innovatie: "bg-[var(--brand-accent)]",
+  Productie: "bg-[var(--brand-primary)]",
+  Business: "bg-[#3B82F6]",
 };
 
 function FocusAreasGrid({
@@ -37,40 +22,30 @@ function FocusAreasGrid({
     const match = benefits.find((b) =>
       b.toLowerCase().startsWith(area.toLowerCase() + ":"),
     );
-    const description = match
-      ? match.slice(area.length + 1).trim()
-      : "";
+    const description = match ? match.slice(area.length + 1).trim() : "";
     return { area, description };
   });
 
   return (
     <div className="grid grid-cols-3 gap-2 sm:gap-3">
       {focusItems.map(({ area, description }) => {
-        const style = FOCUS_AREA_STYLES[area] ?? {
-          accent: "text-[var(--brand-primary)]",
-          bg: "bg-[var(--brand-bg)]",
-          label: "○",
-        };
+        const bar = FOCUS_AREA_BAR[area] ?? "bg-[var(--brand-primary)]";
         return (
           <div
             key={area}
-            className={`flex flex-col rounded-xl p-3 sm:p-4 ${style.bg}`}
+            className="flex flex-col overflow-hidden rounded-xl border border-[var(--brand-border)] bg-white"
           >
-            <span
-              className={`text-base font-bold leading-none ${style.accent}`}
-            >
-              {style.label}
-            </span>
-            <p
-              className={`mt-2 text-xs font-bold tracking-wide uppercase ${style.accent}`}
-            >
-              {area}
-            </p>
-            {description && (
-              <p className="mt-1 text-[11px] leading-snug text-[var(--brand-fg)]/80 sm:text-xs">
-                {description}
+            <div className={`h-1.5 w-full ${bar}`} />
+            <div className="flex flex-col p-3 sm:p-4">
+              <p className="text-[10px] font-bold tracking-widest text-[var(--brand-fg)] uppercase">
+                {area}
               </p>
-            )}
+              {description && (
+                <p className="mt-1.5 text-[11px] leading-snug text-[var(--brand-muted)] sm:text-xs">
+                  {description}
+                </p>
+              )}
+            </div>
           </div>
         );
       })}
