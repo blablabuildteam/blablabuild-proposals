@@ -85,6 +85,8 @@ export type WorkflowSource = {
   excludeFromPrio?: boolean;
   /** Hide duration on cards and detail slides (e.g. discovery-only backlog items) */
   hideTimeline?: boolean;
+  /** Hide the deliverables list in the inline panel (use when outcomes already cover it) */
+  hideDeliverables?: boolean;
   summary: string;
   why: string;
   benefits: string[];

@@ -44,6 +44,7 @@ export const workflowSourcesNl: WorkflowSource[] = [
     hideTimeline: true,
     excludeFromPrio: true,
     excludeFromTotals: true,
+    hideDeliverables: true,
     summary: "Gecentraliseerd overzicht van alle lopende projecten, een werkende toolstack en het fundament voor een PM / PO-rol.",
     why: "Adsomnia groeit — en daarmee de complexiteit van projecten, mensen en tools. Op dit moment ontbreekt een centraal overzicht van wat er loopt, wie wat doet en hoe dat schaalt als de organisatie verder groeit. Dit project begint met een voorverkenning: we kijken naar het team, hoe ze nu werken, welke projecten er zijn, wie ze oppakt (intern, extern of binnen de bredere organisatie) en hoe dit evolueert. Pas dan bepalen we de beste inrichting — zodat de structuur écht past bij Adsomnia, nu en later.",
     benefits: [
@@ -80,8 +81,8 @@ export const workflowSourcesNl: WorkflowSource[] = [
     summary: "Een vast blok uren per week — flexibel in te zetten over Innovatie, Productie en Business. Jouw vangnet, altijd in context.",
     why: "Groei brengt complexiteit mee. Nieuwe AI-initiatieven die moeten landen. Productieproblemen die je niet kunt laten liggen. Strategische keuzes waarbij je niet alleen wil staan. We spreken een vast aantal uur per week af — waarschijnlijk op vaste dagen. Die uren zijn voor jou: deze week vooral productie, volgende week strategie, de week daarna een deep-dive op een nieuw AI-initiatief. Geen briefingkosten, geen opstarttijd, altijd in context.",
     benefits: [
-      "Productie: jouw vangnet én directe support voor de head of delivery — beschikbaar bij blokkades, bugs en escalaties voordat ze problemen worden",
-      "Innovatie: wij zorgen voor ritme — nieuwe AI-ideeën die boven water komen naarmate je team meer enabled raakt, krijgen eigenaarschap en structuur. Inclusief maandelijkse 'AI 30 Minutes of Now' sessies om momentum te houden",
+      "Productie: jouw vangnet én directe support voor projectleads en de PM-to-be — beschikbaar bij blokkades, bugs en escalaties voordat ze problemen worden",
+      "Innovatie: maandelijkse 'AI 30 Minutes of Now' sessies — één uur per maand met een team: nieuwe use cases, live demo's en ophalen wat mensen zelf zijn gaan uitproberen in Claude. Nieuwe AI-ideeën die ontstaan krijgen eigenaarschap en een concreet pad",
       "Business: wij zijn je strategisch partner — sparring bij keuzes, roadmap en prioriteiten",
       "Jij bepaalt waar de uren naartoe gaan — verdeeld over de drie gebieden op basis van wat er die week het hardst nodig is",
     ],

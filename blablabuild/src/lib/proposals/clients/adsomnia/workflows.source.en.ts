@@ -44,6 +44,7 @@ export const workflowSources: WorkflowSource[] = [
     hideTimeline: true,
     excludeFromPrio: true,
     excludeFromTotals: true,
+    hideDeliverables: true,
     summary: "A centralised overview of all active projects, a working toolstack, and the foundation for a PM / PO role.",
     why: "Adsomnia is growing — and so is the complexity of projects, people, and tools. Right now there is no central overview of what is running, who owns what, and how that scales as the organisation grows. This project starts with a pre-exploration: we look at the team, how they currently work, what projects exist, who picks them up (internal, external, or within the broader organisation), and how this evolves over time. Only then do we decide on the best setup — so the structure genuinely fits Adsomnia, now and later.",
     benefits: [
@@ -80,8 +81,8 @@ export const workflowSources: WorkflowSource[] = [
     summary: "A fixed block of hours per week — flexibly deployable across Innovation, Production, and Business. Your safety net, always in context.",
     why: "Growth brings complexity. New AI initiatives that need to land. Production issues you cannot afford to leave unresolved. Strategic choices you do not want to face alone. We agree on a fixed number of hours per week — likely structured around fixed days. Those hours are yours to direct: this week mostly production, next week strategy, the week after a deep-dive on a new AI initiative. No briefing cost, no ramp-up, always in context.",
     benefits: [
-      "Production: your safety net and direct support for the head of delivery — available for blockers, bugs, and escalations before they become problems",
-      "Innovation: we keep the rhythm — new AI ideas that surface as your team gets more enabled get ownership and structure. Including monthly 'AI 30 Minutes of Now' sessions to keep momentum going",
+      "Production: your safety net and direct support for project leads and the PM-to-be — available for blockers, bugs, and escalations before they become problems",
+      "Innovation: monthly 'AI 30 Minutes of Now' sessions — one hour per month with a team, covering new use cases, live demos, and picking up on what people have been experimenting with in Claude. New AI ideas that surface get ownership and a path forward",
       "Business: we are your strategic partner — sparring on choices, roadmap, and priorities",
       "You decide where the hours go — split across the three areas based on what is most pressing that week",
     ],

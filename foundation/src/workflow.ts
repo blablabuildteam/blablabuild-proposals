@@ -60,6 +60,7 @@ export type BuiltWorkflow = {
   cardVariant?: "highlight";
   excludeFromTotals?: boolean;
   excludeFromPrio?: boolean;
+  hideDeliverables?: boolean;
 };
 
 function mapImplementationEstimate(
@@ -123,6 +124,7 @@ export function buildWorkflow(
     cardVariant: source.cardVariant,
     excludeFromTotals: source.excludeFromTotals,
     excludeFromPrio: source.excludeFromPrio,
+    hideDeliverables: source.hideDeliverables,
     epics: source.epics?.map((epic) => ({
       id: epic.id,
       title: epic.title,

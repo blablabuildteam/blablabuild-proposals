@@ -26,6 +26,7 @@ export const phaseSourcesNl: readonly PhaseSource[] = [
       "Toolstack bepaald en ingericht op basis van hoe Adsomnia werkt en groeit",
       "Fundament klaar voor een PM / PO — intern of te werven — om direct vanuit te werken",
       "Structuur die schaalt — of Adsomnia intern groeit of extern blijft werken",
+      "Fundament voor toekomstige AI-initiatieven uit de workshop",
     ],
   },
   {
@@ -35,8 +36,8 @@ export const phaseSourcesNl: readonly PhaseSource[] = [
     headline: "Altijd beschikbaar — **Innovatie · Productie · Business**",
     workflows: ["WF3"],
     outcomes: [
-      "Productie: vangnet én directe support voor de head of delivery — escalaties worden opgepakt voordat het problemen worden",
-      "Innovatie: maandelijkse 'AI 30 Minutes of Now' sessies + nieuwe AI-ideeën die ontstaan krijgen eigenaarschap en structuur",
+      "Productie: vangnet én directe support voor projectleads en de PM-to-be — escalaties worden opgepakt voordat het problemen worden",
+      "Innovatie: maandelijkse 'AI 30 Minutes of Now' sessies — live demo's, nieuwe use cases en ideeën die mensen zelf uitproberen in Claude krijgen eigenaarschap en een concreet pad",
       "Business: strategisch sparring op roadmap, prioriteiten en beslissingen",
       "Jij bepaalt hoe de uren verdeeld worden over de drie gebieden — op basis van wat die week het hardst nodig is",
     ],

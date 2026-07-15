@@ -101,7 +101,7 @@ export function WorkflowInlinePanel({ wf }: { wf: Workflow }) {
         </div>
       )}
 
-      {!hasFocusAreas && (
+      {!hasFocusAreas && !wf.hideDeliverables && (
         <div className="rounded-xl border border-[var(--brand-border)] bg-white p-4">
           <p className="mb-2 text-[10px] font-bold tracking-wide text-[var(--brand-muted)] uppercase">
             {ui.whatWeDeliver}

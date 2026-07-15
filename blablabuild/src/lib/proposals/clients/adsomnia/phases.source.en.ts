@@ -24,8 +24,9 @@ export const phaseSources: readonly PhaseSource[] = [
     outcomes: [
       "One central overview of all active projects — always up to date",
       "Toolstack decided and configured based on how Adsomnia works and grows",
-      "Foundation ready for a Project / Product Manager — internal or new hire — to work from day one",
+      "Foundation ready for a PM / PO — internal or new hire — to work from day one",
       "Structure that scales — whether Adsomnia grows internally or continues to work externally",
+      "Foundation for future AI initiatives coming out of the workshop",
     ],
   },
   {
@@ -35,8 +36,8 @@ export const phaseSources: readonly PhaseSource[] = [
     headline: "Always available — **Innovation · Production · Business**",
     workflows: ["WF3"],
     outcomes: [
-      "Production: safety net and direct support for the head of delivery — escalations handled before they become problems",
-      "Innovation: monthly 'AI 30 Minutes of Now' sessions + new AI ideas that surface over time get structure and ownership",
+      "Production: safety net and direct support for project leads and the PM-to-be — escalations handled before they become problems",
+      "Innovation: monthly 'AI 30 Minutes of Now' sessions — live demos, new use cases, and ideas people have been experimenting with in Claude get ownership and a path forward",
       "Business: strategic sparring on roadmap, priorities, and decisions",
       "You decide how hours are split across the three areas — based on what matters most that week",
     ],
