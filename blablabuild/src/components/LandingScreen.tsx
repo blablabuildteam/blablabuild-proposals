@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Eye, EyeOff } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import {
@@ -79,6 +80,7 @@ export function LandingScreen({
 
   const [client, setClient] = useState(defaultClient);
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(isPasswordlessEntry);
   const [error, setError] = useState<string | null>(() => {
     if (errorParam === "session") return copy.sessionExpired;
@@ -202,17 +204,32 @@ export function LandingScreen({
               <span className="text-xs font-medium text-[var(--brand-muted)]">
                 {copy.passwordLabel}
               </span>
-              <input
-                type={copy.passwordInputType ?? "password"}
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder=""
-                autoComplete="off"
-                required
-                autoFocus={isPersonalized}
-                className="mt-1.5 w-full rounded-lg border border-[var(--brand-border)] bg-[var(--brand-bg)] px-3 py-2.5 text-sm text-[var(--brand-fg)] outline-none focus:border-[var(--brand-primary)] focus:bg-white"
-              />
+              <div className="relative mt-1.5">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder=""
+                  autoComplete="off"
+                  required
+                  autoFocus={isPersonalized}
+                  className="w-full rounded-lg border border-[var(--brand-border)] bg-[var(--brand-bg)] py-2.5 pl-3 pr-10 text-sm text-[var(--brand-fg)] outline-none focus:border-[var(--brand-primary)] focus:bg-white"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((v) => !v)}
+                  className="absolute inset-y-0 right-0 flex items-center px-3 text-[var(--brand-muted)] hover:text-[var(--brand-fg)]"
+                  tabIndex={-1}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4" strokeWidth={1.75} />
+                  ) : (
+                    <Eye className="h-4 w-4" strokeWidth={1.75} />
+                  )}
+                </button>
+              </div>
               {copy.passwordHint && (
                 <p className="mt-1.5 text-xs text-[var(--brand-muted)]">
                   {copy.passwordHint}
